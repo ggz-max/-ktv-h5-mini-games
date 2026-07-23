@@ -16,6 +16,30 @@ Each independent product idea or execution project must live in its own subdirec
 
 Lightweight H5 mini-games should share this repository. Do not create a new GitLab Project for each mini-game unless the product becomes a larger independent system with its own backend, database, permission model, or separate business lifecycle.
 
+## GitLab Repository Rule
+
+The canonical GitLab repository for this workstream is:
+
+```text
+https://g.ktvsky.com/liguangzhe/ktv-h5-mini-games.git
+```
+
+The canonical/default branch is:
+
+```text
+ktv-h5-extension-monorepo
+```
+
+This GitLab Project was renamed from `room-blame-king` to `ktv-h5-mini-games`. Treat `ktv-h5-mini-games` as the shared monorepo for all lightweight KTV H5 mini-games and small experiments.
+
+New lightweight games should be added under:
+
+```text
+D:\AIproject\production\ktv-h5-extension\app-projects\<project-slug>
+```
+
+Do not create a separate GitLab Project for a new lightweight mini-game. Keep separate GitLab Projects only for truly independent products, for example a hackathon project or a larger system with its own backend, database, permissions, and release lifecycle.
+
 Use this structure by default:
 
 ```text

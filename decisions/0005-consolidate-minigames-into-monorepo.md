@@ -20,6 +20,18 @@ ktv-h5-extension/
     project-slug/
 ```
 
+The canonical GitLab repository is:
+
+```text
+https://g.ktvsky.com/liguangzhe/ktv-h5-mini-games.git
+```
+
+The canonical/default branch is:
+
+```text
+ktv-h5-extension-monorepo
+```
+
 Do not create a new GitLab Project for each lightweight mini-game.
 
 Create a separate GitLab Project only when the product becomes a large independent system with its own backend, database, permission model, or separate business lifecycle.
@@ -39,10 +51,10 @@ On 2026-07-23, existing mini-game projects were gathered under `app-projects/`, 
 .legacy-git-metadata/20260723-094415/
 ```
 
-The monorepo was pushed to the existing GitLab project `room-blame-king` on branch:
+The monorepo was first pushed to the existing GitLab project `room-blame-king` on branch:
 
 ```text
 ktv-h5-extension-monorepo
 ```
 
-The original `master` branch was left untouched.
+The GitLab Project was then renamed to `ktv-h5-mini-games`, and the default branch was changed to `ktv-h5-extension-monorepo`. The original `master` branch was left untouched.
