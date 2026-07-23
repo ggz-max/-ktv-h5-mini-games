@@ -38,3 +38,11 @@ On 2026-07-23, existing mini-game projects were gathered under `app-projects/`, 
 ```text
 .legacy-git-metadata/20260723-094415/
 ```
+
+The monorepo was pushed to the existing GitLab project `room-blame-king` on branch:
+
+```text
+ktv-h5-extension-monorepo
+```
+
+The original `master` branch was left untouched.

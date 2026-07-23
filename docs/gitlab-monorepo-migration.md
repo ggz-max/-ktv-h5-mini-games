@@ -49,7 +49,15 @@ npm run project -- room-blame-king build
 
 不要再为轻量小游戏新建 GitLab Project。
 
-推荐选一个现有项目作为总项目承载仓库，例如保留 `room-blame-king` 或单独申请管理员释放/提升额度后创建 `ktv-h5-extension`。在确认目标仓库前，不建议自动覆盖远程。
+当前已经采用保守迁移方式：把总仓库推到现有 `room-blame-king` GitLab Project 的新分支，未覆盖原 `master`。
+
+```text
+Remote project: https://g.ktvsky.com/liguangzhe/room-blame-king.git
+Monorepo branch: ktv-h5-extension-monorepo
+Original branch kept: master
+```
+
+这个分支可以先用来验收总项目结构。确认没问题后，再在 GitLab 上决定是否把默认分支切到 `ktv-h5-extension-monorepo`，或新建/重命名一个更合适的承载项目。
 
 确认目标仓库后再执行：
 
