@@ -40,37 +40,19 @@ D:\AIproject\production\ktv-h5-extension\app-projects\<project-slug>
 
 Do not create a separate GitLab Project for a new lightweight mini-game. Keep separate GitLab Projects only for truly independent products, for example a hackathon project or a larger system with its own backend, database, permissions, and release lifecycle.
 
-## wx_action Integration Checkout
+## wx_action Integration
 
-Repository roles:
-
-```text
-D:\AIproject\production\ktv-h5-extension
-```
-
-This is the user's local product-output and memory repository. Product exploration, PRDs, source projects, generated assets, and local verification are produced here first.
+When the user asks to submit a game to the company Game Hub, the source is one explicitly selected mini-game under:
 
 ```text
-D:\AIproject\production\wx_action
+D:\AIproject\production\ktv-h5-extension\app-projects\<project-slug>
 ```
 
-This is the company's working-environment repository for the mobile song-ordering lobby.
+Read and integrate only that mini-game. Do not treat the whole `ktv-h5-extension` repository as the submission and do not inspect or submit unrelated games.
 
-The integration direction is one-way and selective:
+The company destination is `https://g.ktvsky.com/web/wx_action.git`. Use the company code environment supplied for the current task. Do not assume a permanent local `wx_action` path and do not clone the company repository automatically.
 
-```text
-local output in ktv-h5-extension -> reviewed integration into company wx_action
-```
-
-Only the files needed by the approved game are integrated into `wx_action`, such as the lobby entry, route, Vue wrapper/page, and production assets. Do not treat the two repositories as mirrors and do not copy the whole local project into `wx_action`.
-
-The existing local checkout for the company repository is:
-
-```text
-D:\AIproject\production\wx_action
-```
-
-Use this existing sibling checkout for Game Hub integration, test MRs, and production MRs. Do not clone `https://g.ktvsky.com/web/wx_action.git` again just because the current working directory is `ktv-h5-extension`. If the checkout is genuinely missing, ask the user before cloning it.
+The release flow is: selected mini-game -> `release/online` test MR -> test approval -> `master` production MR -> frontend production build and deployment.
 
 Use this structure by default:
 
