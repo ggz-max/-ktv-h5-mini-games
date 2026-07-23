@@ -40,6 +40,16 @@ D:\AIproject\production\ktv-h5-extension\app-projects\<project-slug>
 
 Do not create a separate GitLab Project for a new lightweight mini-game. Keep separate GitLab Projects only for truly independent products, for example a hackathon project or a larger system with its own backend, database, permissions, and release lifecycle.
 
+## wx_action Integration Checkout
+
+The existing local checkout for the mobile song-ordering lobby is:
+
+```text
+D:\AIproject\production\wx_action
+```
+
+Use this existing sibling checkout for Game Hub integration, test MRs, and production MRs. Do not clone `https://g.ktvsky.com/web/wx_action.git` again just because the current working directory is `ktv-h5-extension`. If the checkout is genuinely missing, ask the user before cloning it.
+
 Use this structure by default:
 
 ```text

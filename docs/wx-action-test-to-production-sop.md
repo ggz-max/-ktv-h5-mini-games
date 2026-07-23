@@ -12,6 +12,20 @@
 https://g.ktvsky.com/web/wx_action.git
 ```
 
+本机已有工作区：
+
+```text
+D:\AIproject\production\wx_action
+```
+
+## 本地仓库约定
+
+- `wx_action` 已经检出在 `D:\AIproject\production\wx_action`，直接进入该目录操作。
+- 即使当前对话的工作目录是 `D:\AIproject\production\ktv-h5-extension`，也应使用同级的 `D:\AIproject\production\wx_action`。
+- 不要因为当前 monorepo 不是 `wx_action` 就重新 clone。
+- 执行前先检查上述绝对路径和 Git remote；本地目录确实不存在时，必须先询问用户，不能自行重复克隆。
+- `ktv-h5-extension` 是产品记忆与小游戏源码 monorepo；`wx_action` 是手机点歌大厅接入仓库。两者用途不同，但都已经存在于本机。
+
 环境：
 
 ```text
