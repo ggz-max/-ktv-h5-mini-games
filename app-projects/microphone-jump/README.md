@@ -46,6 +46,18 @@ App：
 - 好友榜、每日挑战、皮肤、平台主题包、历史最高分、赛季称号。
 - 不承接本地生活、门店聚合、陌生人社交或 K 歌主功能。
 
+## ThunderBox 部署
+
+2026-07-23 已部署到 ThunderBox：
+
+- 公网地址：`https://microphone-jump-web.tbox.ktvsky.com/`
+- ThunderBox app id：`zmp8q6sldk2z3cougkgo5t9v`
+- 部署分支：`thunderbox-microphone-jump`
+- 部署方式：Dockerfile 构建，Node 静态服务承载 `dist/`。
+- 验证截图：`verification/deployed-microphone-jump-web.png`
+
+说明：`microphone-jump.tbox.ktvsky.com` 和 `microphone-jump-h5.tbox.ktvsky.com` 曾用于失败的构建尝试，当前可用公网地址以上方 `microphone-jump-web` 为准。
+
 ## 本地运行
 
 ```bash
