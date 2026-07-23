@@ -1,141 +1,234 @@
-# wx_action 小游戏：测试环境到正式环境 SOP
+# KTV Game Hub 游戏接入与上线 SOP
 
 更新时间：2026-07-23
 
-## 适用范围
+依据：`KTV Game Hub 游戏上线 SOP.pdf` 第 3 步至第 8 步，以及历史项目已经执行过的“测试通过后提 `master` 正式 MR”流程。
 
-适用于已经在 `wx_action` 游戏大厅接入、并完成测试环境验收的轻量 H5 小游戏。
+## 仓库关系
 
-目标仓库：
+本地产品产出目录：
 
 ```text
-https://g.ktvsky.com/web/wx_action.git
+D:\AIproject\production\ktv-h5-extension\app-projects\<project-slug>
 ```
 
-本机已有工作区：
+公司手机点歌工作仓库的现有本地目录：
 
 ```text
 D:\AIproject\production\wx_action
 ```
 
-## 本地仓库约定
-
-- `D:\AIproject\production\ktv-h5-extension` 是用户在自己电脑上进行产品设计、代码开发、素材生成和本地验证的产出仓库。
-- `D:\AIproject\production\wx_action` 是公司的工作环境仓库，用于把已经验收的产品接入手机点歌大厅。
-- 正确的数据流向是：`ktv-h5-extension` 本地产出 -> 选择必要内容接入公司 `wx_action`。
-- 两个仓库不是镜像关系。不要把整个本地项目复制进 `wx_action`，只接入上线需要的入口、路由、Vue 页面或 iframe 容器、正式资源和必要说明。
-- `wx_action` 已经检出在 `D:\AIproject\production\wx_action`，接入时直接进入该目录操作。
-- 即使当前对话的工作目录是 `D:\AIproject\production\ktv-h5-extension`，也应使用同级的 `D:\AIproject\production\wx_action`。
-- 不要因为当前 monorepo 不是 `wx_action` 就重新 clone。
-- 执行前先检查上述绝对路径和 Git remote；本地目录确实不存在时，必须先询问用户，不能自行重复克隆。
-
-环境：
+公司远端仓库：
 
 ```text
-测试环境：https://kg.stage.ktvsky.com/action/ktv_game_hub
-正式环境：https://kg.ktvsky.com/action/ktv_game_hub
+https://g.ktvsky.com/web/wx_action.git
 ```
 
-## 今天确认的实际流程
+正确关系是：先在本地项目目录完成产品和游戏，再把上线需要的内容接入公司已有的 `wx_action` 工作区。
 
-当前团队采用两段式发布。测试 MR 和正式 MR 是两条独立链路，不能把整个测试分支直接合入正式分支。
+```text
+本地项目产出
+  -> 接入公司 wx_action 工作区
+  -> 测试 MR
+  -> 测试验收
+  -> 正式 MR
+  -> 前端人员打包正式上线
+```
 
-### 第一段：提交测试环境
+约束：
 
-1. 拉取最新 `release/online`。
-2. 从 `release/online` 创建游戏开发分支，例如 `feature/room-blame-king`。
-3. 完成入口、路由、页面或 iframe 容器、封面和必要文档。
-4. 使用仓库实际脚本执行本地构建。当前仓库脚本是：
+- 不重新 clone `wx_action`，直接使用 `D:\AIproject\production\wx_action`。
+- 不把整个本地项目仓库复制到公司仓库。
+- 只接入已确认游戏所需的 Vue 页面或 iframe 容器、路由、大厅入口、正式资源和必要文档。
 
-   ```powershell
-   $env:NODE_OPTIONS='--openssl-legacy-provider'
-   npm run prod
-   ```
+## 第 3 步：代码开发与公司仓库接入
 
-5. 不提交 `dist/` 构建产物。
-6. 推送开发分支，创建 `开发分支 -> release/online` 的测试 MR。
-7. Review 后合并。`release/*` 分支会触发当前 GitLab CI 的 build/deploy 流程。
-8. 在测试环境完成入口、完整玩法、多人同步、资源加载、控制台和手机 WebView 验证。
-9. 产品或负责人明确回复“测试通过”后，才能进入正式提交。
+负责人：工程师。
 
-### 第二段：提交正式环境
+1. 读取本地项目源码、PRD、素材和验证结果。
+2. 在现有 `D:\AIproject\production\wx_action` 工作区中，从最新 `release/online` 创建游戏 feature 分支。
+3. 按公司仓库结构完成接入：
+   - 将 demo 转成 Vue 2 SFC，或增加加载独立游戏服务的 Vue iframe 容器。
+   - 增加独立路由。
+   - 增加 KTV Game Hub 大厅入口。
+   - 放入正式封面和必要静态资源。
+4. 按项目范围接入 PayModal、点歌和埋点。
+5. 执行本地构建，处理本次变更导致的错误。
+6. 检查 Git 差异，确认没有修改无关文件和提交 `dist/`。
+7. 推送 feature 分支。
 
-1. 拉取最新 `master`。
-2. 从 `master` 新建独立的正式上线分支，例如 `0723-room-blame-king-master`。
-3. 只移植本游戏已经在测试环境验证过的提交。优先使用 `git cherry-pick` 精确移植，不要把 `release/online` 整体合到 `master`。
-4. 检查与 `master` 的差异，确认没有夹带其他测试中项目：
+PDF 原始约定：
 
-   ```powershell
-   git diff --stat origin/master...HEAD
-   git diff --name-status origin/master...HEAD
-   git diff --check
-   ```
+- Vue 2，Options API。
+- 样式单位使用 `rem`、`vw`、`vh`。
+- PayModal 引用 `src/components/common/PayModal.vue`，不复制、不改写。
+- `fetchPayPkg` 在 `mounted` 中调用。
+- 定时器在 `beforeDestroy` 中清理。
 
-5. 再执行一次 `npm run prod`，确保 `master` 基线下也能构建。
-6. 推送正式上线分支，创建 `正式上线分支 -> master` 的生产 MR。
-7. MR 描述必须包含：
-   - 变更内容
-   - 测试环境验收结果
-   - 本地构建结果
-   - 是否只包含本游戏内容
-   - 外部服务地址和回滚方式
-8. 由负责人或前端人员合并生产 MR。
-9. 前端人员基于合并后的 `master` 打包并发布正式环境。
-10. 发布后验证正式大厅入口、Banner、游戏启动、完整一局和外部服务健康状态。
+当前执行修正：
 
-## 关键事实
+- 提交身份使用 `李广哲 <liguangzhe@thunder.com.cn>`。
+- `wx_action` 当前没有 `npm run build`，实际构建命令是：
 
-- `release/online` 用于测试环境验证，`master` 用于正式上线代码准备。
-- 正式分支必须从最新 `master` 创建，不能从 `release/online` 直接拉分支后提交到 `master`。
-- 当前 `.gitlab-ci.yml` 的自动 build/deploy 仅匹配 `release/*`。`master` MR 合并后仍需要前端人员执行正式打包发布。
-- 测试环境通过不代表正式环境已经更新。必须检查正式站构建版本、静态资源和实际页面。
-- 提交身份统一使用：
-
-  ```text
-  李广哲 <liguangzhe@thunder.com.cn>
+  ```powershell
+  $env:NODE_OPTIONS='--openssl-legacy-provider'
+  npm run prod
   ```
 
-## 常见问题与解决方案
+- 包厢背锅王本次已确认不接 PayModal 和点歌，因此相关检查标记为“不适用”，不能伪造已接入。
 
-### 1. 旧 SOP 与实际流程冲突
+产出：已接入公司 `wx_action` 的 feature 分支。
 
-现象：旧文档写“禁止合 master”，但团队实际要求测试通过后再提 `master` 上线 MR。
+## 第 4 步：创建测试 MR
 
-处理：以负责人当天确认的发布流程和历史正式 MR 为准。保留两段式流程：先 `release/online` 验证，再从最新 `master` 创建独立生产分支。不要直接合并 `release/online -> master`。
+负责人：肖恩。
 
-### 2. 正式 MR 夹带其他测试项目
+1. 源分支：游戏 feature 分支。
+2. 目标分支：`release/online`。
+3. 不提交 `dist/`。
+4. MR 描述包含：
+   - 游戏接入内容
+   - 变更文件范围
+   - 本地构建结果
+   - 已验证的玩法流程
+   - 外部服务地址
+   - 本项目不适用的标准项
 
-原因：直接把 `release/online` 合入 `master`，或从测试分支继续创建生产分支。
+产出：`feature/* -> release/online` 测试 MR。
 
-处理：生产分支必须基于 `origin/master`；只 cherry-pick 本项目提交；提交 MR 前检查完整文件清单。发现无关文件时重建生产分支，不要在大范围混合差异上硬删。
+## 第 5 步：Code Review
 
-### 3. 测试分支提交无法直接 cherry-pick
+负责人：肖恩。
 
-现象：路由、游戏大厅列表或公共文件发生冲突。
+按 PDF 清单检查：
 
-处理：先更新 `master`，逐个 cherry-pick，按提交顺序处理：功能接入、文档、视觉资源。冲突时保留 `master` 已上线内容，只追加本游戏入口。解决后重新构建和检查差异。
+1. feature 分支基于 `release/online`。
+2. 本地构建通过。
+3. 未修改与本游戏无关的文件。
+4. 路由路径不与现有游戏冲突。
+5. 需要支付时，PayModal 引用路径正确。
+6. 需要支付时，`fetchPayPkg` 在 `mounted` 调用。
+7. 定时器在 `beforeDestroy` 清理。
+8. 没有由本次变更新增的阻塞性 console 错误。
+9. 没有硬编码密钥、Token 或其他敏感信息。
 
-### 4. 新封面漏进正式 MR
+独立 ThunderBox 游戏还要增加：
 
-原因：功能接入和封面优化分属不同提交或不同 MR。
+- iframe 地址使用 HTTPS。
+- ThunderBox 服务为 `public`、`running`。
+- 手机 WebView 和 iframe 内能正常启动游戏。
+- 单人、人机和多人流程按产品范围通过。
 
-处理：正式分支必须包含测试验收时实际使用的全部提交。用文件哈希或图片尺寸确认正式分支中的 Banner 与测试版本一致。
+产出：Review 通过，或提出修改意见后重新验证。
 
-### 5. 构建命令用错
+## 第 6 步：合并并部署测试环境
 
-现象：执行 `npm run build` 提示脚本不存在。
+负责人：肖恩。
 
-处理：先查看 `package.json`。当前 `wx_action` 使用 `npm run prod`；老 webpack 在新 Node 上还需要 `NODE_OPTIONS=--openssl-legacy-provider`。
+1. Review 通过后合并测试 MR。
+2. `release/online` 合并触发测试环境 CI/CD。
+3. 检查构建和部署状态。
+4. 打开测试环境，检查大厅入口、页面渲染、资源加载和控制台。
 
-### 6. 构建导致大量 dist 变更
+测试地址：
 
-原因：本地构建重写了仓库内已有的产物目录。
+```text
+https://kg.stage.ktvsky.com/action/ktv_game_hub
+```
 
-处理：MR 不包含 `dist/`。只清理本次构建产生的变更，保留源码和静态资源；提交前再次检查 `git status`。
+产出：游戏进入测试环境。
 
-### 7. Git 提交人错误
+## 第 7 步：真机验证
 
-处理：提交前检查：
+负责人：前端负责人。
+
+1. 在目标手机 WebView 或微信环境打开测试地址。
+2. 走完入口、开局、游戏中、结算和再来一局。
+3. 需要支付和点歌时，验证非 VIP、支付成功和点歌成功链路。
+4. 使用 vConsole 或远程调试检查错误。
+5. 多人游戏必须使用至少两台设备验证扫码、房间号、同步出牌和结算。
+6. 验证失败时回到 feature 分支修复，再走 MR，不直接改公共分支。
+
+产出：真机验证结果。
+
+## 第 8 步：产品验收
+
+负责人：产品负责人。
+
+1. 在测试环境体验完整流程。
+2. 确认玩法、文案和视觉与需求一致。
+3. 明确回复“测试通过，可以提正式”。
+
+产出：正式上线许可。
+
+## 第 9 步：测试通过后提交正式 master MR
+
+负责人：肖恩提交 MR，负责人或前端人员合并和发布。
+
+1. 测试环境确认没有问题后，准备包含同一批已验证内容的正式上线分支。
+2. 创建 `游戏上线分支 -> master` 的正式 MR。
+3. 正式 MR 必须与测试通过版本一致，包含本次完整上线内容，例如：
+   - 游戏大厅入口
+   - 路由和 Vue 页面或 iframe 容器
+   - 游戏正式资源
+   - 测试环境确认后的最终封面
+4. 检查 MR 是否无冲突，并确认没有夹带其他测试项目。
+5. MR 描述明确注明：
+   - 测试环境已验证通过
+   - 源分支 -> `master`
+   - 当前无冲突
+   - 本次包含哪些部分，例如“游戏接入 + 新封面图”
+   - 本地正式构建结果
+6. 在正式上线分支执行一次 `npm run prod`。
+7. 由负责人或前端人员合并正式 MR。
+8. 前端人员基于合并后的最新 `master` 打包并部署正式环境。
+9. 发布人员通知部署完成后，再进行正式站线上检查。
+
+分支处理原则：如果原游戏开发分支可以干净地向 `master` 提 MR，直接使用该开发分支；如果它包含 `release/online` 上其他未上线内容，则从最新 `master` 准备一个只含本游戏已验证内容的上线分支，再提交到 `master`。最终要求都是“测试通过的同一批内容 -> master”，不能把整个测试环境的其他功能一起带上。
+
+正式地址：
+
+```text
+https://kg.ktvsky.com/action/ktv_game_hub
+```
+
+## 常见问题与处理
+
+### 当前对话不在 wx_action 目录
+
+直接使用 `D:\AIproject\production\wx_action`，不要重新 clone。
+
+### 本地项目和公司仓库职责混淆
+
+本地项目目录负责产品和游戏本体产出；`wx_action` 负责公司大厅接入和发布。只复制或重写上线需要的部分。
+
+### 测试 MR 夹带其他文件
+
+提交前检查 `git status`、`git diff --stat` 和 `git diff --name-status`。发现无关内容时只移除本次误带内容，不覆盖用户已有修改。
+
+### 正式 MR 夹带 release/online 其他待上线游戏
+
+先检查原开发分支相对 `master` 的完整差异。差异只有本游戏时，直接提 `开发分支 -> master`；夹带其他内容时，重新准备只含本游戏已验证内容的上线分支。不要执行整个 `release/online -> master` 的合并。
+
+### 路由或大厅文件 cherry-pick 冲突
+
+保留 `master` 已上线内容，在其基础上追加本游戏入口；解决后重新检查完整差异并构建。
+
+### 功能已提交但新封面遗漏
+
+正式分支要包含测试验收时使用的最后一版资源。对比文件大小、尺寸或 SHA256。
+
+### 构建命令不存在
+
+先读取 `package.json`。当前 `wx_action` 使用 `npm run prod`；Node/OpenSSL 不兼容时设置 `NODE_OPTIONS=--openssl-legacy-provider`。
+
+### 构建产生大量 dist 变更
+
+`dist/` 不进入 MR。清理本次构建产生的文件，再确认源码差异仍在。
+
+### 提交人错误
+
+提交前检查：
 
 ```powershell
 git config user.name
@@ -143,49 +236,18 @@ git config user.email
 git log -1 --format='%h %an <%ae> %s'
 ```
 
-如果提交尚未共享，可改写提交；如果已经进入公共分支，不要 force push，走补充提交或由负责人确认处理方式。
+当前使用李广哲身份。公共分支上的历史提交不 force push。
 
-### 8. MR 已合并但正式站仍是旧版本
+### ThunderBox 直链正常，iframe 内无法操作
 
-原因：`master` 合并不走当前 `release/*` 自动部署任务，或前端尚未完成正式打包；也可能是 CDN 缓存。
+使用 Playwright 模拟外层页面嵌入 iframe，并覆盖旧 WebView 能力。对 `crypto.randomUUID`、音频自动播放、存储和触摸事件提供兼容处理。
 
-处理：
+### 正式 MR 已合并但正式站未更新
 
-1. 先确认前端人员已经用最新 `master` 打包并发布。
-2. 检查正式站 `index.html` 引用的构建时间戳或 hash 是否变化。
-3. 请求静态资源时追加版本查询参数绕过 CDN，例如 `?v=<commit-sha>`。
-4. 对比正式资源与仓库资源的 SHA256，不只看页面肉眼效果。
+`master` 合并后还需要前端人员正式打包部署。确认发布人使用最新 `master`，再检查正式 `index.html` 的构建时间戳和静态资源 hash；必要时追加查询参数绕过 CDN 缓存。
 
-### 9. ThunderBox 直链正常，大厅 iframe 内异常
+## 回滚
 
-可能原因：旧 WebView API 缺失、iframe 权限、第三方存储限制、自动播放限制或触摸事件差异。
-
-处理：增加“外层页面 + iframe + 旧 WebView 能力降级”的 Playwright 验收。关键 API 提供兼容兜底，例如 `crypto.randomUUID()` 不可用时生成普通唯一请求 ID。音频必须在用户手势后解锁。
-
-### 10. 正式上线后外部游戏服务异常
-
-处理：分别检查 `wx_action` 容器页和 ThunderBox 服务。ThunderBox 应保持 `public`、状态为 `running`，并执行健康检查和真实多人流程。前端入口问题回滚 `wx_action` MR；独立游戏服务问题优先使用 ThunderBox rollback，不操作数据库或数据卷。
-
-## 正式发布验收清单
-
-- [ ] 生产 MR 基于最新 `master`
-- [ ] 生产 MR 只包含本游戏文件
-- [ ] 测试环境已经明确验收通过
-- [ ] `npm run prod` 在生产分支构建通过
-- [ ] 未提交 `dist/`
-- [ ] 提交人为李广哲
-- [ ] 负责人或前端人员已合并生产 MR
-- [ ] 前端人员已完成正式打包发布
-- [ ] 正式大厅能看到正确的新 Banner
-- [ ] 点击入口能进入游戏
-- [ ] 单人 + 人机流程正常
-- [ ] 多人加入、出牌和结算同步正常
-- [ ] 手机 WebView 和 iframe 环境无阻塞错误
-- [ ] ThunderBox 服务为 `running`
-- [ ] 已记录正式 MR、正式构建版本和回滚点
-
-## 回滚建议
-
-1. `wx_action` 问题：对生产 MR 创建 Revert MR，Review 后合并到 `master`，由前端重新打包正式环境。
-2. ThunderBox 新版本问题：查询部署历史并 rollback 到上一正常版本。
-3. 不要 force push 公共分支，不要直接改线上构建目录，不要删除数据库或数据卷。
+1. 公司大厅接入问题：对对应 MR 创建 Revert MR，合并后由前端重新打包。
+2. ThunderBox 游戏服务问题：使用 ThunderBox 部署历史 rollback 到上一正常版本。
+3. 不 force push 公共分支，不直接修改线上构建目录，不删除数据库或数据卷。
