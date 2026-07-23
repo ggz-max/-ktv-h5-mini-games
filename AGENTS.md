@@ -42,7 +42,29 @@ Do not create a separate GitLab Project for a new lightweight mini-game. Keep se
 
 ## wx_action Integration Checkout
 
-The existing local checkout for the mobile song-ordering lobby is:
+Repository roles:
+
+```text
+D:\AIproject\production\ktv-h5-extension
+```
+
+This is the user's local product-output and memory repository. Product exploration, PRDs, source projects, generated assets, and local verification are produced here first.
+
+```text
+D:\AIproject\production\wx_action
+```
+
+This is the company's working-environment repository for the mobile song-ordering lobby.
+
+The integration direction is one-way and selective:
+
+```text
+local output in ktv-h5-extension -> reviewed integration into company wx_action
+```
+
+Only the files needed by the approved game are integrated into `wx_action`, such as the lobby entry, route, Vue wrapper/page, and production assets. Do not treat the two repositories as mirrors and do not copy the whole local project into `wx_action`.
+
+The existing local checkout for the company repository is:
 
 ```text
 D:\AIproject\production\wx_action

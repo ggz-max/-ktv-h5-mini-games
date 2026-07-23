@@ -20,11 +20,14 @@ D:\AIproject\production\wx_action
 
 ## 本地仓库约定
 
-- `wx_action` 已经检出在 `D:\AIproject\production\wx_action`，直接进入该目录操作。
+- `D:\AIproject\production\ktv-h5-extension` 是用户在自己电脑上进行产品设计、代码开发、素材生成和本地验证的产出仓库。
+- `D:\AIproject\production\wx_action` 是公司的工作环境仓库，用于把已经验收的产品接入手机点歌大厅。
+- 正确的数据流向是：`ktv-h5-extension` 本地产出 -> 选择必要内容接入公司 `wx_action`。
+- 两个仓库不是镜像关系。不要把整个本地项目复制进 `wx_action`，只接入上线需要的入口、路由、Vue 页面或 iframe 容器、正式资源和必要说明。
+- `wx_action` 已经检出在 `D:\AIproject\production\wx_action`，接入时直接进入该目录操作。
 - 即使当前对话的工作目录是 `D:\AIproject\production\ktv-h5-extension`，也应使用同级的 `D:\AIproject\production\wx_action`。
 - 不要因为当前 monorepo 不是 `wx_action` 就重新 clone。
 - 执行前先检查上述绝对路径和 Git remote；本地目录确实不存在时，必须先询问用户，不能自行重复克隆。
-- `ktv-h5-extension` 是产品记忆与小游戏源码 monorepo；`wx_action` 是手机点歌大厅接入仓库。两者用途不同，但都已经存在于本机。
 
 环境：
 
