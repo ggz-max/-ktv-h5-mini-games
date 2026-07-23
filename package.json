@@ -1,0 +1,16 @@
+{
+  "name": "ktv-h5-extension",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Monorepo for lightweight KTV H5 extension products and mini-games.",
+  "workspaces": [
+    "app-projects/*"
+  ],
+  "scripts": {
+    "projects": "node scripts/list-app-projects.mjs",
+    "project": "node scripts/run-app-project.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

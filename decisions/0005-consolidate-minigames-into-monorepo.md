@@ -1,0 +1,40 @@
+# 0005 - Consolidate Lightweight Mini-Games Into One Project
+
+## Status
+
+Accepted
+
+## Context
+
+The GitLab account has reached the project limit. The current habit of creating one GitLab Project for each lightweight H5 mini-game does not scale for fast product exploration.
+
+Most products under this workstream are small, copyable, KTV-entry H5 experiments. They share the same product context, validation logic, and future distribution path.
+
+## Decision
+
+All lightweight KTV H5 mini-games and small extension products should live under one repository:
+
+```text
+ktv-h5-extension/
+  app-projects/
+    project-slug/
+```
+
+Do not create a new GitLab Project for each lightweight mini-game.
+
+Create a separate GitLab Project only when the product becomes a large independent system with its own backend, database, permission model, or separate business lifecycle.
+
+## Consequences
+
+- GitLab project count stays low.
+- Product memory, PRDs, validation notes, and code remain together.
+- Shared scripts and future shared packages can be added at the root.
+- Old child-repository `.git` metadata should be backed up before removing nested Git repositories.
+
+## Current Migration Note
+
+On 2026-07-23, existing mini-game projects were gathered under `app-projects/`, and child `.git` metadata was backed up under:
+
+```text
+.legacy-git-metadata/20260723-094415/
+```

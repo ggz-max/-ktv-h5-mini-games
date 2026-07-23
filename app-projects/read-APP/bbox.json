@@ -1,0 +1,654 @@
+{
+  "version": "1.0",
+  "project": "阅读H5-静光手绘",
+  "canvas": {
+    "width": 1024,
+    "height": 1536,
+    "unit": "px",
+    "coordinate": "top-left source image pixels",
+    "scaleTarget": "390x585 CSS px"
+  },
+  "source": {
+    "image": "source-ui.png",
+    "kind": "user-screenshot",
+    "styleSkill": "style/静光手绘-SKILL.md",
+    "prompt": "source-prompt.md"
+  },
+  "tokens": {
+    "paper": "#f2e4c8",
+    "paperLight": "#fff8e9",
+    "sage": "#586b43",
+    "sageDark": "#405134",
+    "ink": "#3c3328",
+    "muted": "#8d8170",
+    "line": "rgba(98,80,57,.16)",
+    "radiusLarge": 24,
+    "radiusMedium": 14
+  },
+  "layers": [
+    {
+      "id": "screen",
+      "type": "screen",
+      "role": "整屏阅读首页画布",
+      "bbox": { "x": 0, "y": 0, "w": 1024, "h": 1536 },
+      "zIndex": 0,
+      "render": "css"
+    },
+    {
+      "id": "background_scene",
+      "parentId": "screen",
+      "type": "decoration",
+      "role": "手绘阳光室内背景、窗户、植物、书本和茶杯",
+      "bbox": { "x": 0, "y": 0, "w": 1024, "h": 1536 },
+      "zIndex": 1,
+      "render": "css"
+    },
+    {
+      "id": "status_bar",
+      "parentId": "screen",
+      "type": "status-bar",
+      "role": "iOS 状态栏",
+      "bbox": { "x": 56, "y": 31, "w": 943, "h": 27 },
+      "zIndex": 20,
+      "render": "html",
+      "content": "9:41  87%"
+    },
+    {
+      "id": "greeting",
+      "parentId": "screen",
+      "type": "text",
+      "role": "问候语",
+      "bbox": { "x": 77, "y": 136, "w": 290, "h": 32 },
+      "zIndex": 30,
+      "render": "html",
+      "content": "下午好，继续读一页"
+    },
+    {
+      "id": "page_title",
+      "parentId": "screen",
+      "type": "text",
+      "role": "页面主标题",
+      "bbox": { "x": 69, "y": 199, "w": 370, "h": 78 },
+      "zIndex": 30,
+      "render": "html",
+      "content": "今日阅读"
+    },
+    {
+      "id": "current_card",
+      "parentId": "screen",
+      "type": "card",
+      "role": "当前阅读位置卡片",
+      "bbox": { "x": 56, "y": 314, "w": 543, "h": 337 },
+      "zIndex": 40,
+      "render": "html"
+    },
+    {
+      "id": "book_cover",
+      "parentId": "current_card",
+      "type": "image",
+      "role": "当前书籍封面",
+      "bbox": { "x": 91, "y": 347, "w": 180, "h": 265 },
+      "zIndex": 45,
+      "render": "asset",
+      "asset": {
+        "id": "book_camellia",
+        "file": "assets/book-camellia.svg",
+        "usage": "当前阅读书籍封面",
+        "source": "manual-export"
+      }
+    },
+    {
+      "id": "book_title",
+      "parentId": "current_card",
+      "type": "text",
+      "role": "当前书籍标题",
+      "bbox": { "x": 307, "y": 391, "w": 184, "h": 43 },
+      "zIndex": 45,
+      "render": "html",
+      "content": "山茶文集"
+    },
+    {
+      "id": "progress_value",
+      "parentId": "current_card",
+      "type": "text",
+      "role": "阅读百分比",
+      "bbox": { "x": 307, "y": 475, "w": 70, "h": 34 },
+      "zIndex": 45,
+      "render": "html",
+      "content": "42%"
+    },
+    {
+      "id": "chapter_text",
+      "parentId": "current_card",
+      "type": "text",
+      "role": "当前章节",
+      "bbox": { "x": 307, "y": 556, "w": 220, "h": 29 },
+      "zIndex": 45,
+      "render": "html",
+      "content": "第 3 章 · 光落在窗边"
+    },
+    {
+      "id": "streak_pill",
+      "parentId": "screen",
+      "type": "badge",
+      "role": "只读今日阅读状态，不再作为签到加分钟入口",
+      "bbox": { "x": 56, "y": 688, "w": 278, "h": 69 },
+      "zIndex": 45,
+      "render": "html",
+      "content": "今日已读 18 分钟"
+    },
+    {
+      "id": "quick_bookshelf",
+      "parentId": "screen",
+      "type": "button",
+      "role": "快捷入口：书架",
+      "bbox": { "x": 56, "y": 785, "w": 130, "h": 134 },
+      "zIndex": 45,
+      "render": "html",
+      "content": "书架"
+    },
+    {
+      "id": "quick_note",
+      "parentId": "screen",
+      "type": "button",
+      "role": "快捷入口：笔记",
+      "bbox": { "x": 207, "y": 785, "w": 130, "h": 134 },
+      "zIndex": 45,
+      "render": "html",
+      "content": "笔记"
+    },
+    {
+      "id": "quick_favorite",
+      "parentId": "screen",
+      "type": "button",
+      "role": "快捷入口：收藏",
+      "bbox": { "x": 353, "y": 785, "w": 130, "h": 134 },
+      "zIndex": 45,
+      "render": "html",
+      "content": "收藏"
+    },
+    {
+      "id": "recommend_title",
+      "parentId": "screen",
+      "type": "text",
+      "role": "今日可读双列书卡标题",
+      "bbox": { "x": 59, "y": 978, "w": 160, "h": 39 },
+      "zIndex": 50,
+      "render": "html",
+      "content": "今日可读"
+    },
+    {
+      "id": "recommend_card",
+      "parentId": "screen",
+      "type": "list",
+      "role": "MVP 今日可读书卡，两本差异化推荐优先于路径任务显示",
+      "bbox": { "x": 56, "y": 1028, "w": 707, "h": 342 },
+      "zIndex": 50,
+      "render": "html"
+    },
+    {
+      "id": "bottom_nav",
+      "parentId": "screen",
+      "type": "tab-bar",
+      "role": "底部导航",
+      "bbox": { "x": 50, "y": 1391, "w": 925, "h": 129 },
+      "zIndex": 80,
+      "render": "html",
+      "interactions": [
+        { "event": "tap", "action": "switch-tab", "targets": ["home", "shelf", "discover", "profile"] }
+      ]
+    },
+    {
+      "id": "dynamic_view",
+      "parentId": "screen",
+      "type": "container",
+      "role": "动态内容视图区，承载首页、书架、发现、我的四个状态",
+      "bbox": { "x": 56, "y": 314, "w": 707, "h": 930 },
+      "zIndex": 35,
+      "render": "html",
+      "interactions": [
+        { "event": "state", "action": "render-view-by-active-tab" }
+      ]
+    },
+    {
+      "id": "reader_overlay",
+      "parentId": "screen",
+      "type": "container",
+      "role": "全屏阅读器浮层，可按书保存阅读页码、显示当前位置、翻页、调节字号，支持选中段落，并让段落旁与底部工具都对当前段落划线或写笔记",
+      "bbox": { "x": 0, "y": 0, "w": 1024, "h": 1536 },
+      "zIndex": 170,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-current-card", "action": "open-reader" },
+        { "event": "tap-next", "action": "advance-page-and-progress" },
+        { "event": "tap-note", "action": "create-note-from-reader" }
+      ]
+    },
+    {
+      "id": "bottom_sheet",
+      "parentId": "screen",
+      "type": "dock",
+      "role": "详情、书架、笔记、收藏的底部抽屉",
+      "bbox": { "x": 36, "y": 505, "w": 952, "h": 990 },
+      "zIndex": 130,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-shortcut-or-list-item", "action": "open-bottom-sheet" },
+        { "event": "tap-backdrop-or-close", "action": "close-bottom-sheet" }
+      ]
+    },
+    {
+      "id": "toast_feedback",
+      "parentId": "screen",
+      "type": "badge",
+      "role": "操作反馈提示，例如已收藏、已生成笔记、阅读状态已保存",
+      "bbox": { "x": 260, "y": 1240, "w": 504, "h": 90 },
+      "zIndex": 220,
+      "render": "html"
+    },
+    {
+      "id": "library_search",
+      "parentId": "dynamic_view",
+      "type": "input",
+      "role": "发现页资源库搜索框，支持按书名、作者、主题搜索",
+      "bbox": { "x": 56, "y": 314, "w": 752, "h": 100 },
+      "zIndex": 50,
+      "render": "html",
+      "interactions": [
+        { "event": "input", "action": "filter-library-results" },
+        { "event": "tap-clear", "action": "clear-search" }
+      ]
+    },
+    {
+      "id": "search_discovery_prompts",
+      "parentId": "dynamic_view",
+      "type": "list",
+      "role": "发现页搜索灵感和最近搜索模块，提供关键词卡片、最近搜索回填和搜索结果聚合反馈",
+      "bbox": { "x": 56, "y": 420, "w": 752, "h": 310 },
+      "zIndex": 52,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-prompt", "action": "use-search-prompt" },
+        { "event": "tap-history", "action": "reuse-search-history" },
+        { "event": "tap-clear-history", "action": "clear-search-history" },
+        { "event": "state", "action": "persist-search-history" }
+      ]
+    },
+    {
+      "id": "library_cards",
+      "parentId": "dynamic_view",
+      "type": "list",
+      "role": "发现页图书资源库，展示评分、在读人数、推荐理由和加入书架操作",
+      "bbox": { "x": 56, "y": 540, "w": 752, "h": 610 },
+      "zIndex": 50,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-detail", "action": "open-book-detail-sheet" },
+        { "event": "tap-add", "action": "toggle-shelf" }
+      ]
+    },
+    {
+      "id": "reader_settings_drawer",
+      "parentId": "reader_overlay",
+      "type": "dock",
+      "role": "阅读器内目录和设置抽屉，支持目录跳转、字号和主题切换",
+      "bbox": { "x": 36, "y": 886, "w": 952, "h": 470 },
+      "zIndex": 180,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-catalog", "action": "jump-reader-page" },
+        { "event": "tap-theme", "action": "set-reader-theme" },
+        { "event": "tap-font", "action": "set-reader-font" }
+      ]
+    },
+    {
+      "id": "highlight_notes",
+      "parentId": "dynamic_view",
+      "type": "list",
+      "role": "划线书摘与笔记管理，可由阅读器产生并在我的页整理",
+      "bbox": { "x": 56, "y": 500, "w": 752, "h": 640 },
+      "zIndex": 55,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-highlight", "action": "create-highlight" },
+        { "event": "tap-note", "action": "create-note" },
+        { "event": "tap-convert", "action": "highlight-to-note" }
+      ]
+    },
+    {
+      "id": "reading_goal",
+      "parentId": "dynamic_view",
+      "type": "card",
+      "role": "今日阅读目标卡片和个人页目标设置",
+      "bbox": { "x": 56, "y": 314, "w": 752, "h": 230 },
+      "zIndex": 50,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-goal", "action": "set-daily-goal" }
+      ]
+    },
+    {
+      "id": "import_manager",
+      "parentId": "dynamic_view",
+      "type": "dock",
+      "role": "导入书籍抽屉，支持粘贴 TXT 正文生成本地书并加入书架、离线缓存",
+      "bbox": { "x": 36, "y": 505, "w": 952, "h": 760 },
+      "zIndex": 135,
+      "render": "html",
+      "interactions": [
+        { "event": "type-title", "action": "edit-import-title" },
+        { "event": "type-text", "action": "edit-import-text" },
+        { "event": "tap-import", "action": "import-book" },
+        { "event": "tap-sample", "action": "import-sample-book" },
+        { "event": "tap-imported-book", "action": "select-book" }
+      ]
+    },
+    {
+      "id": "offline_library",
+      "parentId": "dynamic_view",
+      "type": "list",
+      "role": "离线书包管理，支持对书架书籍进行缓存、移除和缓存状态回显",
+      "bbox": { "x": 36, "y": 505, "w": 952, "h": 820 },
+      "zIndex": 135,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-cache", "action": "toggle-offline" },
+        { "event": "state", "action": "persist-offline-books" }
+      ]
+    },
+    {
+      "id": "reading_preferences",
+      "parentId": "dynamic_view",
+      "type": "dock",
+      "role": "阅读偏好抽屉，设置默认主题、安静模式和自动同步阅读位置",
+      "bbox": { "x": 36, "y": 505, "w": 952, "h": 760 },
+      "zIndex": 135,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-theme", "action": "set-default-theme" },
+        { "event": "tap-toggle", "action": "toggle-pref" }
+      ]
+    },
+    {
+      "id": "reader_search",
+      "parentId": "reader_overlay",
+      "type": "dock",
+      "role": "书内查找抽屉，在当前书标题和段落内搜索关键词，并支持跳转到命中页面",
+      "bbox": { "x": 36, "y": 505, "w": 952, "h": 680 },
+      "zIndex": 145,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-search", "action": "open-reader-search" },
+        { "event": "type-keyword", "action": "search-reader" },
+        { "event": "tap-result", "action": "reader-search-jump" },
+        { "event": "tap-clear", "action": "clear-reader-search" }
+      ]
+    },
+    {
+      "id": "focus_reading",
+      "parentId": "reader_overlay",
+      "type": "dock",
+      "role": "专注阅读抽屉，从首页或阅读器选择 10/18/30 分钟，完成后记录专注时长、今日分钟和阅读位置",
+      "bbox": { "x": 36, "y": 505, "w": 952, "h": 680 },
+      "zIndex": 146,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-entry", "action": "open-focus" },
+        { "event": "tap-duration", "action": "set-focus-minutes" },
+        { "event": "tap-complete", "action": "complete-focus" },
+        { "event": "state", "action": "persist-focus-session" }
+      ]
+    },
+    {
+      "id": "review_box",
+      "parentId": "dynamic_view",
+      "type": "list",
+      "role": "书摘复习盒，将笔记和划线组织为每日复习卡片，并保存已复习状态",
+      "bbox": { "x": 56, "y": 680, "w": 752, "h": 420 },
+      "zIndex": 55,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-review-card", "action": "open-review-box" },
+        { "event": "tap-remember", "action": "mark-reviewed" },
+        { "event": "tap-highlight", "action": "highlight-to-note" }
+      ]
+    },
+    {
+      "id": "reading_insights",
+      "parentId": "dynamic_view",
+      "type": "list",
+      "role": "阅读数据中心，展示本周阅读节奏、主题偏好、日均分钟和周报摘要生成",
+      "bbox": { "x": 56, "y": 420, "w": 752, "h": 700 },
+      "zIndex": 55,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-entry", "action": "open-insights" },
+        { "event": "tap-share", "action": "share-insights" },
+        { "event": "tap-goal", "action": "set-daily-goal" }
+      ]
+    },
+    {
+      "id": "reading_calendar_achievements",
+      "parentId": "dynamic_view",
+      "type": "list",
+      "role": "阅读日历和安静成就模块，根据最近 7 天分钟、笔记、划线、完读和书单整理生成成长反馈，并可保存复盘笔记",
+      "bbox": { "x": 56, "y": 500, "w": 752, "h": 680 },
+      "zIndex": 56,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-calendar", "action": "open-calendar" },
+        { "event": "tap-save-reflection", "action": "save-calendar-note" },
+        { "event": "state", "action": "derive-achievements" }
+      ]
+    },
+    {
+      "id": "content_library_matrix",
+      "parentId": "dynamic_view",
+      "type": "list",
+      "role": "MVP 内容资源矩阵，扩展真实公版经典、诗词、小说、笔记、散文、志怪、戏曲、短读等图书，并让专题、榜单和个人书单使用可验证的差异化图书组合",
+      "bbox": { "x": 56, "y": 420, "w": 752, "h": 780 },
+      "zIndex": 57,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-category", "action": "filter-discover" },
+        { "event": "tap-topic", "action": "open-topic" },
+        { "event": "tap-ranking", "action": "open-ranking" },
+        { "event": "tap-book", "action": "open-detail-or-reader" },
+        { "event": "state", "action": "read-book-specific-pages" }
+      ]
+    },
+    {
+      "id": "curated_resources",
+      "parentId": "dynamic_view",
+      "type": "list",
+      "role": "发现页专题书单和作者小径模块，把资源库图书组织成可打开、可一键入架的内容发现闭环",
+      "bbox": { "x": 56, "y": 392, "w": 752, "h": 620 },
+      "zIndex": 56,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-topic", "action": "open-topic" },
+        { "event": "tap-save-topic", "action": "save-topic" },
+        { "event": "tap-author", "action": "open-author" },
+        { "event": "tap-author-books", "action": "save-author-books" }
+      ]
+    },
+    {
+      "id": "reading_rankings",
+      "parentId": "dynamic_view",
+      "type": "list",
+      "role": "发现页阅读榜单模块，提供本周热读、新书小径和短读完成榜，支持打开榜单、查看榜首和一键加入榜单图书",
+      "bbox": { "x": 56, "y": 328, "w": 752, "h": 360 },
+      "zIndex": 57,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-ranking", "action": "open-ranking" },
+        { "event": "tap-save-ranking", "action": "save-ranking" },
+        { "event": "tap-top-book", "action": "open-detail" }
+      ]
+    },
+    {
+      "id": "finish_summary",
+      "parentId": "reader_overlay",
+      "type": "dock",
+      "role": "完读小结抽屉，在最后一页后展示完成状态、读后感入口、下一本推荐和复习盒入口",
+      "bbox": { "x": 36, "y": 505, "w": 952, "h": 650 },
+      "zIndex": 190,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-last-page-next", "action": "finish-book" },
+        { "event": "tap-note", "action": "finish-note" },
+        { "event": "tap-next-book", "action": "start-book" }
+      ]
+    },
+    {
+      "id": "book_reviews",
+      "parentId": "dynamic_view",
+      "type": "list",
+      "role": "读后感受模块，在完读小结、书籍详情和我的页展示个人读后记录，历史评分只做兼容不外显",
+      "bbox": { "x": 56, "y": 650, "w": 752, "h": 430 },
+      "zIndex": 55,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-review-list", "action": "open-reviews" },
+        { "event": "tap-detail", "action": "open-book-detail-sheet" }
+      ]
+    },
+    {
+      "id": "personal_collections",
+      "parentId": "dynamic_view",
+      "type": "list",
+      "role": "个人书单与月度安排模块，按场景和当前阅读位置实时整理图书，支持打开、固定、加入书籍和候选入架",
+      "bbox": { "x": 56, "y": 390, "w": 752, "h": 520 },
+      "zIndex": 58,
+      "render": "html",
+      "interactions": [
+        { "event": "tap-collection", "action": "open-collection" },
+        { "event": "tap-pin", "action": "pin-collection" },
+        { "event": "tap-add-book", "action": "add-to-collection" },
+        { "event": "tap-cache", "action": "cache-collection" }
+      ]
+    }
+  ],
+  "assetManifest": [
+    {
+      "id": "scene_right",
+      "file": "assets/scene-right.png",
+      "usage": "右侧窗台、植物、茶杯、书堆和抱枕水彩背景氛围层",
+      "source": "manual-export",
+      "intrinsicSize": { "w": 664, "h": 1160 }
+    },
+    {
+      "id": "book_camellia",
+      "file": "assets/book-camellia.svg",
+      "usage": "当前阅读书籍封面",
+      "source": "manual-export",
+      "intrinsicSize": { "w": 180, "h": 252 }
+    },
+    {
+      "id": "thumb_walk",
+      "file": "assets/thumb-walk.svg",
+      "usage": "推荐列表缩略图 1",
+      "source": "manual-export",
+      "intrinsicSize": { "w": 120, "h": 120 }
+    },
+    {
+      "id": "thumb_plants",
+      "file": "assets/thumb-plants.svg",
+      "usage": "推荐列表缩略图 2",
+      "source": "manual-export",
+      "intrinsicSize": { "w": 120, "h": 120 }
+    },
+    {
+      "id": "thumb_gift",
+      "file": "assets/thumb-gift.svg",
+      "usage": "推荐列表缩略图 3",
+      "source": "manual-export",
+      "intrinsicSize": { "w": 120, "h": 120 }
+    }
+  ],
+  "implementationNotes": [
+    "源图只作为参考，不作为整页背景。",
+    "右侧水彩场景从源图非交互区域提取为氛围层，不作为整页背景。",
+    "主标题、列表、按钮和底部导航均使用 HTML 文本。",
+    "书封与推荐图使用手写 SVG 资产，方便后续替换。",
+    "动态 H5 原型在原首页结构上新增底部 Tab、阅读器浮层、底部抽屉、筛选、收藏、笔记和 toast 状态反馈。",
+    "交互状态由前端 JavaScript 管理，使用 localStorage 保存阅读位置、收藏、笔记和字号。",
+    "第二轮产品打磨补充资源库搜索、分类书单、加入书架、阅读器目录、阅读设置、划线书摘、阅读目标和个人统计闭环。",
+    "项目包含 qa-check.js，用轻量 DOM 桩验证首页、发现、书架、阅读器、笔记、划线和目标设置关键链路。",
+    "第三轮产品打磨补充书架排序、阅读复盘、书摘卡片和月度书单，让阅读后的整理与回顾形成闭环。",
+    "第四轮产品打磨补充阅读助手、本页解读、共读房间和讨论保存，让阅读中的理解辅助和轻社区氛围形成闭环。",
+    "第五轮产品打磨补充本地样章导入、离线书包和阅读偏好，让阅读资产管理、离线场景和个性化设置形成闭环。",
+    "第六轮产品打磨补充阅读路径和每日任务，把图书资源组织成可执行、可完成、可回看的慢读计划。",
+    "第七轮产品打磨补充复习盒，把笔记和划线转成每日回看的书摘卡，并保存已复习状态。",
+    "第八轮产品打磨补充阅读数据中心，把阅读分钟、路径任务、复习、笔记和主题偏好汇总成周报反馈。",
+    "第九轮产品打磨补充完读小结，在最后一页后生成读后感、推荐下一本并引导回复习盒。",
+    "第十轮产品打磨补充读后评分和短评，让完读后的主观评价能在详情和我的页回看。",
+    "第十一轮产品打磨补充听读讲书模式，让详情页、阅读器和我的页都能进入 5 分钟摘要，并保存听读进度和听读笔记。",
+    "第十二轮产品打磨补充专题书单和作者页，把资源库从列表升级为可策划、可关注、可一键入架的内容发现闭环。",
+    "第十三轮产品打磨补充读友短评，让书籍详情具备轻社区反馈，并支持点赞和引用到笔记。",
+    "第十四轮产品打磨补充个人书单，让书架按阅读场景组织，并支持固定书单、详情加书和整组离线。",
+    "第十五轮产品打磨补充书内查找，让阅读器能搜索当前书段落并跳转到命中页面。",
+    "第十六轮产品打磨补充阅读日历和安静成就，把阅读分钟、笔记、划线、完读、书单和路径任务沉淀为可回看的成长反馈。",
+    "第十七轮产品打磨补充专注阅读模式，从首页或阅读器选择时长，完成后同步今日分钟、阅读进度和专注记录。",
+    "第十八轮产品打磨补充阅读榜单，让发现页提供本周热读、新书小径和短读完成榜，并支持一键入架。",
+    "第十九轮产品打磨补充搜索灵感、最近搜索和作者动态流，让发现页形成从关键词引导、内容命中到长期追读的轻运营闭环。",
+    "第二十轮产品打磨按 MVP 内容可用性回收范围：扩充书库到 14 本，重排专题、榜单、作者、个人书单和阅读路径，并为不同图书补充独立阅读样章，避免书单内容重复。",
+    "第二十一轮产品打磨回收首页首屏，把中部空面板改为两本今日可读书卡，并移除首页半截路径/工具面板；同时将按钮文案改成明确动作，阅读器页码改为按书保存，避免不同书籍串页。",
+    "第二十二轮产品打磨继续清理状态型按钮：共读改为加入/退出动作，作者关注改为关注/取消关注，作者动态和听读回原文使用 resume-book 保留阅读位置，短评喜欢支持取消。",
+    "第二十三轮产品打磨修正阅读进度可信度：阅读器底部只显示当前页进度，继续阅读保留页码，从头阅读会重置该书当前页码和当前进度，避免完读后重读仍显示 100%。",
+    "第二十四轮产品打磨将书单内容质量纳入 QA：专题、榜单、个人书单和阅读路径不能完全复用同一批书，重叠率设上限，并要求每本 MVP 图书都有独立阅读样章。",
+    "第二十五轮产品打磨清理抽屉泛化跳转按钮，只保留具体动作；短评点赞后的按钮改为取消喜欢，避免状态词伪装成交互。",
+    "第二十六轮产品打磨修复基础状态可信度：首页签到使用真实今日分钟且不重复累加，阅读器第一页上一页不再跳到末页，书架最近加入改为按真实入架顺序排序。",
+    "第二十七轮产品打磨让书架筛选状态由实时阅读进度派生，并为本地导入书补充独立导入正文页，避免导入后读到默认样章。",
+    "第二十八轮产品打磨拆分当前位置进度和已完成阅读进度：阅读器底部显示当前页位置，书架/详情按已完成页数推进，100% 只在触发完读后出现。",
+    "第二十九轮产品打磨统一旁路进度同步：专注阅读和路径任务会同时推进累计进度与继续读位置，听读保持独立音频进度，不强行改动正文阅读位置。",
+    "第三十轮产品打磨清理废弃交互分支，并修正专题同类跳转：从抽屉点击看同类书会关闭抽屉、切到发现页并显示对应分类结果，避免按钮反馈藏在遮罩后。",
+    "第三十一轮产品打磨聚焦 MVP 内容可用性：书架筛选结果前置到筛选控件下方，发现搜索结果直接显示在搜索框下方，手动搜索会回到全库范围，并继续保持搜索历史只保存确认后的完整关键词。",
+    "第三十二轮产品打磨补充真实公版书库：新增论语、道德经、庄子、孟子、诗经、唐诗三百首、浮生六记、聊斋志异、西游记、红楼梦、三国演义、史记等维基文库公版作品，为每本补充来源 URL、版权标注和独立阅读页，并让专题、榜单、个人书单和阅读路径改用差异化真实作品组合。",
+    "第三十三轮产品打磨把默认主路径切到真实公版内容：首页继续读、今日可读、初始书架、收藏、离线和笔记种子优先使用论语、道德经、唐诗三百首、浮生六记、诗经等作品，并通过内容版本号让旧本地状态自动换到新的 MVP 内容种子。",
+    "第三十四轮产品打磨明确关键交互语义：阅读器底部同时展示当前位置和已完成阅读，最后一页改为显式读完按钮；书架筛选补充规则、排序和状态数量说明；发现分类/搜索补充当前范围与命中数量反馈，减少点击后无反应的误解。",
+    "第三十五轮产品打磨继续前置真实结果：发现页分类说明下方直接展示命中的资源库书籍，榜单、专题、作者等运营模块后置；书架行补充已完成百分比、实时状态和开始/继续/回看动作，降低列表点击意图不明的问题。",
+    "第三十六轮产品打磨补齐高风险操作确认：详情页有进度的书点击从头阅读先进入确认弹层，继续原位置不会清进度，确认后才重置页码和已完成进度；书架行收藏状态改为标签，右侧始终保留开始/继续/回看主动作。",
+    "第三十七轮产品打磨继续提高内容真实度：发现页作者小径默认展示孔子、老子、庄周、曹雪芹、蒲松龄、沈复等公版作者入口，作者动态改为公版推荐内容，虚构作者保留为原型 UI 场景补充但不再占据主发现路径。",
+    "第三十八轮产品打磨继续聚焦 APP 内内容可用性：扩充维基文库公版真实作品到 24 本，新增水浒传、儒林外史、世说新语、山海经、古文观止、楚辞、搜神记、镜花缘、西厢记、牡丹亭、菜根谭、颜氏家训等来源可追溯作品；同步补独立阅读页、搜索提示、志怪/戏曲分类、榜单、专题、个人书单和阅读路径，并让 QA 验证来源 URL、书库覆盖和书单矩阵不重复。",
+    "第三十九轮产品打磨修复每日状态可信度：为今日分钟和签到保存本地日期键，隔天打开会重置今日分钟与签到状态；翻页、完读、听读、专注、路径任务和复习盒统一走日期校验后的今日分钟累加，并用 QA 模拟旧日期缓存验证不会把昨天 77 分钟和已签到带到今天。",
+    "第四十轮产品打磨修复进度条可信度：新增进度页码模型版本，初始化和旧缓存会按已完成进度反推继续阅读页码；打开首页继续读、书架选书或详情继续阅读时会补齐并保存页码，避免列表显示 33% 但阅读器仍从第一页开始。",
+    "第四十一轮产品打磨把内容资源升级为可部署静态数据层：新增 data/catalog.json 承载服务器书库、来源、版权、分类、书单和阅读页；页面启动时优先加载 catalog，失败时使用内置种子兜底；发现页资源卡直接显示来源、版权和样章，并新增资治通鉴、孙子兵法、三字经、千字文、笠翁对韵、幼学琼林、战国策、国语、左传、礼记、孝经、易经、蒙求、徐霞客游记、东坡志林、笑林广记等真实公版条目。",
+    "第四十二轮产品打磨修复结果态弱交互：书摘卡片复制后在抽屉内显示完整可复制文案并尝试写入剪贴板；月度书单从书架前几本改为继续读、本月短读、下月候选三个分组，支持把候选公版书加入书架并持久化保存状态。",
+    "第四十三轮产品打磨继续修复阅读进度理解成本：阅读器进度面板补充当前位置与已完成进度的推进规则说明；目录项百分比改为位置百分比，并明确目录跳转只改变当前位置，不会直接增加已完成阅读进度。",
+    "第四十四轮产品打磨将交互完整性纳入自动验收：qa-check.js 会扫描静态与动态 data-action，并要求所有渲染出的动作都有 handleAction 或输入事件处理分支，防止后续新增按钮变成无意义空壳。",
+    "第四十五轮产品打磨收敛阅读器顶栏：移除助手、书内查找、专注和听读四个弱首屏入口，只保留目录与阅读设置；同步移除阅读偏好里的助手提示开关，避免正文顶部和设置面板出现低价值控件。",
+    "第四十六轮产品打磨修正阅读进度模型：阅读进度改为按当前读到的页计算，三页书顺序翻到最后一页即显示并保存 100%；写小结只负责生成完读记录，目录跳转仍只改变当前位置，不虚增已读进度。",
+    "第四十七轮产品打磨收敛阅读器进度展示：去掉书内当前位置/已完成双进度条，只保留一个阅读进度条，同时显示页码与百分比，降低用户把两套指标互相对照的理解成本。",
+    "第四十八轮产品打磨把发现资源库收口到真实公版和本地导入内容：资源卡、分类和搜索结果不再展示静光原型样章，样章只保留为共读、导入和内部交互 fixture；QA 新增断言防止虚构书重新混入主资源库，并用水浒传、菜根谭等公版书验证三页进度。",
+    "第四十九轮产品打磨继续清理发现页前台运营内容：共读房间、通知提醒、读友短评、作者列表和作者动态只展示真实公版书与公版作者；旧共读房间 ID 会迁移到论语、道德经、水浒传房间，阅读器高级链路 QA 改用道德经而非原型样章。",
+    "第五十轮产品打磨修复阅读器进度可信度：阅读器展示只按当前页位置计算，三页书第二页显示 67%、第三页显示并保存 100%；翻页计时偏好只控制今日分钟，不再阻止阅读页码和进度保存。",
+    "第五十一轮产品打磨把页边笔记从假动作改为真实输入链路：阅读器和我的页笔记入口会打开编辑器，草稿持久化，保存后把用户输入和当前书页来源写入笔记列表。",
+    "第五十二轮产品打磨回到阅读本身：扩充论语、道德经、庄子、孟子、诗经、唐诗、浮生六记、水浒传、世说新语、菜根谭及服务器 catalog 中资治通鉴、孙子兵法、三字经、千字文、左传、徐霞客游记等核心书正文到至少六个可读单元；进度页码模型升级到 4，旧缓存会按六页内容重新对齐，QA 防止核心书退回浅样章。",
+    "第五十三轮产品打磨继续补齐真实阅读内容：把剩余 24 本三页公版样章扩展到至少六个可读单元，覆盖红楼梦、三国演义、史记、聊斋志异、西游记、儒林外史、山海经、古文观止、楚辞、搜神记、镜花缘、西厢记、牡丹亭、颜氏家训以及服务器 catalog 中笠翁对韵、幼学琼林、战国策、国语、礼记、孝经、易经、蒙求、东坡志林、笑林广记；进度页码模型升级到 5，QA 要求全部公版书至少六页且同书目录标题不重复。",
+    "第五十四轮产品打磨收敛 MVP 主链路交互：书架排序移除评分优先，旧缓存 rating 排序自动回落到最近加入；我的页移除听读记录和我的书评两个扩展入口；完读小结不再展示评分卡，优先写读后感、复习书摘和读下一本；书籍详情移除听读卡，评分仅作为读后感受弱记录保留。",
+    "第五十五轮产品打磨继续收敛阅读 MVP：首屏今日可读只推荐真实公版资源书，避免三页原创样章占据主阅读入口；个人页月度书单改为直接打开计划抽屉；书籍详情移除评分按钮，资源卡、短评和榜单改用页数/分钟/来源等阅读指标，把完读后的沉淀导向读后感和划线笔记，同时保留历史评分数据兼容。",
+    "第五十六轮产品打磨修复当前章节可信度：首页当前书卡和书架行不再显示书籍种子章节，而是根据每本书保存的 readerPages 实时派生继续阅读章节，避免列表显示学而第一、阅读器实际打开为政第二的错位。",
+    "第五十七轮产品打磨修复书架行交互语义：书架条目不再整行隐形进入阅读器，改为书名区域查看详情、右侧主按钮开始/继续/回看阅读，减少筛选和整理书架时的误触。",
+    "第五十八轮产品打磨修复发现搜索重复结果：搜索态只保留搜索框下方一组结果和全库范围说明，不再在资源库区重复渲染同一批书，减少用户误以为书单内容重复的问题。",
+    "第五十九轮产品打磨修复阅读器顶栏章节错位：阅读器标题下方不再显示图书种子章节，而是显示当前页标题，和首页当前书卡、书架行及实际正文保持一致。",
+    "第六十轮产品打磨继续收敛到阅读本身：书架状态、行按钮和书籍详情不再只按已完成百分比判断是否开始阅读，目录或搜索保存了 readerPages 的书即使完成进度仍为 0，也会展示为可继续阅读，并保留从头阅读确认链路，避免真实阅读位置被开始按钮误清空。",
+    "第六十一轮产品打磨修正列表进度语义：书架行和书籍详情展示当前位置百分比与读到第几页，进度优先排序也按可见阅读位置计算；已完成百分比保留为详情补充和完读/从头阅读判断，避免用户已经读到中段却在列表里看到 0% 的困惑。",
+    "第六十二轮产品打磨统一首页继续读入口：当前书卡不再显示完成进度裸百分比，而是显示当前位置百分比、真实章节和读到第几页；从首页进入阅读器会回到同一保存页，避免首页、书架和正文三处进度表达不一致。",
+    "第六十三轮产品打磨修正月度书单分组：继续读和本月短读不再只按已完成百分比分流，保存过 readerPages 的书即使完成进度仍为 0，也会进入继续读；短读只收真正未开始、没有保存位置的书，减少书单内容错分。",
+    "第六十四轮产品打磨让个人书单从静态收藏夹变成阅读状态容器：书单卡和详情增加在读本数与最高当前位置，保存过页码但完成进度为 0 的书同样计入在读，避免场景书单只显示本数/分钟而无法判断可继续读内容。",
+    "第六十五轮产品打磨继续弱化评分残留：旧缓存里保留的 bookReviews.score 不再在书籍详情和读后感列表外显，保持完读后的沉淀围绕笔记、划线和感受。",
+    "第六十六轮产品打磨做前台减法：发现页不再展示作者动态、阅读路径和共读房间，我的页移除阅读路径入口；底层深链兼容保留，但前台主路径集中到资源库、搜索、榜单、专题、作者入口、书架、笔记和月度书单。",
+    "第六十七轮产品打磨继续清理已加但不必要的功能：移除作者动态数据流、作者动态渲染、作者/共读通知入口，作者页改为代表作品优先，通知只保留今日继续读、复习和离线等阅读本身相关提醒。",
+    "第六十八轮产品打磨统一阅读器进度语义：正文底部百分比改名为当前位置，避免把第几页位置误解成已完成度；同时移除隐藏的阅读助手和听读分支，让 MVP 更集中到翻页、目录、设置、划线和笔记。",
+    "第六十九轮产品打磨继续收敛旧兼容模块：移除阅读路径和共读房间的可打开抽屉、动作分支和 QA 正向用例，让当前 H5 不再维护两套偏社交/任务化的附加路径。",
+    "第七十轮产品打磨继续按 MVP 做减法：移除阅读路径、共读、读友短评、作者动态等残留数据和社区动作，书籍详情改为个人阅读记录、笔记和划线入口，静态 catalog 也不再下发旧路径数据。",
+    "第七十一轮产品打磨统一位置语义：书架排序、详情标签、目录说明、从头阅读确认和文档改用当前位置/位置优先/不会自动标记完读，避免把当前页百分比误读成已完成度。",
+    "第七十二轮产品打磨修复阅读页划线和笔记可用性：正文每段增加轻量段落操作，划线和笔记按用户选择的段落保存，底部入口不再默认操作第一句。",
+    "第七十三轮产品打磨让阅读页底部工具真正可用：点击正文可选中段落，底部划线和笔记会作用于选中段落，并保留段落旁的快捷操作。",
+    "第七十四轮产品打磨把本地导入从样章模拟升级为真实 TXT 粘贴导入：书名和正文草稿会保存，导入后生成独立正文页、加入书架和离线书包，样章只作为空数据试用入口。",
+    "第七十五轮产品打磨继续做 MVP 减法：作者模块从关注/取消关注的社交状态收敛为作者作品和代表作入架，发现、详情和我的页不再露出关注管理。",
+    "第七十六轮产品打磨修正首页阅读数据可信度：连续阅读/签到胶囊改为只读今日状态，移除 checkin 点击加分钟，今日分钟只由翻页、专注和复习等真实阅读动作推进。",
+    "第七十七轮产品打磨让月度书单从伪生成变成实时阅读安排：移除生成/刷新计划按钮，保留加入候选书和整理个人书单两个真实动作。"
+  ]
+}

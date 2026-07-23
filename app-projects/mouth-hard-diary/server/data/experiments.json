@@ -1,0 +1,32 @@
+{
+  "version": "2026-06-28-entry-copy-v2",
+  "entryCopy": {
+    "default": "report",
+    "variants": {
+      "report": {
+        "label": "发疯报告",
+        "eyebrow": "MOUTH HARD DIARY",
+        "headline": "把今天的破事，翻译成精神状态报告",
+        "lead": "不用认真写日记。选一个破事，挑一种嘴硬方式，30 秒生成一张能保存、能发群聊的今日发疯报告。",
+        "primaryCta": "生成我的今日报告",
+        "secondaryCta": "先看一个样例"
+      },
+      "persona": {
+        "label": "嘴硬人格",
+        "eyebrow": "TODAY'S MOUTH-HARD TYPE",
+        "headline": "测测你今天是哪种嘴硬人格",
+        "lead": "上班、失恋、内耗、深夜 emo，都能测出一种今日人格。测完别慌，发给朋友对号入座。",
+        "primaryCta": "测我的嘴硬人格",
+        "secondaryCta": "看看样例人格"
+      },
+      "translator": {
+        "label": "破事翻译器",
+        "eyebrow": "BAD DAY TRANSLATOR",
+        "headline": "把今天的破事，翻译成朋友圈能发的话",
+        "lead": "不想认真诉苦，也不想假装没事。把真实情绪交给嘴硬翻译器，输出一句体面又好笑的人话。",
+        "primaryCta": "开始翻译破事",
+        "secondaryCta": "先看翻译效果"
+      }
+    }
+  }
+}

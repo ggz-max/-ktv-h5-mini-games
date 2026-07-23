@@ -1,0 +1,19 @@
+{
+  "name": "skip-song-reflex",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "dev:api": "node backend/server.js",
+    "dev:web": "vite --host 127.0.0.1 --port 5310 frontend",
+    "build": "node scripts/build-static.js",
+    "verify": "node scripts/verify-assets.js && npm run build",
+    "verify:api": "node scripts/verify-api.js",
+    "verify:local": "node scripts/verify-local.js"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.61.1",
+    "vite": "^7.0.0"
+  }
+}

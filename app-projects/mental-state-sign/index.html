@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>今日精神状态签</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <img class="bg-layer" src="./assets/generated-ui/bg-oracle-space-v1.png" alt="" aria-hidden="true">
+    <img class="fragment-layer" src="./assets/generated-ui/fragments-v1.png" alt="" aria-hidden="true">
+
+    <section class="screen screen-home is-active" data-screen="home">
+      <header class="hero-copy">
+        <p class="eyebrow">MENTAL WEATHER ORACLE</p>
+        <h1>今日精神<br>状态签</h1>
+        <p>抽一张，看看今天哪里不太对劲。</p>
+      </header>
+
+      <img class="hero-oracle" src="./assets/generated-ui/oracle-slip-v1.png" alt="" aria-hidden="true">
+
+      <div class="home-notes">
+        <span>脑内碎片</span>
+        <b>想太多 / 又想少点 / 但还在想</b>
+      </div>
+
+      <button class="image-cta home-cta" type="button" data-go="quiz">
+        <img src="./assets/generated-ui/cta-button-v1.png" alt="" aria-hidden="true">
+        <span>开始抽签</span>
+        <i>↯</i>
+      </button>
+
+      <button class="ghost-cta resume-card" type="button" id="resumeBtn" hidden>
+        <span>继续今日签</span>
+        <b id="resumeText">上次抽到：后台过载签</b>
+      </button>
+    </section>
+
+    <section class="screen screen-quiz" data-screen="quiz">
+      <header class="page-head">
+        <p>STEP 01</p>
+        <h2>今天你主要卡在哪？</h2>
+      </header>
+
+      <div class="choice-stack" data-group="scene">
+        <button class="choice is-selected" type="button" data-value="work"><span>打工 / 上学</span></button>
+        <button class="choice" type="button" data-value="love"><span>关系 / 恋爱</span></button>
+        <button class="choice" type="button" data-value="alone"><span>独处 / 熬夜</span></button>
+        <button class="choice" type="button" data-value="money"><span>搞钱 / 焦虑</span></button>
+      </div>
+
+      <header class="page-head compact">
+        <p>STEP 02</p>
+        <h2>现在最像哪种故障？</h2>
+      </header>
+
+      <div class="chip-grid" data-group="symptom">
+        <button class="chip is-selected" type="button" data-value="overthink"><span>脑内开会</span></button>
+        <button class="chip" type="button" data-value="lag"><span>反应延迟</span></button>
+        <button class="chip" type="button" data-value="perform"><span>表面正常</span></button>
+        <button class="chip" type="button" data-value="spark"><span>突然来劲</span></button>
+        <button class="chip" type="button" data-value="empty"><span>电量见底</span></button>
+        <button class="chip" type="button" data-value="wild"><span>想发疯但礼貌</span></button>
+      </div>
+
+      <button class="ghost-cta random-draw" type="button" id="randomDrawBtn">懒得选，直接乱抽</button>
+
+      <button class="image-cta sticky-cta" type="button" id="drawBtn">
+        <img src="./assets/generated-ui/cta-button-v1.png" alt="" aria-hidden="true">
+        <span>生成今日签</span>
+        <i>抽</i>
+      </button>
+    </section>
+
+    <section class="screen screen-loading" data-screen="loading">
+      <div class="loading-stage">
+        <img class="loading-ring" src="./assets/generated-ui/loading-ring-v1.png" alt="" aria-hidden="true">
+        <img class="loading-oracle" src="./assets/generated-ui/oracle-slip-v1.png" alt="" aria-hidden="true">
+        <h2>签文校准中</h2>
+        <p id="scanText">正在读取脑内碎片</p>
+      </div>
+    </section>
+
+    <section class="screen screen-result" data-screen="result">
+      <header class="result-head">
+        <p>今日签文已生成</p>
+        <button class="small-btn" type="button" data-go="quiz">重抽</button>
+      </header>
+
+      <article class="result-card">
+        <img class="result-plate result-plate-wide" src="./assets/generated-ui/result-card-v1.png" alt="" aria-hidden="true">
+        <img class="result-plate result-plate-narrow" src="./assets/generated-ui/result-card-narrow-v1.png" alt="" aria-hidden="true">
+
+        <div class="paper-copy">
+          <span id="fortuneCode">MOOD-083</span>
+          <h2 id="fortuneTitle">后台过载签</h2>
+          <b id="meterText">83%</b>
+        </div>
+
+        <div class="digital-copy">
+          <span id="fortuneLevel">中高频异常</span>
+          <h3 id="fortuneSubtitle">今天适合先躲一下世界</h3>
+        </div>
+      </article>
+
+      <article class="result-detail">
+        <img src="./assets/generated-ui/choice-plate-v1.png" alt="" aria-hidden="true">
+        <p id="fortuneBody">你不是不行，你只是同时打开了太多人生后台。</p>
+        <div class="diagnosis">
+          <div><small>宜</small><b id="goodFor">关掉一个群</b></div>
+          <div><small>忌</small><b id="badFor">硬撑体面</b></div>
+          <div><small>幸运动作</small><b id="luckyAction">消失十分钟</b></div>
+        </div>
+        <div class="meter">
+          <small>今日不对劲指数</small>
+          <div><i id="meterFill"></i></div>
+        </div>
+      </article>
+
+      <div class="action-stack">
+        <button class="image-cta" type="button" id="posterBtn">
+          <img src="./assets/generated-ui/cta-button-v1.png" alt="" aria-hidden="true">
+          <span>群聊海报</span>
+          <i>↗</i>
+        </button>
+        <button class="ghost-cta rebut-action" type="button" id="rebutBtn">不准，反驳此签</button>
+        <button class="ghost-cta copy-action" type="button" id="copyTextBtn">复制发群文案</button>
+      </div>
+
+      <article class="friend-seat-panel">
+        <img src="./assets/generated-ui/friend-seat-panel-v1.png" alt="" aria-hidden="true">
+        <div class="friend-seat-copy">
+          <small>群聊入座榜</small>
+          <p>输入群友昵称，排出今晚谁最不对劲。</p>
+        </div>
+        <div class="friend-seat-form">
+          <input id="friendName" type="text" maxlength="8" autocomplete="off" placeholder="输入好友昵称">
+          <button class="ghost-cta" type="button" id="friendSeatBtn">拉入榜</button>
+        </div>
+        <button class="ghost-cta quick-squad-btn" type="button" id="quickSquadBtn">懒得输名，一键拉满三人榜</button>
+        <p class="friend-seat-hint" id="friendSeatHint">最多 3 位，重复昵称会更新</p>
+        <div class="friend-seat-result" id="friendSeatResult"></div>
+        <button class="ghost-cta rerank-btn" type="button" id="rerankBtn" hidden>不服，重新排座</button>
+      </article>
+      <div class="share-copy-preview" id="shareCopyPreview"></div>
+    </section>
+
+    <section class="screen screen-poster" data-screen="poster">
+      <article class="poster-card">
+        <img class="poster-frame" src="./assets/generated-ui/share-frame-v1.png" alt="" aria-hidden="true">
+        <p class="eyebrow">GROUP MENTAL ATLAS</p>
+        <h2 id="posterTitle">后台过载签</h2>
+        <p id="posterBody">你不是不行，你只是同时打开了太多人生后台。</p>
+        <img class="poster-oracle" src="./assets/generated-ui/oracle-slip-v1.png" alt="" aria-hidden="true">
+        <div class="poster-score">
+          <span id="posterCode">MOOD-083</span>
+          <b id="posterMeter">83%</b>
+        </div>
+        <div class="poster-friend" id="posterFriend"></div>
+        <footer>长按截图，发给今天也不太对劲的人</footer>
+      </article>
+
+      <button class="ghost-cta bottom poster-copy" type="button" id="posterCopyBtn">复制海报文案</button>
+      <button class="ghost-cta bottom" type="button" data-go="result">返回结果</button>
+      <button class="ghost-cta bottom" type="button" data-go="quiz">再抽一次</button>
+    </section>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

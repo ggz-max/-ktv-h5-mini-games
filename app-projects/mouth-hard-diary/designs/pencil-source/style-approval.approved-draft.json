@@ -1,0 +1,56 @@
+{
+  "project": "mouth-hard-diary",
+  "status": "approved",
+  "reviewPage": "designs/imagegen-review.html",
+  "pencilFile": "designs/pencil-source/mouth-hard-diary.pen",
+  "directionName": "深夜便利贴 + 霓虹批注",
+  "decisionSummary": "首页底板使用 clean background，强视觉使用 neon sticky，结果卡使用 result card，分享海报使用 share poster，贴纸组进入 sticker kit。",
+  "confirmationQuestions": [
+    "这个方向是否成立：深夜便利贴 + 霓虹批注？",
+    "整体是否太暗，或者太像心理咨询产品？",
+    "发疯感是否足够，但不压抑？",
+    "首页主视觉是否一眼能看懂生成报告？",
+    "结果卡是否值得保存或分享？"
+  ],
+  "selectedSources": [
+    {
+      "file": "images/source-home-bg-clean-image2.png",
+      "role": "home_ui_background",
+      "sha256": "188914e77352672a1b5782a01c64d92e40222e9d8c7063afcf1e440f2574db8d",
+      "decision": "use"
+    },
+    {
+      "file": "images/source-hero-neon-sticky-image2.png",
+      "role": "hero_visual",
+      "sha256": "8d39b2b1b5fc79b4f9ae2e65904c0c1f046704ebe595f8501bbea3c14bc323f2",
+      "decision": "use"
+    },
+    {
+      "file": "images/source-result-card-bg-image2.png",
+      "role": "result_card_background",
+      "sha256": "fd3b15a750126a75a1d8f5b2dbe8e3fa7c052c6b00e59a47867cb7d9ada99741",
+      "decision": "use"
+    },
+    {
+      "file": "images/source-share-poster-image2.png",
+      "role": "share_poster_background",
+      "sha256": "c359b1c3756f404544099ef1a0b7abfb78f26776fc84cbf7429836651b2c3712",
+      "decision": "use"
+    },
+    {
+      "file": "images/source-status-dashboard-image2.png",
+      "role": "brand_secondary_visual",
+      "sha256": "9808da6269cd785c08d4c56225c91a0f3455b231aa045f25a7d7b8311587823f",
+      "decision": "reserve"
+    },
+    {
+      "file": "images/source-sticker-sheet-image2.png",
+      "role": "sticker_kit",
+      "sha256": "6c4649d4e73a36ce60c2860e274d7bb1a57f28ba700f43ca6e6e0bf9bf4f1d76",
+      "decision": "use"
+    }
+  ],
+  "approvedBy": "PENDING_USER",
+  "approvedAt": "2026-07-09T05:44:13.937Z",
+  "approvalNotes": "Pending final user confirmation from Pencil boards."
+}

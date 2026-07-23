@@ -1,0 +1,865 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#ff4fd8">
+  <title>KTV 人格宇宙 · 测出你的 KTV 人格</title>
+  <meta name="x-build" content="mobile-stable-20260701-demo-clean">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./assets/visuals/pencil-export/avatars/avatar-spark-pencil.png">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      overflow-x: hidden;
+      background: #020106;
+      color: #fff7ff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    }
+
+    button {
+      border: 0;
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .phone {
+      width: 100%;
+      max-width: 430px;
+      min-height: 100vh;
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 18%, rgba(255, 56, 200, .3), transparent 14rem),
+        radial-gradient(circle at 8% 42%, rgba(56, 232, 255, .16), transparent 16rem),
+        radial-gradient(circle at 80% 75%, rgba(82, 255, 143, .14), transparent 18rem),
+        linear-gradient(180deg, #090416 0%, #050409 100%);
+    }
+
+    .view {
+      min-height: 100vh;
+      padding: 28px 24px 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .view:not(.is-active) {
+      display: none !important;
+    }
+
+    .relation-vault,
+    [data-share-only],
+    [data-friend-compare],
+    .share-challenge,
+    .share-relay-ticket,
+    .share-loop,
+    .share-readiness,
+    [data-library-jump="relations"],
+    [data-relation-empty-share] {
+      display: none !important;
+    }
+
+    .starfield,
+    .laser {
+      position: fixed;
+      pointer-events: none;
+    }
+
+    .top-chip {
+      width: max-content;
+      margin: 0 auto 28px;
+      padding: 10px 18px;
+      border: 1px solid rgba(255, 56, 200, .45);
+      border-radius: 999px;
+      background: rgba(5, 4, 9, .72);
+      color: #38e8ff;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .entry-hero h1 {
+      margin: 0;
+      color: #ff38c8;
+      font-size: clamp(54px, 16vw, 76px);
+      line-height: .92;
+      font-weight: 1000;
+      text-shadow: 0 0 26px rgba(255, 56, 200, .36);
+    }
+
+    .entry-hero .micro,
+    .micro {
+      margin: 0 0 10px;
+      color: #ffd55b;
+      font-size: 13px;
+      font-weight: 1000;
+      text-align: center;
+    }
+
+    .sub {
+      color: #fff7ff;
+      font-weight: 900;
+    }
+
+    .persona-oracle {
+      position: relative;
+      min-height: clamp(430px, 58vh, 620px);
+      margin: 24px -4px 22px;
+      overflow: hidden;
+      border-radius: 34px;
+      background: rgba(20, 13, 33, .78);
+    }
+
+    .entry-portal-art {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .oracle-card {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 28px;
+      padding: 22px 18px;
+      border-radius: 28px;
+      text-align: center;
+      background: rgba(10, 8, 23, .68);
+      border: 1px solid rgba(255, 255, 255, .16);
+      backdrop-filter: blur(16px);
+    }
+
+    .oracle-card img {
+      width: 64px;
+      height: 64px;
+      object-fit: cover;
+      border-radius: 18px;
+    }
+
+    .oracle-card h2 {
+      margin: 12px 0 0;
+      color: #38e8ff;
+      font-size: 42px;
+      line-height: 1;
+    }
+
+    .mega-cta {
+      width: 100%;
+      min-height: 64px;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #ff64bd, #fff06b 52%, #39e9e3);
+      color: #160617;
+      font-size: 22px;
+      font-weight: 1000;
+      box-shadow: 0 12px 34px rgba(255, 56, 200, .24);
+    }
+
+    .build-badge {
+      position: fixed;
+      right: 8px;
+      bottom: 8px;
+      z-index: 9999;
+      padding: 4px 7px;
+      border-radius: 999px;
+      background: rgba(5, 4, 9, .58);
+      color: rgba(255, 255, 255, .62);
+      font-size: 10px;
+      font-weight: 800;
+      pointer-events: none;
+    }
+
+    [data-share-only],
+    html:not(.is-share-entry) [data-share-only],
+    [hidden],
+    [data-share-only]:not([data-share-ready="true"]) {
+      display: none !important;
+    }
+
+    html.is-share-entry [data-share-only][data-share-ready="true"].friend-invite {
+      display: flex !important;
+    }
+  </style>
+  <link rel="stylesheet" href="./styles.css?v=20260701-demo-clean">
+</head>
+<body>
+  <main class="phone">
+    <div class="build-badge">mobile-stable-2</div>
+    <div class="starfield"></div>
+    <div class="laser laser-a"></div>
+    <div class="laser laser-b"></div>
+
+    <section class="view is-active" id="view-entry" data-view="entry">
+      <div class="top-chip">KTV 人格测试</div>
+      <article class="friend-invite" data-share-only aria-label="好友人格卡邀请" hidden>
+        <div class="friend-card-thumb">
+          <img data-bind="friendAvatar" src="./assets/visuals/pencil-export/avatars/avatar-romeo-pencil.png" alt="好友的人格形象">
+        </div>
+        <div>
+          <p>朋友丢来一张人格卡</p>
+          <strong><span data-bind="friendCode">LOVER</span> · <span data-bind="friendTitle">纯爱者</span></strong>
+          <span>点开测你的，不复制他的结果</span>
+        </div>
+      </article>
+      <section class="share-entry-duel" data-share-only aria-label="好友挑战悬念" hidden>
+        <b data-bind="friendCode">LOVER</b>
+        <span>测完算关系</span>
+        <b>你的 ?</b>
+      </section>
+      <div class="entry-hero">
+        <p class="micro" data-bind="entryEyebrow">历史点唱画像 · KTV 人格卡</p>
+        <h1><span data-bind="entryTitleTop">测出你的</span><br><span data-bind="entryTitleHot">KTV人格卡</span></h1>
+        <p class="sub" data-bind="entrySubtitle">用你的唱歌偏好生成，30 秒拿到可分享人格卡</p>
+      </div>
+
+      <div class="persona-oracle" aria-label="KTV 人格罗盘">
+        <img class="entry-portal-art" src="./assets/visuals/entry-personality-portal-v1.png?v=20260701-demo-clean" alt="" aria-hidden="true">
+        <div class="portal-glow" aria-hidden="true"></div>
+        <div class="oracle-ring" aria-hidden="true"></div>
+        <div class="oracle-scanline" aria-hidden="true"></div>
+        <article class="oracle-card">
+          <p data-bind="entryQuestion">你的卡还没揭晓</p>
+          <div class="oracle-avatar-shell">
+            <img data-bind="entryAvatar" src="./assets/visuals/ui-scan-mic-orb.png" alt="待生成的人格卡">
+          </div>
+          <h2 data-bind="entryPreviewCode">?</h2>
+          <strong data-bind="entryPreviewTitle">人格待生成</strong>
+          <span data-bind="entryPreviewHint">读取点唱偏好 · 不提前剧透</span>
+        </article>
+      </div>
+
+      <button class="mega-cta" type="button" data-next="scan">
+        <span data-bind="entryCta">用点唱画像生成卡</span>
+      </button>
+      <section class="entry-profile-strip" aria-label="点唱画像预览">
+        <div>
+          <span>历史点唱画像</span>
+          <strong data-bind="entryProfileSummary">不是随机抽卡：点唱画像会决定人格卡</strong>
+        </div>
+        <ul>
+          <li><b data-bind="entryMetricTempo">58%</b><span>节奏</span></li>
+          <li><b data-bind="entryMetricMood">42%</b><span>情绪</span></li>
+          <li><b data-bind="entryMetricChorus">36%</b><span>合唱</span></li>
+        </ul>
+      </section>
+
+      <section class="share-entry-relay" data-share-only aria-label="好友接力预期" hidden>
+        <span>FRIEND RELAY</span>
+        <strong data-bind="entryRelayTitle">测出你的卡，和朋友生成关系</strong>
+        <div>
+          <b data-bind="entryRelayA">朋友卡已带入</b>
+          <b data-bind="entryRelayB">你的卡待生成</b>
+          <b data-bind="entryRelayC">测完自动入库</b>
+        </div>
+      </section>
+
+      <section class="share-entry-promise" data-share-only aria-label="好友分享入口说明" hidden>
+        <article>
+          <span>01</span>
+          <strong data-bind="sharePromiseFriend">朋友卡已带入</strong>
+        </article>
+        <article>
+          <span>02</span>
+          <strong>生成你的卡</strong>
+        </article>
+        <article>
+          <span>03</span>
+          <strong data-bind="sharePromiseRelation">自动算关系</strong>
+        </article>
+      </section>
+
+      <section class="entry-quota-card" aria-label="今日开卡额度">
+        <div>
+          <span>今日可开</span>
+          <strong data-bind="entryQuotaRemaining">3</strong>
+        </div>
+        <div>
+          <span>已收集</span>
+          <strong data-bind="entryQuotaShare">1</strong>
+        </div>
+        <div>
+          <span>刷新</span>
+          <strong data-bind="entryQuotaReset">23:59</strong>
+        </div>
+      </section>
+      <p class="safe-note">随机抽卡 · 自动入库 · 缓存卡片信息 · 仅供娱乐</p>
+      <p class="safe-note" data-bind="quotaHint">今日免费 3 次 · 抽到自动入库</p>
+    </section>
+
+    <section class="view" id="view-scan" data-view="scan">
+      <div class="scan-core">
+        <div class="scan-lock">
+          <span>数据来源</span>
+          <strong data-bind="pickLabel">历史点唱偏好</strong>
+        </div>
+        <div class="mic-ring">
+          <div class="pulse"></div>
+          <img src="./assets/visuals/ui-scan-mic-orb.png" alt="" aria-hidden="true">
+        </div>
+        <h2>正在生成 KTV 人格</h2>
+        <p id="scan-line">正在读取你的点唱画像</p>
+        <div class="progress">
+          <div id="progress-bar"></div>
+        </div>
+        <div class="scan-codes" aria-label="点唱画像维度">
+          <span data-scan-code="tempo">节奏</span>
+          <span data-scan-code="mood">情绪</span>
+          <span data-scan-code="chorus">合唱</span>
+          <span data-scan-code="control">控场</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-result" data-view="result">
+      <div class="sbti-result">
+        <section class="type-reveal" aria-label="人格类型揭晓">
+          <div class="result-status-strip" aria-label="人格卡状态">
+            <span data-bind="dropState">NEW CARD</span>
+            <strong data-bind="resultRoleLabel">你的主类型</strong>
+            <b data-bind="ownedCount">人格 1/12</b>
+          </div>
+          <div class="type-count" data-bind="typeCount">1/12</div>
+          <div class="verdict-stamp">MATCHED</div>
+          <p>你的 KTV 人格卡已生成：</p>
+          <h2 data-bind="title">主场星</h2>
+          <strong data-bind="code">STAR</strong>
+          <button class="result-card-drop" type="button" data-result-skin-preview aria-label="预览本次掉落的人格皮肤">
+            <img class="result-card-art" data-bind="skinArt" src="./assets/visuals/cards-v2/skin-card-spark-v2.png" alt="" aria-hidden="true">
+            <span data-bind="rank">SSR?</span>
+            <b data-bind="skinName">霓虹爆场</b>
+          </button>
+          <em data-bind="desc">第一首歌，你就从尴尬模式切到全员发疯模式。</em>
+          <div class="result-quote" data-bind="signature">别人还在点前奏，你已经把包厢推到副歌。</div>
+          <div class="identity-claim" data-bind="identityClaim">我是包厢开场键，冷场到我这里自动跳过。</div>
+          <section class="result-proof-snap" aria-label="人格命中证据">
+            <div>
+              <span>为什么是这张卡</span>
+              <strong data-bind="proofPathTitle">匹配 92% · 热场 91% · STAR</strong>
+            </div>
+            <p data-bind="proofPathText">历史点唱画像会决定本次人格卡，不是随机抽卡。</p>
+            <ul>
+              <li><b data-bind="evidenceValueA">42%</b><span data-bind="evidenceLabelA">快歌占比</span></li>
+              <li><b data-bind="evidenceValueB">6</b><span data-bind="evidenceLabelB">带起合唱</span></li>
+              <li><b data-bind="evidenceValueC">91</b><span data-bind="evidenceLabelC">气氛峰值</span></li>
+            </ul>
+          </section>
+          <section class="drop-summary" aria-label="本次掉落摘要">
+            <span data-bind="dropState">NEW CARD</span>
+            <strong data-bind="dropHeadline">新人格已入库</strong>
+            <p data-bind="dropDetail">本次掉落霓虹爆场皮肤，已自动装备到你的卡面。</p>
+          </section>
+          <div class="aha-stack" aria-label="人格命中三连">
+            <span>HIT STACK</span>
+            <b data-bind="ahaLineA">像你：一开口就把气氛推上去。</b>
+            <b data-bind="ahaLineB">朋友会说：这不就是你本人吗？</b>
+            <b data-bind="ahaLineC">证据：热场 92%</b>
+          </div>
+          <section class="persona-read" aria-label="人格深度解读">
+            <span>WHY YOU</span>
+            <article>
+              <b>成因</b>
+              <p data-bind="readCause">你更容易在开场和高能段落留下痕迹。</p>
+            </article>
+            <article>
+              <b>反差</b>
+              <p data-bind="readContrast">你看起来只是点歌，其实在给全场加速。</p>
+            </article>
+            <article>
+              <b>发给谁</b>
+              <p data-bind="readTarget">发给那个每次都说“这不就是你”的朋友。</p>
+            </article>
+          </section>
+          <div class="identity-punch">
+            <span>一句话判定</span>
+            <strong data-bind="verdict">你不是来唱歌的，你是来点燃全场的。</strong>
+            <p data-bind="weakness">弱点：别人还在找状态，你已经开始催副歌。</p>
+          </div>
+          <div class="friend-roast">
+            <span>朋友看了会说</span>
+            <strong data-bind="friendRoast">这不就是你本人吗？</strong>
+            <p data-bind="friendCue">适合直接发群里，让朋友对号入座。</p>
+          </div>
+        </section>
+
+        <section class="type-brief" aria-label="人格命中状态">
+          <p data-bind="resultRoleLabel">你的主类型</p>
+          <h3><span data-bind="code">STAR</span>（<b data-bind="title">主场星</b>）</h3>
+          <div class="match-pill" data-bind="matchPill">匹配度 92% · 命中 3/3 维</div>
+          <div class="auto-archive-pill">
+            <span>已自动入库</span>
+            <b data-bind="ownedCount">人格 1/12</b>
+          </div>
+          <p class="result-role-note" data-bind="resultRoleNote">首次命中会作为你的主类型，后续开卡用于扩展档案库。</p>
+          <p data-bind="signature">别人还在点前奏，你已经把包厢推到副歌。</p>
+          <div class="share-hook">
+            <span>发给朋友时可以这样说</span>
+            <b data-bind="shareHook">系统说我是 STAR，原来我的歌单自带主场灯。</b>
+          </div>
+        </section>
+
+        <section class="type-brief friend-compare" data-friend-compare hidden aria-label="好友人格关系">
+          <p>你们俩的 KTV 关系</p>
+          <div class="compare-duel">
+            <div class="compare-person">
+              <img data-bind="friendCompareAvatar" src="./assets/visuals/pencil-export/avatars/avatar-romeo-pencil.png" alt="朋友的人格形象">
+              <span data-bind="friendCompareCode">LOVER</span>
+              <b data-bind="friendCompareTitle">纯爱者</b>
+            </div>
+            <div class="compare-link">
+              <span data-bind="relationName">月光烟花局</span>
+            </div>
+            <div class="compare-person">
+              <img data-bind="myCompareAvatar" src="./assets/visuals/pencil-export/avatars/avatar-spark-pencil.png" alt="我的人格形象">
+              <span data-bind="myCompareCode">STAR</span>
+              <b data-bind="myCompareTitle">主场星</b>
+            </div>
+          </div>
+          <h3 data-bind="relationTitle">一个负责上头，一个负责把灯打开</h3>
+          <p data-bind="relationText">你们同框时，包厢很难只安静听歌。</p>
+          <div class="relation-reveal-stack" aria-label="关系揭晓动态">
+            <span data-bind="relationRevealStatus">关系卡已入库</span>
+            <b data-bind="relationBeatA">LOVER 先把情绪递出来</b>
+            <b data-bind="relationBeatB">STAR 接着把场子点亮</b>
+            <b data-bind="relationBeatC">发给下一位朋友继续接力</b>
+          </div>
+        </section>
+
+        <section class="type-brief type-brief-grid" aria-label="人格维度命中">
+          <p>维度命中</p>
+          <div class="evidence">
+            <div><b data-bind="evidenceValueA">42%</b><span data-bind="evidenceLabelA">快歌占比</span></div>
+            <div><b data-bind="evidenceValueB">6</b><span data-bind="evidenceLabelB">带起合唱</span></div>
+            <div><b data-bind="evidenceValueC">91</b><span data-bind="evidenceLabelC">气氛峰值</span></div>
+          </div>
+          <p data-bind="evidenceText">快歌占比高、起哄次数高、第一轮最容易站起来。</p>
+        </section>
+
+        <section class="proof-path" aria-label="人格命中路径">
+          <div class="proof-path-head">
+            <span>WHY THIS CARD</span>
+            <strong data-bind="proofPathTitle">读取历史点唱画像</strong>
+          </div>
+          <p data-bind="proofPathText">系统会根据历史点唱特征生成你的人格命中路径。</p>
+          <p class="proof-path-rank" data-bind="proofRankText">画像命中排名将在结果页揭晓。</p>
+          <section class="proof-runner-up" aria-label="差点命中的人格">
+            <span>差点命中</span>
+            <strong data-bind="runnerUpTitle">SKIPPER 也有信号</strong>
+            <p data-bind="runnerUpText">但主画像更接近当前人格，所以这次先生成当前卡。</p>
+          </section>
+          <p class="proof-path-note" data-bind="rollReasonText">首次生成主类型，后续补齐人格宇宙。</p>
+          <div class="proof-path-bars" data-proof-bars></div>
+        </section>
+      </div>
+
+      <div class="result-actions">
+        <button class="mega-cta" type="button" data-next="share">
+          生成分享图
+        </button>
+        <button class="ghost-cta" type="button" data-next="library">
+          查看档案库
+        </button>
+      </div>
+    </section>
+
+    <section class="view" id="view-reward" data-view="reward">
+      <div class="reward-stage">
+        <p class="micro">NEW PERSONA CARD</p>
+        <h2 class="reward-title">人格卡已入档案</h2>
+        <div class="reward-status" aria-label="领取状态">
+          <span>已领取</span>
+          <span>已装备</span>
+          <span>已入库</span>
+        </div>
+        <div class="skin-card">
+          <img class="skin-card-art" data-bind="skinArt" src="./assets/visuals/cards-v2/skin-card-spark-v2.png" alt="" aria-hidden="true">
+          <div class="skin-glow"></div>
+          <div class="card-head">
+            <span data-bind="roundLabel">STAR · 第 1 次</span>
+            <b data-bind="rank">SSR?</b>
+          </div>
+          <img class="visual-avatar skin-avatar" data-bind="avatar" src="./assets/visuals/pencil-export/avatars/avatar-spark-pencil.png" alt="STAR 霓虹爆场卡面">
+          <div class="skin-name" data-bind="skinName">霓虹爆场</div>
+          <p data-bind="skinDesc">你今天获得了 STAR 专属人格卡。下一次测试，可以继续刷出新卡面。</p>
+        </div>
+        <div class="reward-actions">
+          <button class="mega-cta" type="button" data-next="library">查看档案库</button>
+          <button class="ghost-cta" type="button" data-next="share">生成分享图</button>
+          <button class="text-cta" type="button" data-next="entry">再测一次</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-equipped" data-view="equipped">
+      <div class="archive-done">
+        <div class="equipped-badge">已装备</div>
+        <div class="mini-skin-row">
+          <img class="visual-avatar mini-avatar" data-bind="avatar" src="./assets/visuals/pencil-export/avatars/avatar-spark-pencil.png" alt="STAR 当前人格">
+          <div>
+            <p>当前人格</p>
+            <h2 data-bind="code">STAR</h2>
+            <strong data-bind="skinName">霓虹爆场</strong>
+            <span data-bind="ownedCount">人格卡 1/12</span>
+          </div>
+        </div>
+        <div class="archive-panel">
+          <b>今日档案</b>
+        <p>第 1 次解锁 STAR（主场星）。继续抽卡、预览皮肤、补齐档案，是当前最核心的玩法闭环。</p>
+        </div>
+        <div class="next-drop">
+          <span>下一张可能掉落</span>
+          <strong data-bind="nextDrop">SKIPPER（切歌师）</strong>
+        </div>
+        <button class="mega-cta" type="button" data-next="share">
+          生成我的人格分享图
+        </button>
+        <button class="ghost-cta" type="button" data-next="archive">
+          保存至档案
+        </button>
+      </div>
+    </section>
+
+    <section class="view" id="view-archive" data-view="archive">
+      <div class="share-done">
+        <div class="checkmark">✓</div>
+        <h2>已保存到人格档案</h2>
+        <p data-bind="archiveText">STAR（主场星）已入库。下一次测试，再抽一张新人格。</p>
+        <div class="share-preview">
+          <span data-bind="seriesProgress">热场系 1/3</span>
+          <span data-bind="skinProgress">卡片 1/12</span>
+          <span>连续 1 天</span>
+        </div>
+        <button class="mega-cta" type="button" data-next="library">查看档案库</button>
+        <button class="ghost-cta" type="button" data-next="share">生成分享图</button>
+      </div>
+    </section>
+
+    <section class="view" id="view-library" data-view="library">
+      <div class="library-page">
+        <header class="library-head">
+          <p>MY KTV UNIVERSE</p>
+          <h2>我的 KTV<br>人格宇宙</h2>
+          <span data-bind="librarySummary">已收集 1 张人格卡</span>
+          <strong data-bind="libraryIdentityLine">当前主类型 STAR · 装备霓虹爆场</strong>
+        </header>
+
+        <section class="library-overview" aria-label="档案库总览">
+          <article class="is-primary">
+            <span>当前身份</span>
+            <strong data-bind="archivePrimaryCode">STAR</strong>
+            <b data-bind="archivePrimaryTitle">主场星</b>
+          </article>
+          <article>
+            <span>已收集</span>
+            <strong data-bind="archiveOwnedCount">1/12</strong>
+            <b data-bind="archiveOwnedText">人格卡</b>
+          </article>
+          <article>
+            <span>下一张</span>
+            <strong data-bind="archiveNextCode">SKIPPER</strong>
+            <b data-bind="archiveNextTitle">切歌师</b>
+          </article>
+          <article>
+            <span>当前皮肤</span>
+            <strong data-bind="archiveSkinName">霓虹爆场</strong>
+            <b data-bind="archiveSkinCount">1/3</b>
+          </article>
+        </section>
+
+        <div class="library-quick-actions" aria-label="人格主页快捷动作">
+          <button type="button" data-next="share" data-mission-action="profile-share">分享我的档案</button>
+          <button type="button" data-next="entry" data-mission-action="skin-roll">继续测人格</button>
+        </div>
+
+        <nav class="library-jump-nav" aria-label="档案库快速定位">
+          <button type="button" data-library-jump="cards">人格卡册</button>
+          <button type="button" data-library-jump="skins">皮肤库</button>
+        </nav>
+
+        <div class="library-stats">
+          <div class="is-primary"><b data-bind="ownedRatio">1/12</b><span>已拥有</span></div>
+          <div><b data-bind="lockedTotal">11</b><span>未解锁</span></div>
+          <div><b data-bind="streakDays">1天</b><span>连续测</span></div>
+        </div>
+
+        <section class="owned-showcase" aria-label="当前已收集的人格">
+          <div class="owned-showcase-head">
+            <span>OWNED NOW</span>
+            <strong data-bind="ownedShowcaseTitle">当前 STAR · 1 张</strong>
+          </div>
+          <p data-bind="ownedShowcaseHint">你现在拥有的卡都在这里，点任意一张可看详情。</p>
+          <div class="owned-showcase-row" data-owned-showcase></div>
+        </section>
+
+        <section class="collection-wall" data-library-section="cards" aria-label="人格卡册总览">
+          <div class="collection-wall-head">
+            <span>ALL 12 PERSONAS</span>
+            <strong data-bind="collectionWallCount">1/12</strong>
+          </div>
+          <p data-bind="collectionWallText">已收集 1 张，当前 STAR，剩余 11 张待解锁。</p>
+          <div class="collection-system-note">
+            <b>统一人格宇宙</b>
+            <span>抽到的英文名都会出现在下面 12 张卡里，例如 FIXER = 救场者。</span>
+          </div>
+          <div class="locked-grid" aria-label="全部人格卡" data-collection-grid></div>
+        </section>
+
+        <section class="collection-route" aria-label="收藏路线">
+          <span>COLLECTION ROUTE</span>
+          <strong data-bind="collectionRouteTitle">下一步：补齐热场系人格</strong>
+          <p data-bind="collectionRouteText">已收集 1/12，当前系别 1/3。下一张目标 SKIPPER 会补齐你的卡册。</p>
+        </section>
+
+        <section class="vault-stage" aria-label="人格卡池">
+          <article class="owned-skin-card" data-open-card-detail="current" role="button" tabindex="0" aria-label="查看当前人格卡详情">
+            <img class="owned-skin-bg" src="./assets/visuals/ui-owned-skin-card.png" alt="" aria-hidden="true">
+            <div class="card-head">
+              <span data-bind="typeId">B-001</span>
+              <b data-bind="primaryPersonaBadge">主类型</b>
+            </div>
+            <div class="owned-skin-body">
+              <img class="visual-avatar owned-avatar" data-bind="avatar" src="./assets/visuals/pencil-export/avatars/avatar-spark-pencil.png" alt="STAR 已收藏卡面">
+              <div>
+                <h3 data-bind="code">STAR</h3>
+                <h4 data-bind="title">主场星</h4>
+                <p data-bind="ownedMeta">第 1 次解锁 · 主场星</p>
+              </div>
+            </div>
+            <div class="skin-progress">
+              <span data-bind="seriesName">热场系 人格卡</span>
+              <strong data-bind="seriesCount">1/3</strong>
+            </div>
+          </article>
+
+          <section class="target-card" aria-label="下一张人格卡追踪">
+            <div class="target-copy">
+              <span>NEXT DROP</span>
+              <h3 data-bind="targetCode">SKIPPER</h3>
+              <strong data-bind="targetTitle">切歌师</strong>
+              <p data-bind="targetHint">历史点唱画像越接近，SKIPPER 系卡面越容易出现。</p>
+              <div class="target-reason">
+                <span>为什么值得开</span>
+                <b data-bind="targetReason">补齐控场系拼图，重复抽到也会沉淀为皮肤进度。</b>
+              </div>
+            </div>
+            <div class="target-visual">
+              <img data-bind="targetAvatar" src="./assets/visuals/pencil-export/avatars/avatar-skip-pencil.png" alt="下一张人格卡剪影">
+              <b data-bind="targetProgress">1/3</b>
+            </div>
+          </section>
+        </section>
+
+        <section class="series-map" aria-label="人格系别地图">
+          <div class="series-map-head">
+            <span>SERIES MAP</span>
+            <strong data-bind="seriesMapTitle">热场系人格</strong>
+            <p data-bind="seriesMapText">你已收集 1/3，同系人格会补齐你的 KTV 角色拼图。</p>
+          </div>
+          <div class="series-map-grid" data-series-map></div>
+        </section>
+
+        <section class="skin-shelf" data-library-section="skins" aria-label="当前人格皮肤收藏">
+          <div class="skin-shelf-head">
+            <span>SKIN SHELF</span>
+            <strong data-bind="skinShelfCount">1/3</strong>
+          </div>
+          <button class="skin-chase" type="button" data-skin-chase aria-label="预览下一张值得追的皮肤">
+            <img data-bind="skinChaseArt" src="./assets/visuals/skin-card-hype-fake-climax.png" alt="" aria-hidden="true">
+            <span>下一张值得追</span>
+            <strong data-bind="skinChaseName">假高潮制造</strong>
+            <p data-bind="skinChaseText">把前奏也喊成总决赛现场。</p>
+          </button>
+          <div class="skin-shelf-grid" data-skin-shelf></div>
+        </section>
+
+        <section class="daily-quest" aria-label="今日开卡任务">
+          <div class="daily-quest-copy">
+            <span>DAILY DROP</span>
+            <h3 data-bind="dailyQuestTitle">今日还能开 3 张</h3>
+            <p data-bind="dailyQuestText">随机抽一张人格卡，抽到后自动入库，明天卡池刷新。</p>
+          </div>
+          <div class="daily-quest-meter" aria-label="今日开卡额度">
+            <b data-bind="dailyQuestRemaining">3</b>
+            <span data-bind="dailyQuestReset">今晚 23:59 刷新</span>
+          </div>
+          <div class="daily-quest-actions">
+            <button type="button" data-next="entry" data-mission-action="daily-roll">开今日卡</button>
+          </div>
+        </section>
+
+        <section class="streak-reward" aria-label="连续人格档案">
+          <div class="streak-orbit">
+            <b data-bind="streakMilestone">3</b>
+            <span>DAY</span>
+          </div>
+          <div class="streak-copy">
+            <p>连续人格档案</p>
+            <h3 data-bind="streakRewardTitle">再连续 2 天，看见人格变化</h3>
+            <span data-bind="streakRewardText">连续回来会沉淀你的点歌画像、主类型和皮肤进度。</span>
+          </div>
+          <div class="streak-dots" aria-label="连续进度">
+            <i data-streak-dot="1"></i>
+            <i data-streak-dot="2"></i>
+            <i data-streak-dot="3"></i>
+          </div>
+        </section>
+
+        <section class="replay-mission" aria-label="下一步行动">
+          <div class="mission-copy">
+            <div class="mission-topline">
+              <span>再测解锁下一张</span>
+            </div>
+            <strong data-bind="collectionTarget">SKIPPER（切歌师）</strong>
+            <p data-bind="missionHint">再开一张补档案，重复抽到也会沉淀为皮肤进度。</p>
+            <div class="mission-progress" aria-label="任务进度">
+              <b data-bind="missionProgress">1/3</b>
+              <div><span data-bind-style="missionProgress"></span></div>
+            </div>
+          </div>
+          <div class="mission-lock" aria-hidden="true">
+            <div class="mission-card-silhouette">
+              <img data-bind="targetAvatar" src="./assets/visuals/pencil-export/avatars/avatar-skip-pencil.png" alt="">
+            </div>
+            <em>LOCKED</em>
+          </div>
+          <div class="mission-chips">
+            <button type="button" data-next="entry" data-mission-action="retry">再测解锁</button>
+            <button type="button" data-next="entry" data-mission-action="route">再开一张</button>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="view" id="view-lineup" data-view="lineup">
+      <header class="lineup-title">
+        <p>KTV 人格宇宙 v2.0</p>
+        <h2>我的 KTV<br><span>人格卡</span></h2>
+      </header>
+
+      <div class="lineup-grid" data-lineup-grid></div>
+
+      <button class="mega-cta sticky" type="button" data-next="share">
+        生成分享图
+      </button>
+    </section>
+
+    <section class="view" id="view-share" data-view="share">
+      <div class="share-done">
+        <div class="poster-shell">
+          <img class="share-poster-preview" src="./assets/visuals/share-poster-lineup-portrait.png" alt="KTV 人格分享图预览">
+          <div class="poster-caption">
+            <span data-bind="sharePosterKicker">我的 KTV 人格卡</span>
+            <strong data-bind="posterCaption">STAR（主场星）已入库</strong>
+          </div>
+        </div>
+        <div class="share-card-face">
+          <span data-bind="shareCardFaceLabel">当前分享卡面</span>
+          <b data-bind="shareCardFaceText">装备皮肤：霓虹爆场</b>
+        </div>
+        <div class="share-route-note">
+          <span data-bind="shareRouteLabel">我的人格卡已生成</span>
+          <b data-bind="shareRouteText">保存图片或复制链接，分享你的 KTV 人格结果。</b>
+        </div>
+        <div class="share-quick-actions" aria-label="快速分享入口">
+          <button type="button" data-copy-text>复制我的人格卡链接</button>
+          <span>本版只展示你自己的抽卡结果。</span>
+        </div>
+        <div class="checkmark">✓</div>
+        <h2 data-bind="shareTitle">人格分享图已生成</h2>
+        <p data-bind="shareText">保存或复制你的 KTV 人格卡，发出去就能展示本次抽卡结果。</p>
+        <section class="share-social-proof" aria-label="分享亮点">
+          <span data-bind="shareProofKicker">SHARE HOOK</span>
+          <strong data-bind="friendRoast">这不就是你本人吗？</strong>
+          <p data-bind="friendCue">适合直接发群里，让朋友对号入座。</p>
+        </section>
+        <div class="share-preview">
+          <span>STAR</span>
+          <span>SKIPPER</span>
+          <span>LOVER</span>
+          <span>ECHO</span>
+        </div>
+        <div class="share-actions">
+          <button type="button" data-save-poster>保存图+复制链接</button>
+          <button type="button" data-system-share>系统分享</button>
+          <button type="button" data-copy-text>复制链接</button>
+        </div>
+        <div class="share-next-actions" aria-label="分享后的下一步">
+          <button class="mega-cta" type="button" data-next="library">返回档案库</button>
+          <button class="ghost-cta" type="button" data-next="entry">再测一次</button>
+          <button class="text-cta" type="button" data-copy-text>复制人格卡链接</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" role="status" aria-live="polite"></div>
+  <aside class="ops-panel" aria-hidden="true">
+    <header>
+      <div>
+        <p>OPS DASHBOARD</p>
+        <h2>本地漏斗</h2>
+      </div>
+      <div class="ops-actions">
+        <button type="button" data-export-events>导出</button>
+        <button type="button" data-reset-events>清空</button>
+        <button type="button" data-reset-demo>重置演示</button>
+      </div>
+    </header>
+    <div class="ops-grid">
+      <div><b data-ops="entry_view">0</b><span>入口</span></div>
+      <div><b data-ops="scan_start">0</b><span>扫描</span></div>
+      <div><b data-ops="result_view">0</b><span>结果</span></div>
+      <div><b data-ops="reward_claim">0</b><span>领奖</span></div>
+      <div><b data-ops="library_view">0</b><span>档案</span></div>
+      <div><b data-ops="share_create">0</b><span>分享图</span></div>
+      <div><b data-ops="mission_action">0</b><span>下一步</span></div>
+    </div>
+    <ol class="ops-log"></ol>
+  </aside>
+  <div class="modal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-label="人格卡详情">
+      <button class="modal-close" type="button" data-close-modal>×</button>
+      <p data-modal-kicker>PERSONA CARD</p>
+      <h2 data-modal-title>人格卡详情</h2>
+      <div class="modal-preview" data-modal-preview>
+        <img src="./assets/visuals/cards-v2/skin-card-spark-v2.png" alt="" aria-hidden="true">
+        <img src="./assets/visuals/cards-v2/skin-card-skip-v2.png" alt="" aria-hidden="true">
+        <img src="./assets/visuals/cards-v2/skin-card-romeo-v2.png" alt="" aria-hidden="true">
+      </div>
+      <ul data-modal-list>
+        <li>查看这张人格卡的称号和稀有度</li>
+        <li>未收集的卡片可以再测一次</li>
+        <li>已收集的卡片会保存在档案库</li>
+      </ul>
+      <button class="mega-cta" type="button" data-modal-action>知道了</button>
+    </div>
+  </div>
+
+  <script src="./app.js?v=20260701-demo-clean"></script>
+  <script>
+    if ("serviceWorker" in navigator && location.protocol !== "file:") {
+      const clearRuntimeCaches = async () => {
+        const registrations = await navigator.serviceWorker.getRegistrations();
+        await Promise.all(registrations.map((registration) => registration.unregister()));
+        if ("caches" in window) {
+          const keys = await caches.keys();
+          await Promise.all(keys.map((key) => caches.delete(key)));
+        }
+      };
+      window.addEventListener("load", () => clearRuntimeCaches().catch(() => {}));
+    }
+  </script>
+</body>
+</html>
+
+

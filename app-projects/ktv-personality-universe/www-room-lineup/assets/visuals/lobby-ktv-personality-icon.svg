@@ -1,0 +1,81 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="42%" r="72%">
+      <stop offset="0" stop-color="#5EF7FF"/>
+      <stop offset="0.28" stop-color="#7B35FF"/>
+      <stop offset="0.62" stop-color="#FF2FBC"/>
+      <stop offset="1" stop-color="#0B0825"/>
+    </radialGradient>
+    <linearGradient id="card" x1="52" y1="28" x2="207" y2="224">
+      <stop stop-color="#35F4FF"/>
+      <stop offset="0.45" stop-color="#FF38CF"/>
+      <stop offset="1" stop-color="#FFE95F"/>
+    </linearGradient>
+    <linearGradient id="face" x1="82" y1="74" x2="169" y2="166">
+      <stop stop-color="#FFE083"/>
+      <stop offset="0.48" stop-color="#FF6CBA"/>
+      <stop offset="1" stop-color="#49F1FF"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="7" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.1 0 0 0 0 0.95 0 0 0 0 1 0 0 0 0.78 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="pinkGlow" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 1 0 0 0 0 0.08 0 0 0 0 0.75 0 0 0 0.8 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="round">
+      <rect x="22" y="22" width="212" height="212" rx="48"/>
+    </clipPath>
+  </defs>
+
+  <rect x="14" y="14" width="228" height="228" rx="56" fill="#09071D"/>
+  <rect x="18" y="18" width="220" height="220" rx="52" fill="url(#bg)" opacity="0.98"/>
+  <g clip-path="url(#round)">
+    <path d="M-8 201C36 142 91 118 157 132C200 141 231 127 271 82" stroke="#50F6FF" stroke-width="6" opacity="0.48"/>
+    <path d="M-18 168C39 112 101 98 169 122C207 135 237 121 278 63" stroke="#FF33CD" stroke-width="8" opacity="0.42"/>
+    <path d="M-8 216C41 174 95 160 154 174C204 186 235 163 272 102" stroke="#FFE45F" stroke-width="4" opacity="0.3"/>
+    <circle cx="48" cy="62" r="3" fill="#5DF7FF"/>
+    <circle cx="210" cy="58" r="3" fill="#FF46C9"/>
+    <circle cx="203" cy="196" r="3" fill="#FFE45F"/>
+    <circle cx="60" cy="198" r="2.5" fill="#FF46C9"/>
+    <circle cx="178" cy="42" r="2" fill="#fff"/>
+    <circle cx="82" cy="44" r="2" fill="#fff"/>
+  </g>
+
+  <g filter="url(#glow)">
+    <rect x="58" y="42" width="140" height="176" rx="30" fill="#121126" stroke="url(#card)" stroke-width="6"/>
+    <rect x="72" y="56" width="112" height="148" rx="22" fill="#17152F" stroke="#4DF4FF" stroke-opacity="0.22" stroke-width="2"/>
+  </g>
+
+  <g filter="url(#pinkGlow)">
+    <circle cx="128" cy="108" r="42" fill="url(#face)"/>
+    <path d="M91 98C100 74 117 64 137 72C153 78 163 89 166 108C150 96 137 94 128 104C118 94 105 92 91 98Z" fill="#151224"/>
+    <path d="M90 99C99 87 110 84 124 92" stroke="#48F4FF" stroke-width="5" stroke-linecap="round"/>
+    <path d="M132 91C147 83 159 87 166 101" stroke="#FF43C8" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="111" cy="116" r="7" fill="#0B0922"/>
+    <circle cx="145" cy="116" r="7" fill="#0B0922"/>
+    <path d="M114 141C124 149 136 149 146 141" stroke="#0B0922" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#glow)">
+    <path d="M171 133C188 123 205 130 211 146C217 162 208 177 192 181" stroke="#FFE45F" stroke-width="10" stroke-linecap="round"/>
+    <rect x="177" y="122" width="20" height="54" rx="10" transform="rotate(-28 177 122)" fill="#DDFBFF" stroke="#22203A" stroke-width="4"/>
+    <path d="M190 171L207 206" stroke="#DDFBFF" stroke-width="9" stroke-linecap="round"/>
+  </g>
+
+  <g>
+    <rect x="65" y="166" width="126" height="34" rx="17" fill="#070617" fill-opacity="0.78" stroke="#4DF4FF" stroke-opacity="0.34"/>
+    <text x="128" y="190" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-size="26" font-weight="900" fill="#5DF7FF" letter-spacing="1">KTV</text>
+  </g>
+
+  <rect x="18" y="18" width="220" height="220" rx="52" stroke="#FFFFFF" stroke-opacity="0.1" stroke-width="2"/>
+</svg>

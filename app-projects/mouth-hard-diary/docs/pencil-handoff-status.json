@@ -1,0 +1,61 @@
+{
+  "generatedAt": "2026-07-09T05:44:13.431Z",
+  "manifestStatus": "pencil_exported",
+  "pencilFile": "designs/pencil-source/mouth-hard-diary.pen",
+  "pencilPath": "D:\\AIproject\\production\\ktv-h5-extension\\app-projects\\mouth-hard-diary\\designs\\pencil-source\\mouth-hard-diary.pen",
+  "pencilExists": true,
+  "styleStatus": "approved",
+  "styleApproved": true,
+  "approvedBy": "李广哲",
+  "approvedAt": "2026-06-29T06:10:36.967Z",
+  "exportTargets": [
+    {
+      "name": "hero-report-collage.png",
+      "destination": "h5/assets/visuals/pencil-export/hero-report-collage.png",
+      "sourceBoard": "01 Home Hero Direction",
+      "expectedNodeName": "export/hero-report-collage",
+      "expectedWidth": 941,
+      "expectedHeight": 1672,
+      "runtimeUsage": "required",
+      "manifestStatus": "pencil_exported",
+      "exists": true,
+      "actualWidth": 941,
+      "actualHeight": 1672,
+      "sizeOk": true,
+      "ready": true
+    },
+    {
+      "name": "share-poster-bg.png",
+      "destination": "h5/assets/visuals/pencil-export/share-poster-bg.png",
+      "sourceBoard": "03 Share Poster",
+      "expectedNodeName": "export/share-poster-bg",
+      "expectedWidth": 941,
+      "expectedHeight": 1672,
+      "runtimeUsage": "required",
+      "manifestStatus": "pencil_exported",
+      "exists": true,
+      "actualWidth": 941,
+      "actualHeight": 1672,
+      "sizeOk": true,
+      "ready": true
+    },
+    {
+      "name": "report-stickers.png",
+      "destination": "h5/assets/visuals/pencil-export/report-stickers.png",
+      "sourceBoard": "04 Sticker Kit",
+      "expectedNodeName": "export/report-stickers",
+      "expectedWidth": 1254,
+      "expectedHeight": 1254,
+      "runtimeUsage": "optional_future",
+      "manifestStatus": "pencil_exported",
+      "exists": true,
+      "actualWidth": 1254,
+      "actualHeight": 1254,
+      "sizeOk": true,
+      "ready": true
+    }
+  ],
+  "requiredExportsReady": true,
+  "allExportsReady": true,
+  "nextAction": "Pencil asset chain is ready; continue with runtime cleanup before launch."
+}

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 252">
+  <defs>
+    <filter id="paper" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="3" seed="7"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feComponentTransfer>
+        <feFuncA type="table" tableValues="0 .08"/>
+      </feComponentTransfer>
+      <feBlend in="SourceGraphic" mode="multiply"/>
+    </filter>
+    <linearGradient id="cover" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e5e1d6"/>
+      <stop offset="1" stop-color="#cfc7b6"/>
+    </linearGradient>
+  </defs>
+  <rect width="180" height="252" rx="8" fill="url(#cover)" filter="url(#paper)"/>
+  <rect x="5" y="5" width="170" height="242" rx="7" fill="none" stroke="#bcb39f" opacity=".45"/>
+  <g transform="translate(26 72)" fill="none" stroke="#66765a" stroke-width="2.4" stroke-linecap="round">
+    <path d="M38 118 C40 84 46 56 70 28"/>
+    <path d="M44 84 C28 75 20 59 17 44"/>
+    <path d="M51 66 C35 58 28 41 29 27"/>
+    <path d="M65 49 C82 43 96 32 105 18"/>
+    <path d="M56 102 C37 104 22 115 13 128"/>
+    <path d="M75 79 C92 81 105 91 115 105"/>
+  </g>
+  <g opacity=".92">
+    <circle cx="57" cy="119" r="22" fill="#f6f1e1"/>
+    <circle cx="73" cy="105" r="21" fill="#f8f4e8"/>
+    <circle cx="88" cy="122" r="20" fill="#f2ead8"/>
+    <circle cx="73" cy="125" r="13" fill="#d8b983"/>
+  </g>
+  <g fill="#627452" opacity=".85">
+    <ellipse cx="37" cy="156" rx="14" ry="23" transform="rotate(-42 37 156)"/>
+    <ellipse cx="54" cy="86" rx="12" ry="21" transform="rotate(36 54 86)"/>
+    <ellipse cx="108" cy="78" rx="12" ry="22" transform="rotate(48 108 78)"/>
+    <ellipse cx="29" cy="113" rx="10" ry="18" transform="rotate(-18 29 113)"/>
+  </g>
+  <text x="139" y="54" writing-mode="tb" fill="#3f382d" font-size="24" font-family="serif" letter-spacing="4">山茶文集</text>
+  <text x="145" y="178" writing-mode="tb" fill="#6e6658" font-size="10" font-family="serif" letter-spacing="2">熊茶著</text>
+</svg>
+

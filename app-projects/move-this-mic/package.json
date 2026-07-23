@@ -1,0 +1,16 @@
+{
+  "name": "move-this-mic",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5320 frontend",
+    "build": "node scripts/build-static.js",
+    "verify": "npm run build && npm run verify:local",
+    "verify:local": "node scripts/verify-local.js"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.61.1",
+    "vite": "^7.0.0"
+  }
+}

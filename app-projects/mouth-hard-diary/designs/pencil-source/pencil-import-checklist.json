@@ -1,0 +1,132 @@
+{
+  "project": "mouth-hard-diary",
+  "generatedAt": "2026-07-09T05:44:09.396Z",
+  "pencilFile": "designs/pencil-source/mouth-hard-diary.pen",
+  "sourceRoot": "designs/pencil-source/images/",
+  "policy": "Do not edit .pen by script. Use this checklist to import image2 sources into Pencil and verify labels, boards, and hashes.",
+  "imports": [
+    {
+      "order": 1,
+      "sourceFile": "images/source-home-bg-clean-image2.png",
+      "absolutePath": "D:\\AIproject\\production\\ktv-h5-extension\\app-projects\\mouth-hard-diary\\designs\\pencil-source\\images\\source-home-bg-clean-image2.png",
+      "role": "home_ui_background",
+      "recommendedBoard": "01 Home Hero Direction",
+      "priority": "primary",
+      "width": 853,
+      "height": 1844,
+      "byteSize": 2064448,
+      "sha256": "188914e77352672a1b5782a01c64d92e40222e9d8c7063afcf1e440f2574db8d",
+      "labelText": "home_ui_background / images/source-home-bg-clean-image2.png",
+      "operatorCheck": "import into Pencil, add filename label, verify SHA-256, then place on recommended board",
+      "notes": "Clean portrait background with enough lower negative space for H5 title and CTA."
+    },
+    {
+      "order": 2,
+      "sourceFile": "images/source-hero-neon-sticky-image2.png",
+      "absolutePath": "D:\\AIproject\\production\\ktv-h5-extension\\app-projects\\mouth-hard-diary\\designs\\pencil-source\\images\\source-hero-neon-sticky-image2.png",
+      "role": "hero_visual",
+      "recommendedBoard": "01 Home Hero Direction",
+      "priority": "primary",
+      "width": 941,
+      "height": 1672,
+      "byteSize": 2394817,
+      "sha256": "8d39b2b1b5fc79b4f9ae2e65904c0c1f046704ebe595f8501bbea3c14bc323f2",
+      "labelText": "hero_visual / images/source-hero-neon-sticky-image2.png",
+      "operatorCheck": "import into Pencil, add filename label, verify SHA-256, then place on recommended board",
+      "notes": "Strongest tactile report visual; use as top hero crop or campaign visual."
+    },
+    {
+      "order": 3,
+      "sourceFile": "images/source-result-card-bg-image2.png",
+      "absolutePath": "D:\\AIproject\\production\\ktv-h5-extension\\app-projects\\mouth-hard-diary\\designs\\pencil-source\\images\\source-result-card-bg-image2.png",
+      "role": "result_card_background",
+      "recommendedBoard": "02 Result Report Card",
+      "priority": "primary",
+      "width": 941,
+      "height": 1672,
+      "byteSize": 2333233,
+      "sha256": "fd3b15a750126a75a1d8f5b2dbe8e3fa7c052c6b00e59a47867cb7d9ada99741",
+      "labelText": "result_card_background / images/source-result-card-bg-image2.png",
+      "operatorCheck": "import into Pencil, add filename label, verify SHA-256, then place on recommended board",
+      "notes": "Large blank paper area; best for report text and energy bars."
+    },
+    {
+      "order": 4,
+      "sourceFile": "images/source-share-poster-image2.png",
+      "absolutePath": "D:\\AIproject\\production\\ktv-h5-extension\\app-projects\\mouth-hard-diary\\designs\\pencil-source\\images\\source-share-poster-image2.png",
+      "role": "share_poster_background",
+      "recommendedBoard": "03 Share Poster",
+      "priority": "primary",
+      "width": 941,
+      "height": 1672,
+      "byteSize": 2481358,
+      "sha256": "c359b1c3756f404544099ef1a0b7abfb78f26776fc84cbf7429836651b2c3712",
+      "labelText": "share_poster_background / images/source-share-poster-image2.png",
+      "operatorCheck": "import into Pencil, add filename label, verify SHA-256, then place on recommended board",
+      "notes": "Large central blank card; best for downloadable social poster."
+    },
+    {
+      "order": 5,
+      "sourceFile": "images/source-status-dashboard-image2.png",
+      "absolutePath": "D:\\AIproject\\production\\ktv-h5-extension\\app-projects\\mouth-hard-diary\\designs\\pencil-source\\images\\source-status-dashboard-image2.png",
+      "role": "brand_secondary_visual",
+      "recommendedBoard": "00 Image2 Source Board",
+      "priority": "secondary",
+      "width": 941,
+      "height": 1672,
+      "byteSize": 1661808,
+      "sha256": "9808da6269cd785c08d4c56225c91a0f3455b231aa045f25a7d7b8311587823f",
+      "labelText": "brand_secondary_visual / images/source-status-dashboard-image2.png",
+      "operatorCheck": "import into Pencil, add filename label, verify SHA-256, then place on recommended board",
+      "notes": "High-quality but less sharp emotionally; reserve for app intro or empty state."
+    },
+    {
+      "order": 6,
+      "sourceFile": "images/source-sticker-sheet-image2.png",
+      "absolutePath": "D:\\AIproject\\production\\ktv-h5-extension\\app-projects\\mouth-hard-diary\\designs\\pencil-source\\images\\source-sticker-sheet-image2.png",
+      "role": "sticker_kit",
+      "recommendedBoard": "04 Sticker Kit",
+      "priority": "primary",
+      "width": 1254,
+      "height": 1254,
+      "byteSize": 2436433,
+      "sha256": "6c4649d4e73a36ce60c2860e274d7bb1a57f28ba700f43ca6e6e0bf9bf4f1d76",
+      "labelText": "sticker_kit / images/source-sticker-sheet-image2.png",
+      "operatorCheck": "import into Pencil, add filename label, verify SHA-256, then place on recommended board",
+      "notes": "Sticker sheet source; import to Pencil and split/crop if individual stickers are needed."
+    }
+  ],
+  "boards": [
+    {
+      "board": "01 Home Hero Direction",
+      "imports": [
+        "images/source-home-bg-clean-image2.png",
+        "images/source-hero-neon-sticky-image2.png"
+      ]
+    },
+    {
+      "board": "02 Result Report Card",
+      "imports": [
+        "images/source-result-card-bg-image2.png"
+      ]
+    },
+    {
+      "board": "03 Share Poster",
+      "imports": [
+        "images/source-share-poster-image2.png"
+      ]
+    },
+    {
+      "board": "00 Image2 Source Board",
+      "imports": [
+        "images/source-status-dashboard-image2.png"
+      ]
+    },
+    {
+      "board": "04 Sticker Kit",
+      "imports": [
+        "images/source-sticker-sheet-image2.png"
+      ]
+    }
+  ]
+}

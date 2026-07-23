@@ -1,0 +1,7 @@
+.git
+node_modules
+server/data/runtime-backups
+h5/screenshots
+designs/screenshots
+docs/sampling-cards/screenshots
+*.log

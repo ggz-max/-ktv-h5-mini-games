@@ -1,0 +1,3567 @@
+{
+  "version": "2.14",
+  "children": [
+    {
+      "type": "frame",
+      "id": "Y3fypr",
+      "x": -2101,
+      "y": 0,
+      "name": "Welcome to Pencil",
+      "clip": true,
+      "width": 1000,
+      "height": 1458,
+      "layout": "none",
+      "children": [
+        {
+          "type": "text",
+          "id": "p5iwM",
+          "x": 38,
+          "y": 297,
+          "name": "Start here",
+          "fill": "#ff8303ff",
+          "textGrowth": "fixed-width-height",
+          "width": 923,
+          "height": 139,
+          "content": "Ask agent to design",
+          "lineHeight": 1.399999976158142,
+          "textAlign": "center",
+          "fontFamily": "Noto Sans",
+          "fontSize": 100,
+          "fontWeight": "500",
+          "letterSpacing": -4
+        }
+      ]
+    },
+    {
+      "type": "path",
+      "id": "pSGLk",
+      "x": 317,
+      "y": 689,
+      "geometry": "M7 0l0 14m7-7l-7 7-7-7",
+      "width": 366,
+      "height": 366,
+      "stroke": "#ff8302ff",
+      "strokeWidth": 50,
+      "strokeLinejoin": "round",
+      "strokeLinecap": "round"
+    },
+    {
+      "type": "frame",
+      "id": "f8CyW",
+      "x": 803,
+      "y": 0,
+      "name": "01 Entry",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$reflex-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "t3bWJu",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "#00000000",
+          "padding": [
+            0,
+            18
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "B4xGs",
+              "name": "Time",
+              "fill": "$reflex-text",
+              "content": "23:18",
+              "fontFamily": "$font-body",
+              "fontSize": 14,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "a3qH0L",
+              "name": "Signals",
+              "fill": "$reflex-text",
+              "content": "5G  ▰",
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "xHuzd",
+          "name": "Content",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 22,
+          "padding": [
+            12,
+            18,
+            26,
+            18
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "pQPyF",
+              "name": "Hero Control Deck",
+              "clip": true,
+              "width": 354,
+              "height": 420,
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": 180,
+                "size": {
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "#080A12",
+                    "position": 0
+                  },
+                  {
+                    "color": "#141927",
+                    "position": 0.52
+                  },
+                  {
+                    "color": "#05060B",
+                    "position": 1
+                  }
+                ]
+              },
+              "cornerRadius": 28,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#000000B8",
+                "offset": {
+                  "x": 0,
+                  "y": 18
+                },
+                "blur": 34
+              },
+              "layout": "none",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "Oyvy0",
+                  "x": -54,
+                  "y": -46,
+                  "name": "Hero Cyan Glow",
+                  "fill": "#29D9FF44",
+                  "width": 190,
+                  "height": 170,
+                  "effect": {
+                    "type": "blur",
+                    "radius": 34
+                  }
+                },
+                {
+                  "type": "ellipse",
+                  "id": "XDW93",
+                  "x": 220,
+                  "y": 42,
+                  "name": "Hero Pink Glow",
+                  "fill": "#FF4F8B42",
+                  "width": 180,
+                  "height": 150,
+                  "effect": {
+                    "type": "blur",
+                    "radius": 38
+                  }
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 3,
+                  "id": "kU0s9",
+                  "x": 28,
+                  "y": 56,
+                  "name": "Hero Light Streak A",
+                  "rotation": -8,
+                  "fill": "#29D9FFAA",
+                  "width": 300,
+                  "height": 5,
+                  "effect": {
+                    "type": "blur",
+                    "radius": 14
+                  }
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 3,
+                  "id": "ClDmc",
+                  "x": 28,
+                  "y": 132,
+                  "name": "Hero Light Streak B",
+                  "rotation": 9,
+                  "fill": "#FF4F8BAA",
+                  "width": 270,
+                  "height": 5,
+                  "effect": {
+                    "type": "blur",
+                    "radius": 14
+                  }
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 3,
+                  "id": "rYHS7",
+                  "x": 28,
+                  "y": 206,
+                  "name": "Hero Light Streak C",
+                  "rotation": -5,
+                  "fill": "#FFD34DAA",
+                  "width": 230,
+                  "height": 5,
+                  "effect": {
+                    "type": "blur",
+                    "radius": 14
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "GdUFr",
+                  "x": 22,
+                  "y": 20,
+                  "name": "Hero Room Tag",
+                  "fill": "#29D9FF",
+                  "textGrowth": "fixed-width",
+                  "width": 170,
+                  "content": "A08 REMOTE LIVE",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 12,
+                  "fontWeight": "700"
+                },
+                {
+                  "type": "text",
+                  "id": "ETV0K",
+                  "x": 22,
+                  "y": 52,
+                  "name": "Hero Big Title",
+                  "fill": "#F8FAFF",
+                  "textGrowth": "fixed-width",
+                  "width": 244,
+                  "content": "SKIP\nREFLEX",
+                  "lineHeight": 0.9,
+                  "fontFamily": "$font-display",
+                  "fontSize": 56,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "text",
+                  "id": "ooSVi",
+                  "x": 24,
+                  "y": 166,
+                  "name": "Hero Chinese Title",
+                  "fill": "#FFD34D",
+                  "textGrowth": "fixed-width",
+                  "width": 240,
+                  "content": "副歌快到了，别手滑",
+                  "fontFamily": "$font-body",
+                  "fontSize": 16,
+                  "fontWeight": "900"
+                },
+                {
+                  "type": "frame",
+                  "id": "l0gNt",
+                  "x": 252,
+                  "y": 22,
+                  "name": "Hero Timer Pill",
+                  "width": 78,
+                  "height": 38,
+                  "fill": "#FFD34D",
+                  "cornerRadius": 19,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#FFD34D55",
+                    "offset": {
+                      "x": 0,
+                      "y": 8
+                    },
+                    "blur": 18
+                  },
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "MHQsd",
+                      "name": "Hero Timer Text",
+                      "fill": "#080A12",
+                      "content": "30S",
+                      "fontFamily": "$font-mono",
+                      "fontSize": 16,
+                      "fontWeight": "900"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "v4GKwq",
+                  "x": 24,
+                  "y": 218,
+                  "name": "Hero Deck Body",
+                  "width": 306,
+                  "height": 128,
+                  "fill": "#0D121FDD",
+                  "cornerRadius": 22,
+                  "stroke": "#FFFFFF22",
+                  "strokeWidth": 1,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000088",
+                    "offset": {
+                      "x": 0,
+                      "y": 10
+                    },
+                    "blur": 22
+                  },
+                  "layout": "vertical",
+                  "gap": 12,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "v4n0m",
+                      "name": "Hero Deck Label",
+                      "fill": "#97A3B8",
+                      "content": "CHORUS CONTROL",
+                      "fontFamily": "$font-mono",
+                      "fontSize": 11,
+                      "fontWeight": "700"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "MJP0e",
+                      "name": "Hero Equalizer",
+                      "width": "fill_container",
+                      "height": 42,
+                      "gap": 8,
+                      "alignItems": "end",
+                      "children": [
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 5,
+                          "id": "IgjsT",
+                          "name": "EQ A",
+                          "fill": "#29D9FF",
+                          "width": "fill_container",
+                          "height": 20
+                        },
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 5,
+                          "id": "u8PfI",
+                          "name": "EQ B",
+                          "fill": "#FFD34D",
+                          "width": "fill_container",
+                          "height": 34
+                        },
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 5,
+                          "id": "gngkm",
+                          "name": "EQ C",
+                          "fill": "#FF4F8B",
+                          "width": "fill_container",
+                          "height": 26
+                        },
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 5,
+                          "id": "t89beX",
+                          "name": "EQ D",
+                          "fill": "#44E096",
+                          "width": "fill_container",
+                          "height": 42
+                        },
+                        {
+                          "type": "rectangle",
+                          "cornerRadius": 5,
+                          "id": "SJRwS",
+                          "name": "EQ E",
+                          "fill": "#9A6BFF",
+                          "width": "fill_container",
+                          "height": 18
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "IK07C",
+                      "name": "Hero Deck Hint",
+                      "fill": "#F8FAFF",
+                      "content": "卡片进黄框，看提示按键",
+                      "fontFamily": "$font-body",
+                      "fontSize": 13,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "seNL0",
+                  "x": 48,
+                  "y": 366,
+                  "name": "Hero Cut Knob",
+                  "width": 54,
+                  "height": 34,
+                  "fill": "#FF4F8B",
+                  "cornerRadius": 17,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000066",
+                    "offset": {
+                      "x": 0,
+                      "y": 8
+                    },
+                    "blur": 16
+                  },
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sfgCb",
+                      "name": "Hero Cut Knob Text",
+                      "fill": "#F8FAFF",
+                      "content": "切",
+                      "fontFamily": "$font-body",
+                      "fontSize": 16,
+                      "fontWeight": "900"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "o3fE7",
+                  "x": 132,
+                  "y": 366,
+                  "name": "Hero Grab Knob",
+                  "width": 54,
+                  "height": 34,
+                  "fill": "#FFD34D",
+                  "cornerRadius": 17,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000066",
+                    "offset": {
+                      "x": 0,
+                      "y": 8
+                    },
+                    "blur": 16
+                  },
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "n5gVn0",
+                      "name": "Hero Grab Knob Text",
+                      "fill": "#080A12",
+                      "content": "抢",
+                      "fontFamily": "$font-body",
+                      "fontSize": 16,
+                      "fontWeight": "900"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "LatkX",
+                  "x": 216,
+                  "y": 366,
+                  "name": "Hero Rescue Knob",
+                  "width": 54,
+                  "height": 34,
+                  "fill": "#29D9FF",
+                  "cornerRadius": 17,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000066",
+                    "offset": {
+                      "x": 0,
+                      "y": 8
+                    },
+                    "blur": 16
+                  },
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "L4P0e",
+                      "name": "Hero Rescue Knob Text",
+                      "fill": "#080A12",
+                      "content": "救",
+                      "fontFamily": "$font-body",
+                      "fontSize": 16,
+                      "fontWeight": "900"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Udfmy",
+              "name": "Primary CTA",
+              "width": "fill_container",
+              "height": 46,
+              "fill": "$reflex-gold",
+              "cornerRadius": 23,
+              "padding": [
+                0,
+                14
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "Wb2Lk",
+                  "name": "Label",
+                  "fill": "#101318",
+                  "content": "开始 30 秒挑战",
+                  "lineHeight": 1.15,
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "800"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "ikFMO",
+              "name": "Proof Row",
+              "width": "fill_container",
+              "gap": 8,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "UBUeb",
+                  "name": "Chip 短局",
+                  "height": 30,
+                  "fill": "#252D39",
+                  "cornerRadius": 15,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "UFxYu",
+                      "name": "Chip Text",
+                      "fill": "$reflex-text",
+                      "content": "短局",
+                      "lineHeight": 1.15,
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "c259e",
+                  "name": "Chip 不服再来",
+                  "height": 30,
+                  "fill": "#252D39",
+                  "cornerRadius": 15,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "Oda85",
+                      "name": "Chip Text",
+                      "fill": "$reflex-text",
+                      "content": "不服再来",
+                      "lineHeight": 1.15,
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Ee9fc",
+                  "name": "Chip 发群挑战",
+                  "height": 30,
+                  "fill": "#252D39",
+                  "cornerRadius": 15,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "XlAQ3",
+                      "name": "Chip Text",
+                      "fill": "$reflex-text",
+                      "content": "发群挑战",
+                      "lineHeight": 1.15,
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "Ev8QM",
+      "x": 1233,
+      "y": 0,
+      "name": "02 Tutorial",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$reflex-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "K2nXJj",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "#00000000",
+          "padding": [
+            0,
+            18
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "O06Cc",
+              "name": "Time",
+              "fill": "$reflex-text",
+              "content": "23:18",
+              "fontFamily": "$font-body",
+              "fontSize": 14,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "r7LnH",
+              "name": "Signals",
+              "fill": "$reflex-text",
+              "content": "5G  ▰",
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "bdzYJ",
+          "name": "Content",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 22,
+          "padding": [
+            12,
+            18,
+            26,
+            18
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "v34QHO",
+              "name": "Tutorial Card",
+              "width": "fill_container",
+              "fill": "$reflex-panel",
+              "cornerRadius": 28,
+              "layout": "vertical",
+              "gap": 18,
+              "padding": 24,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "z9M5bm",
+                  "name": "Title",
+                  "fill": "$reflex-text",
+                  "textGrowth": "fixed-width",
+                  "width": 300,
+                  "content": "三件事，别想太多",
+                  "lineHeight": 1.15,
+                  "fontFamily": "$font-body",
+                  "fontSize": 28,
+                  "fontWeight": "900"
+                },
+                {
+                  "type": "frame",
+                  "id": "UF9ZU",
+                  "name": "Rule 亮了再点",
+                  "width": "fill_container",
+                  "gap": 14,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "Tt6S2",
+                      "name": "Rule Dot",
+                      "fill": "$reflex-gold",
+                      "width": 34,
+                      "height": 34
+                    },
+                    {
+                      "type": "frame",
+                      "id": "NqgyX",
+                      "name": "Rule Text",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 3,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "mYgK7",
+                          "name": "Rule Title",
+                          "fill": "$reflex-text",
+                          "textGrowth": "fixed-width",
+                          "width": 240,
+                          "content": "亮了再点",
+                          "lineHeight": 1.15,
+                          "fontFamily": "$font-body",
+                          "fontSize": 17,
+                          "fontWeight": "800"
+                        },
+                        {
+                          "type": "text",
+                          "id": "yANpb",
+                          "name": "Rule Desc",
+                          "fill": "$reflex-muted",
+                          "textGrowth": "fixed-width",
+                          "width": 240,
+                          "content": "副歌卡进金色区再出手",
+                          "lineHeight": 1.15,
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "S61Qd",
+                  "name": "Rule 红色别切",
+                  "width": "fill_container",
+                  "gap": 14,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "w525RO",
+                      "name": "Rule Dot",
+                      "fill": "$reflex-gold",
+                      "width": 34,
+                      "height": 34
+                    },
+                    {
+                      "type": "frame",
+                      "id": "A9qOg",
+                      "name": "Rule Text",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 3,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Hww6S",
+                          "name": "Rule Title",
+                          "fill": "$reflex-text",
+                          "textGrowth": "fixed-width",
+                          "width": 240,
+                          "content": "红色别切",
+                          "lineHeight": 1.15,
+                          "fontFamily": "$font-body",
+                          "fontSize": 17,
+                          "fontWeight": "800"
+                        },
+                        {
+                          "type": "text",
+                          "id": "WnTW9",
+                          "name": "Rule Desc",
+                          "fill": "$reflex-muted",
+                          "textGrowth": "fixed-width",
+                          "width": 240,
+                          "content": "全员会唱的歌切掉会扣分",
+                          "lineHeight": 1.15,
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "F6Lg9",
+                  "name": "Rule 冷场快救",
+                  "width": "fill_container",
+                  "gap": 14,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "daNHy",
+                      "name": "Rule Dot",
+                      "fill": "$reflex-gold",
+                      "width": 34,
+                      "height": 34
+                    },
+                    {
+                      "type": "frame",
+                      "id": "Mm7fD",
+                      "name": "Rule Text",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 3,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "W1LUc",
+                          "name": "Rule Title",
+                          "fill": "$reflex-text",
+                          "textGrowth": "fixed-width",
+                          "width": 240,
+                          "content": "冷场快救",
+                          "lineHeight": 1.15,
+                          "fontFamily": "$font-body",
+                          "fontSize": 17,
+                          "fontWeight": "800"
+                        },
+                        {
+                          "type": "text",
+                          "id": "DuBkY",
+                          "name": "Rule Desc",
+                          "fill": "$reflex-muted",
+                          "textGrowth": "fixed-width",
+                          "width": 240,
+                          "content": "蓝色事件要立刻按救场",
+                          "lineHeight": 1.15,
+                          "fontFamily": "$font-body",
+                          "fontSize": 13,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "vQwDc",
+              "name": "Start CTA",
+              "width": "fill_container",
+              "height": 46,
+              "fill": "$reflex-gold",
+              "cornerRadius": 23,
+              "padding": [
+                0,
+                14
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "rGTJ4",
+                  "name": "Label",
+                  "fill": "#101318",
+                  "content": "懂了，交给我",
+                  "lineHeight": 1.15,
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "800"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "ZdOca",
+      "x": 1663,
+      "y": 0,
+      "name": "03 Game",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$reflex-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "qT8XS",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "#00000000",
+          "padding": [
+            0,
+            18
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "zuyHX",
+              "name": "Time",
+              "fill": "$reflex-text",
+              "content": "23:18",
+              "fontFamily": "$font-body",
+              "fontSize": 14,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "kw0tC",
+              "name": "Signals",
+              "fill": "$reflex-text",
+              "content": "5G  ▰",
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "H0g47B",
+          "name": "Content",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 22,
+          "padding": [
+            12,
+            18,
+            26,
+            18
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "Lxu0L",
+              "name": "Game HUD",
+              "width": "fill_container",
+              "gap": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "IJnW9",
+                  "name": "Chip 连击 08",
+                  "height": 30,
+                  "fill": "#263344",
+                  "cornerRadius": 15,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "niqRZ",
+                      "name": "Chip Text",
+                      "fill": "$reflex-text",
+                      "content": "连击 08",
+                      "lineHeight": 1.15,
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "mVWmd",
+                  "name": "Chip 准确 91%",
+                  "height": 30,
+                  "fill": "#263344",
+                  "cornerRadius": 15,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "TMbJO",
+                      "name": "Chip Text",
+                      "fill": "$reflex-text",
+                      "content": "准确 91%",
+                      "lineHeight": 1.15,
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "onRba",
+                  "name": "Chip 手滑 02",
+                  "height": 30,
+                  "fill": "#432933",
+                  "cornerRadius": 15,
+                  "padding": [
+                    0,
+                    12
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "T0k9Dd",
+                      "name": "Chip Text",
+                      "fill": "$reflex-text",
+                      "content": "手滑 02",
+                      "lineHeight": 1.15,
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "700"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "EtBJI",
+              "name": "Game Console",
+              "clip": true,
+              "width": 354,
+              "height": 430,
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": 180,
+                "size": {
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "#101522",
+                    "position": 0
+                  },
+                  {
+                    "color": "#1C2436",
+                    "position": 0.58
+                  },
+                  {
+                    "color": "#090B12",
+                    "position": 1
+                  }
+                ]
+              },
+              "cornerRadius": 28,
+              "stroke": "#FFFFFF1F",
+              "strokeWidth": 1,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#000000B8",
+                "offset": {
+                  "x": 0,
+                  "y": 18
+                },
+                "blur": 34
+              },
+              "layout": "none",
+              "children": [
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 15,
+                  "id": "XyWbW",
+                  "x": 28,
+                  "y": 136,
+                  "name": "Track Base",
+                  "fill": "#111827",
+                  "width": 298,
+                  "height": 30,
+                  "stroke": "#FFFFFF1A",
+                  "strokeWidth": 1
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 22,
+                  "id": "XVtuA",
+                  "x": 151,
+                  "y": 119,
+                  "name": "Perfect Zone",
+                  "fill": "#FFD34DAA",
+                  "width": 56,
+                  "height": 64,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#FFD34DAA",
+                    "blur": 24
+                  }
+                },
+                {
+                  "type": "ellipse",
+                  "id": "FzEAq",
+                  "x": 180,
+                  "y": 0,
+                  "name": "Console Top Pink Glow",
+                  "fill": "#FF4F8B44",
+                  "width": 150,
+                  "height": 100,
+                  "effect": {
+                    "type": "blur",
+                    "radius": 32
+                  }
+                },
+                {
+                  "type": "ellipse",
+                  "id": "FeH5j",
+                  "x": 0,
+                  "y": 92,
+                  "name": "Console Blue Glow",
+                  "fill": "#29D9FF38",
+                  "width": 120,
+                  "height": 100,
+                  "effect": {
+                    "type": "blur",
+                    "radius": 30
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "CVKlw",
+                  "x": 28,
+                  "y": 28,
+                  "name": "Console Cue Label",
+                  "fill": "#FFD34D",
+                  "textGrowth": "fixed-width",
+                  "width": 200,
+                  "content": "CHORUS\nINCOMING",
+                  "lineHeight": 0.95,
+                  "fontFamily": "$font-display",
+                  "fontSize": 28,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "A8C6df",
+                  "x": 245,
+                  "y": 30,
+                  "name": "Console Live Badge",
+                  "width": 78,
+                  "height": 30,
+                  "fill": "#FF4F8B",
+                  "cornerRadius": 15,
+                  "gap": 7,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "e2XQxa",
+                      "name": "Live Dot",
+                      "fill": "#F8FAFF",
+                      "width": 7,
+                      "height": 7
+                    },
+                    {
+                      "type": "text",
+                      "id": "L17pU",
+                      "name": "Live Text",
+                      "fill": "#F8FAFF",
+                      "content": "LIVE",
+                      "fontFamily": "$font-mono",
+                      "fontSize": 11,
+                      "fontWeight": "900"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 24,
+                  "id": "M53vA",
+                  "x": 22,
+                  "y": 104,
+                  "name": "Console Track Well",
+                  "fill": "#060911",
+                  "width": 310,
+                  "height": 96,
+                  "stroke": "#29D9FF55",
+                  "strokeWidth": 1,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#000000CC",
+                    "blur": 18
+                  }
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 1,
+                  "id": "i3cvC",
+                  "x": 52,
+                  "y": 128,
+                  "name": "Track Tick",
+                  "fill": "#FFFFFF28",
+                  "width": 2,
+                  "height": 46
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 1,
+                  "id": "u6pqFe",
+                  "x": 88,
+                  "y": 128,
+                  "name": "Track Tick",
+                  "fill": "#FFFFFF28",
+                  "width": 2,
+                  "height": 46
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 1,
+                  "id": "sjk0W",
+                  "x": 124,
+                  "y": 128,
+                  "name": "Track Tick",
+                  "fill": "#FFFFFF28",
+                  "width": 2,
+                  "height": 46
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 1,
+                  "id": "z389CS",
+                  "x": 214,
+                  "y": 128,
+                  "name": "Track Tick",
+                  "fill": "#FFFFFF28",
+                  "width": 2,
+                  "height": 46
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 1,
+                  "id": "h65tcZ",
+                  "x": 250,
+                  "y": 128,
+                  "name": "Track Tick",
+                  "fill": "#FFFFFF28",
+                  "width": 2,
+                  "height": 46
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 1,
+                  "id": "Iw526",
+                  "x": 286,
+                  "y": 128,
+                  "name": "Track Tick",
+                  "fill": "#FFFFFF28",
+                  "width": 2,
+                  "height": 46
+                },
+                {
+                  "type": "frame",
+                  "id": "b3WOwd",
+                  "x": 42,
+                  "y": 222,
+                  "name": "Preview Gold",
+                  "width": 58,
+                  "height": 74,
+                  "fill": "#FFD34D",
+                  "cornerRadius": 18,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000070",
+                    "offset": {
+                      "x": 0,
+                      "y": 12
+                    },
+                    "blur": 18
+                  },
+                  "layout": "vertical",
+                  "gap": 3,
+                  "padding": 6,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "SfTuL",
+                      "name": "Preview Gold Label",
+                      "fill": "#080A12",
+                      "content": "副歌",
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "YaS1I",
+                      "name": "Preview Gold Sub",
+                      "fill": "#080A12",
+                      "content": "按抢",
+                      "fontFamily": "$font-mono",
+                      "fontSize": 10,
+                      "fontWeight": "900"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "q5sizg",
+                  "x": 112,
+                  "y": 238,
+                  "name": "Preview Blue",
+                  "width": 58,
+                  "height": 74,
+                  "fill": "#29D9FF",
+                  "cornerRadius": 18,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000070",
+                    "offset": {
+                      "x": 0,
+                      "y": 12
+                    },
+                    "blur": 18
+                  },
+                  "layout": "vertical",
+                  "gap": 3,
+                  "padding": 6,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "YVfxW",
+                      "name": "Preview Blue Label",
+                      "fill": "#080A12",
+                      "content": "前奏",
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "hliAx",
+                      "name": "Preview Blue Sub",
+                      "fill": "#080A12",
+                      "content": "按切",
+                      "fontFamily": "$font-mono",
+                      "fontSize": 10,
+                      "fontWeight": "900"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "AWUtk",
+                  "x": 182,
+                  "y": 222,
+                  "name": "Preview Pink",
+                  "width": 58,
+                  "height": 74,
+                  "fill": "#FF4F8B",
+                  "cornerRadius": 18,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000070",
+                    "offset": {
+                      "x": 0,
+                      "y": 12
+                    },
+                    "blur": 18
+                  },
+                  "layout": "vertical",
+                  "gap": 3,
+                  "padding": 6,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "BDzda",
+                      "name": "Preview Pink Label",
+                      "fill": "#F8FAFF",
+                      "content": "社死",
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "VIu8x",
+                      "name": "Preview Pink Sub",
+                      "fill": "#F8FAFF",
+                      "content": "按切",
+                      "fontFamily": "$font-mono",
+                      "fontSize": 10,
+                      "fontWeight": "900"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "B3ltXt",
+                  "x": 252,
+                  "y": 238,
+                  "name": "Preview Green",
+                  "width": 58,
+                  "height": 74,
+                  "fill": "#44E096",
+                  "cornerRadius": 18,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000070",
+                    "offset": {
+                      "x": 0,
+                      "y": 12
+                    },
+                    "blur": 18
+                  },
+                  "layout": "vertical",
+                  "gap": 3,
+                  "padding": 6,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "cvqjT",
+                      "name": "Preview Green Label",
+                      "fill": "#080A12",
+                      "content": "救场",
+                      "fontFamily": "$font-body",
+                      "fontSize": 12,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "vbjUP",
+                      "name": "Preview Green Sub",
+                      "fill": "#080A12",
+                      "content": "按救",
+                      "fontFamily": "$font-mono",
+                      "fontSize": 10,
+                      "fontWeight": "900"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "qYJ5N",
+                  "x": 28,
+                  "y": 328,
+                  "name": "Console Meter Label",
+                  "width": 298,
+                  "height": 18,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "zLqg7",
+                      "name": "Meter Cold",
+                      "fill": "#97A3B8",
+                      "content": "COLD ROOM",
+                      "fontFamily": "$font-mono",
+                      "fontSize": 10,
+                      "fontWeight": "800"
+                    },
+                    {
+                      "type": "text",
+                      "id": "N9Jvg",
+                      "name": "Meter Safe",
+                      "fill": "#44E096",
+                      "content": "SAFE",
+                      "fontFamily": "$font-mono",
+                      "fontSize": 10,
+                      "fontWeight": "800"
+                    }
+                  ]
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 9,
+                  "id": "K17u6",
+                  "x": 28,
+                  "y": 354,
+                  "name": "Cold Meter Shell",
+                  "fill": "#060911",
+                  "width": 298,
+                  "height": 18
+                },
+                {
+                  "type": "rectangle",
+                  "cornerRadius": 9,
+                  "id": "sXJ1V",
+                  "x": 28,
+                  "y": 354,
+                  "name": "Cold Meter Fill",
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 90,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#29D9FF",
+                        "position": 0
+                      },
+                      {
+                        "color": "#FF4F8B",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "width": 116,
+                  "height": 18
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "Yf4Z6",
+              "name": "Action Buttons",
+              "width": "fill_container",
+              "gap": 10,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "TWG9B",
+                  "name": "Cut Button",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 46,
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 180,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#FF4F8B",
+                        "position": 0
+                      },
+                      {
+                        "color": "#111827",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 23,
+                  "stroke": "#FFFFFF33",
+                  "strokeWidth": 1,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000099",
+                    "offset": {
+                      "x": 0,
+                      "y": 10
+                    },
+                    "blur": 18
+                  },
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "mgDWt",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Cut Button Glow",
+                      "fill": "#FF4F8B66",
+                      "width": 54,
+                      "height": 46,
+                      "effect": {
+                        "type": "blur",
+                        "radius": 18
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "uQbAR",
+                      "x": 14,
+                      "y": 12,
+                      "name": "Cut Button Icon",
+                      "fill": "#F8FAFF",
+                      "textGrowth": "fixed-width",
+                      "width": 20,
+                      "content": "×",
+                      "textAlign": "center",
+                      "fontFamily": "$font-body",
+                      "fontSize": 18,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "NGJy4",
+                      "x": 46,
+                      "y": 10,
+                      "name": "Cut Button Label",
+                      "fill": "#F8FAFF",
+                      "textGrowth": "fixed-width",
+                      "width": 42,
+                      "content": "切",
+                      "fontFamily": "$font-body",
+                      "fontSize": 17,
+                      "fontWeight": "900"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "qZ7D8",
+                  "name": "Grab Button",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 46,
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 180,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#FFD34D",
+                        "position": 0
+                      },
+                      {
+                        "color": "#111827",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 23,
+                  "stroke": "#FFFFFF33",
+                  "strokeWidth": 1,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000099",
+                    "offset": {
+                      "x": 0,
+                      "y": 10
+                    },
+                    "blur": 18
+                  },
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "L1cbu",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Grab Button Glow",
+                      "fill": "#FFD34D66",
+                      "width": 54,
+                      "height": 46,
+                      "effect": {
+                        "type": "blur",
+                        "radius": 18
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "DQvAC",
+                      "x": 14,
+                      "y": 12,
+                      "name": "Grab Button Icon",
+                      "fill": "#080A12",
+                      "textGrowth": "fixed-width",
+                      "width": 20,
+                      "content": "▶",
+                      "textAlign": "center",
+                      "fontFamily": "$font-body",
+                      "fontSize": 18,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "OCaoE",
+                      "x": 46,
+                      "y": 10,
+                      "name": "Grab Button Label",
+                      "fill": "#080A12",
+                      "textGrowth": "fixed-width",
+                      "width": 42,
+                      "content": "抢",
+                      "fontFamily": "$font-body",
+                      "fontSize": 17,
+                      "fontWeight": "900"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "j6wyE",
+                  "name": "Rescue Button",
+                  "clip": true,
+                  "width": "fill_container",
+                  "height": 46,
+                  "fill": {
+                    "type": "gradient",
+                    "gradientType": "linear",
+                    "enabled": true,
+                    "rotation": 180,
+                    "size": {
+                      "height": 1
+                    },
+                    "colors": [
+                      {
+                        "color": "#29D9FF",
+                        "position": 0
+                      },
+                      {
+                        "color": "#111827",
+                        "position": 1
+                      }
+                    ]
+                  },
+                  "cornerRadius": 23,
+                  "stroke": "#FFFFFF33",
+                  "strokeWidth": 1,
+                  "effect": {
+                    "type": "shadow",
+                    "shadowType": "outer",
+                    "color": "#00000099",
+                    "offset": {
+                      "x": 0,
+                      "y": 10
+                    },
+                    "blur": 18
+                  },
+                  "layout": "none",
+                  "children": [
+                    {
+                      "type": "ellipse",
+                      "id": "D1vlk",
+                      "x": 0,
+                      "y": 0,
+                      "name": "Rescue Button Glow",
+                      "fill": "#29D9FF66",
+                      "width": 54,
+                      "height": 46,
+                      "effect": {
+                        "type": "blur",
+                        "radius": 18
+                      }
+                    },
+                    {
+                      "type": "text",
+                      "id": "N1mpTd",
+                      "x": 14,
+                      "y": 12,
+                      "name": "Rescue Button Icon",
+                      "fill": "#080A12",
+                      "textGrowth": "fixed-width",
+                      "width": 20,
+                      "content": "+",
+                      "textAlign": "center",
+                      "fontFamily": "$font-body",
+                      "fontSize": 18,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "Y32g9v",
+                      "x": 46,
+                      "y": 10,
+                      "name": "Rescue Button Label",
+                      "fill": "#080A12",
+                      "textGrowth": "fixed-width",
+                      "width": 42,
+                      "content": "救",
+                      "fontFamily": "$font-body",
+                      "fontSize": 17,
+                      "fontWeight": "900"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "H2sxRM",
+      "x": 2093,
+      "y": 0,
+      "name": "04 Result",
+      "clip": true,
+      "width": 390,
+      "height": 844,
+      "fill": "$reflex-bg",
+      "layout": "vertical",
+      "children": [
+        {
+          "type": "frame",
+          "id": "qMx3r",
+          "name": "Status Bar",
+          "width": "fill_container",
+          "height": 62,
+          "fill": "#00000000",
+          "padding": [
+            0,
+            18
+          ],
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "UWNUi",
+              "name": "Time",
+              "fill": "$reflex-text",
+              "content": "23:18",
+              "fontFamily": "$font-body",
+              "fontSize": 14,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "ANnvQ",
+              "name": "Signals",
+              "fill": "$reflex-text",
+              "content": "5G  ▰",
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "QTItO",
+          "name": "Content",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 22,
+          "padding": [
+            12,
+            18,
+            26,
+            18
+          ],
+          "children": [
+            {
+              "type": "frame",
+              "id": "R3VGhW",
+              "name": "Result Panel",
+              "clip": true,
+              "width": 354,
+              "height": 283,
+              "fill": {
+                "type": "gradient",
+                "gradientType": "linear",
+                "enabled": true,
+                "rotation": 180,
+                "size": {
+                  "height": 1
+                },
+                "colors": [
+                  {
+                    "color": "#121827",
+                    "position": 0
+                  },
+                  {
+                    "color": "#1F293D",
+                    "position": 0.55
+                  },
+                  {
+                    "color": "#0A0D14",
+                    "position": 1
+                  }
+                ]
+              },
+              "cornerRadius": 28,
+              "stroke": "#FFFFFF22",
+              "strokeWidth": 1,
+              "effect": {
+                "type": "shadow",
+                "shadowType": "outer",
+                "color": "#00000099",
+                "offset": {
+                  "x": 0,
+                  "y": 16
+                },
+                "blur": 32
+              },
+              "layout": "none",
+              "children": [
+                {
+                  "type": "ellipse",
+                  "id": "u4YzpS",
+                  "x": 188,
+                  "y": 0,
+                  "name": "Result Gold Glow",
+                  "fill": "#FFD34D40",
+                  "width": 140,
+                  "height": 110,
+                  "effect": {
+                    "type": "blur",
+                    "radius": 30
+                  }
+                },
+                {
+                  "type": "ellipse",
+                  "id": "A4Hb9",
+                  "x": 0,
+                  "y": 160,
+                  "name": "Result Pink Glow",
+                  "fill": "#FF4F8B30",
+                  "width": 120,
+                  "height": 90,
+                  "effect": {
+                    "type": "blur",
+                    "radius": 28
+                  }
+                },
+                {
+                  "type": "text",
+                  "id": "F1Q8pP",
+                  "x": 24,
+                  "y": 22,
+                  "name": "Result Eyebrow",
+                  "fill": "#29D9FF",
+                  "textGrowth": "fixed-width",
+                  "width": 240,
+                  "content": "A08 ROUND REPORT",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 12,
+                  "fontWeight": "800"
+                },
+                {
+                  "type": "text",
+                  "id": "UMhtv",
+                  "x": 24,
+                  "y": 52,
+                  "name": "Result Rating",
+                  "fill": "#F8FAFF",
+                  "textGrowth": "fixed-width",
+                  "width": 276,
+                  "content": "包厢\n节奏官",
+                  "lineHeight": 0.98,
+                  "fontFamily": "$font-display",
+                  "fontSize": 38,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "ogyZy",
+                  "x": 228,
+                  "y": 42,
+                  "name": "Result Score Chip",
+                  "width": 92,
+                  "height": 54,
+                  "fill": "#FFD34D",
+                  "cornerRadius": 18,
+                  "layout": "vertical",
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "PYn4G",
+                      "name": "Score Number",
+                      "fill": "#080A12",
+                      "content": "0962",
+                      "fontFamily": "$font-mono",
+                      "fontSize": 22,
+                      "fontWeight": "900"
+                    },
+                    {
+                      "type": "text",
+                      "id": "OwyCh",
+                      "name": "Score Label",
+                      "fill": "#080A12",
+                      "content": "SCORE",
+                      "fontFamily": "$font-mono",
+                      "fontSize": 9,
+                      "fontWeight": "900"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "cxSUW",
+                  "x": 24,
+                  "y": 146,
+                  "name": "Result Stats",
+                  "width": 306,
+                  "height": 104,
+                  "layout": "vertical",
+                  "gap": 10,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "FdQTc",
+                      "name": "Result Stat Row 1",
+                      "width": "fill_container",
+                      "height": 22,
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "vZzRO",
+                          "name": "Stat Label 1",
+                          "fill": "#97A3B8",
+                          "content": "守住副歌",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "800"
+                        },
+                        {
+                          "type": "text",
+                          "id": "dr63X",
+                          "name": "Stat Value 1",
+                          "fill": "#FFD34D",
+                          "content": "8",
+                          "fontFamily": "$font-mono",
+                          "fontSize": 16,
+                          "fontWeight": "900"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "s7QE5T",
+                      "name": "Result Stat Row 2",
+                      "width": "fill_container",
+                      "height": 22,
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "bv0d8",
+                          "name": "Stat Label 2",
+                          "fill": "#97A3B8",
+                          "content": "最大连击",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "800"
+                        },
+                        {
+                          "type": "text",
+                          "id": "I2vpB8",
+                          "name": "Stat Value 2",
+                          "fill": "#29D9FF",
+                          "content": "8",
+                          "fontFamily": "$font-mono",
+                          "fontSize": 16,
+                          "fontWeight": "900"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "j7g8fX",
+                      "name": "Result Stat Row 3",
+                      "width": "fill_container",
+                      "height": 22,
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "HtjJq",
+                          "name": "Stat Label 3",
+                          "fill": "#97A3B8",
+                          "content": "手滑次数",
+                          "fontFamily": "$font-body",
+                          "fontSize": 14,
+                          "fontWeight": "800"
+                        },
+                        {
+                          "type": "text",
+                          "id": "i89iL",
+                          "name": "Stat Value 3",
+                          "fill": "#FF4F8B",
+                          "content": "2",
+                          "fontFamily": "$font-mono",
+                          "fontSize": 16,
+                          "fontWeight": "900"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "rectangle",
+                      "cornerRadius": 6,
+                      "id": "Bdkbj",
+                      "name": "Result Meter",
+                      "fill": {
+                        "type": "gradient",
+                        "gradientType": "linear",
+                        "enabled": true,
+                        "rotation": 90,
+                        "size": {
+                          "height": 1
+                        },
+                        "colors": [
+                          {
+                            "color": "#29D9FF",
+                            "position": 0
+                          },
+                          {
+                            "color": "#FFD34D",
+                            "position": 0.55
+                          },
+                          {
+                            "color": "#FF4F8B",
+                            "position": 1
+                          }
+                        ]
+                      },
+                      "width": "fill_container",
+                      "height": 12
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "d8s4p",
+              "name": "Retry CTA",
+              "width": "fill_container",
+              "height": 46,
+              "fill": "$reflex-gold",
+              "cornerRadius": 23,
+              "padding": [
+                0,
+                14
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "mxDIU",
+                  "name": "Label",
+                  "fill": "#101318",
+                  "content": "再来一局",
+                  "lineHeight": 1.15,
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "800"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "fZgIm",
+              "name": "Share CTA",
+              "width": "fill_container",
+              "height": 46,
+              "fill": "$reflex-cyan",
+              "cornerRadius": 23,
+              "padding": [
+                0,
+                14
+              ],
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "yL80a",
+                  "name": "Label",
+                  "fill": "#101318",
+                  "content": "生成挑战图",
+                  "lineHeight": 1.15,
+                  "fontFamily": "$font-body",
+                  "fontSize": 15,
+                  "fontWeight": "800"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "yXObC",
+      "x": 2523,
+      "y": 0,
+      "name": "05 Share Poster",
+      "clip": true,
+      "width": 360,
+      "height": 480,
+      "fill": {
+        "type": "gradient",
+        "gradientType": "linear",
+        "enabled": true,
+        "rotation": 180,
+        "size": {
+          "height": 1
+        },
+        "colors": [
+          {
+            "color": "#070912",
+            "position": 0
+          },
+          {
+            "color": "#1B2234",
+            "position": 0.56
+          },
+          {
+            "color": "#070912",
+            "position": 1
+          }
+        ]
+      },
+      "cornerRadius": 24,
+      "layout": "none",
+      "children": [
+        {
+          "type": "ellipse",
+          "id": "txYXW",
+          "x": 184,
+          "y": 0,
+          "name": "Poster Pink Glow",
+          "fill": "#FF4F8B44",
+          "width": 150,
+          "height": 130,
+          "effect": {
+            "type": "blur",
+            "radius": 34
+          }
+        },
+        {
+          "type": "ellipse",
+          "id": "fhX1P",
+          "x": 0,
+          "y": 150,
+          "name": "Poster Cyan Glow",
+          "fill": "#29D9FF38",
+          "width": 130,
+          "height": 120,
+          "effect": {
+            "type": "blur",
+            "radius": 34
+          }
+        },
+        {
+          "type": "text",
+          "id": "b7u5gP",
+          "x": 24,
+          "y": 24,
+          "name": "Poster Eyebrow",
+          "fill": "#29D9FF",
+          "textGrowth": "fixed-width",
+          "width": 312,
+          "content": "KTV REMOTE CHALLENGE",
+          "fontFamily": "$font-mono",
+          "fontSize": 13,
+          "fontWeight": "800"
+        },
+        {
+          "type": "text",
+          "id": "FaiDd",
+          "x": 24,
+          "y": 64,
+          "name": "Poster Title",
+          "fill": "#F8FAFF",
+          "textGrowth": "fixed-width",
+          "width": 312,
+          "content": "切歌\n别手滑",
+          "lineHeight": 0.9,
+          "fontFamily": "$font-display",
+          "fontSize": 52,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "omLw4",
+          "x": 24,
+          "y": 178,
+          "name": "Poster Score",
+          "width": 312,
+          "height": 116,
+          "fill": "#FFD34D",
+          "cornerRadius": 24,
+          "effect": {
+            "type": "shadow",
+            "shadowType": "outer",
+            "color": "#FFD34D55",
+            "offset": {
+              "x": 0,
+              "y": 14
+            },
+            "blur": 26
+          },
+          "layout": "vertical",
+          "gap": 4,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "yFZLF",
+              "name": "Poster Score Num",
+              "fill": "#080A12",
+              "content": "0962",
+              "fontFamily": "$font-mono",
+              "fontSize": 48,
+              "fontWeight": "900"
+            },
+            {
+              "type": "text",
+              "id": "O8sG5v",
+              "name": "Poster Score Label",
+              "fill": "#080A12",
+              "content": "包厢节奏官",
+              "fontFamily": "$font-body",
+              "fontSize": 15,
+              "fontWeight": "900"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "TpNYP",
+          "x": 24,
+          "y": 318,
+          "name": "Poster Stat Strip",
+          "width": 312,
+          "height": 58,
+          "gap": 8,
+          "children": [
+            {
+              "type": "frame",
+              "id": "wILOM",
+              "name": "Poster Stat A",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FFFFFF12",
+              "cornerRadius": 14,
+              "layout": "vertical",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "j40gdD",
+                  "name": "Poster Stat A Value",
+                  "fill": "#FFD34D",
+                  "content": "8",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 18,
+                  "fontWeight": "900"
+                },
+                {
+                  "type": "text",
+                  "id": "G08Ih",
+                  "name": "Poster Stat A Label",
+                  "fill": "#97A3B8",
+                  "content": "副歌",
+                  "fontFamily": "$font-body",
+                  "fontSize": 10,
+                  "fontWeight": "800"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "l3SKC",
+              "name": "Poster Stat B",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FFFFFF12",
+              "cornerRadius": 14,
+              "layout": "vertical",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "O95kO",
+                  "name": "Poster Stat B Value",
+                  "fill": "#29D9FF",
+                  "content": "80%",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 18,
+                  "fontWeight": "900"
+                },
+                {
+                  "type": "text",
+                  "id": "z9EOOe",
+                  "name": "Poster Stat B Label",
+                  "fill": "#97A3B8",
+                  "content": "准确",
+                  "fontFamily": "$font-body",
+                  "fontSize": 10,
+                  "fontWeight": "800"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "xPNOl",
+              "name": "Poster Stat C",
+              "width": "fill_container",
+              "height": "fill_container",
+              "fill": "#FFFFFF12",
+              "cornerRadius": 14,
+              "layout": "vertical",
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "AngKJ",
+                  "name": "Poster Stat C Value",
+                  "fill": "#FF4F8B",
+                  "content": "2",
+                  "fontFamily": "$font-mono",
+                  "fontSize": 18,
+                  "fontWeight": "900"
+                },
+                {
+                  "type": "text",
+                  "id": "nthKX",
+                  "name": "Poster Stat C Label",
+                  "fill": "#97A3B8",
+                  "content": "手滑",
+                  "fontFamily": "$font-body",
+                  "fontSize": 10,
+                  "fontWeight": "800"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "id": "aYhnx",
+          "x": 24,
+          "y": 444,
+          "name": "Poster Footer",
+          "fill": "#F8FAFF",
+          "textGrowth": "fixed-width",
+          "width": 312,
+          "content": "遥控器给你，你能不手滑吗？",
+          "lineHeight": 1.35,
+          "textAlign": "center",
+          "fontFamily": "$font-body",
+          "fontSize": 14,
+          "fontWeight": "800"
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "e9t8q",
+      "x": 2923,
+      "y": 0,
+      "name": "06 Asset Board",
+      "width": 520,
+      "height": 760,
+      "fill": "#F3F5F7",
+      "layout": "vertical",
+      "gap": 16,
+      "padding": 24,
+      "children": [
+        {
+          "type": "text",
+          "id": "vbhNz",
+          "name": "Asset Title",
+          "fill": "#111318",
+          "textGrowth": "fixed-width",
+          "width": 472,
+          "content": "Export Assets",
+          "lineHeight": 1.15,
+          "fontFamily": "$font-body",
+          "fontSize": 24,
+          "fontWeight": "900"
+        },
+        {
+          "type": "frame",
+          "id": "sl1kb",
+          "name": "bg-entry",
+          "width": "fill_container",
+          "height": 34,
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "hnE4u",
+              "name": "Swatch",
+              "fill": "#111318",
+              "width": 34,
+              "height": 24
+            },
+            {
+              "type": "text",
+              "id": "TugGI",
+              "name": "Asset Label",
+              "fill": "#1C222C",
+              "content": "bg-entry",
+              "lineHeight": 1.15,
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "eW9uz",
+          "name": "panel-game-console",
+          "width": "fill_container",
+          "height": 34,
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "A3Vkpi",
+              "name": "Swatch",
+              "fill": "#1C222C",
+              "width": 34,
+              "height": 24
+            },
+            {
+              "type": "text",
+              "id": "PDSIO",
+              "name": "Asset Label",
+              "fill": "#1C222C",
+              "content": "panel-game-console",
+              "lineHeight": 1.15,
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "uYu37",
+          "name": "track-reflex",
+          "width": "fill_container",
+          "height": 34,
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "lEIX4",
+              "name": "Swatch",
+              "fill": "#0B0F14",
+              "width": 34,
+              "height": 24
+            },
+            {
+              "type": "text",
+              "id": "E2EcPf",
+              "name": "Asset Label",
+              "fill": "#1C222C",
+              "content": "track-reflex",
+              "lineHeight": 1.15,
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "BijCN",
+          "name": "zone-hit",
+          "width": "fill_container",
+          "height": 34,
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "QI6wC",
+              "name": "Swatch",
+              "fill": "#F8C94A",
+              "width": 34,
+              "height": 24
+            },
+            {
+              "type": "text",
+              "id": "zeaDS",
+              "name": "Asset Label",
+              "fill": "#1C222C",
+              "content": "zone-hit",
+              "lineHeight": 1.15,
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "NOQZD",
+          "name": "btn-cut",
+          "width": "fill_container",
+          "height": 34,
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "S1tR1e",
+              "name": "Swatch",
+              "fill": "#FF5C7A",
+              "width": 34,
+              "height": 24
+            },
+            {
+              "type": "text",
+              "id": "GFatr",
+              "name": "Asset Label",
+              "fill": "#1C222C",
+              "content": "btn-cut",
+              "lineHeight": 1.15,
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "x5Xdxy",
+          "name": "btn-grab",
+          "width": "fill_container",
+          "height": 34,
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "jxE7W",
+              "name": "Swatch",
+              "fill": "#F8C94A",
+              "width": 34,
+              "height": 24
+            },
+            {
+              "type": "text",
+              "id": "ozO7O",
+              "name": "Asset Label",
+              "fill": "#1C222C",
+              "content": "btn-grab",
+              "lineHeight": 1.15,
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Q8PRWV",
+          "name": "btn-rescue",
+          "width": "fill_container",
+          "height": 34,
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "FUq0S",
+              "name": "Swatch",
+              "fill": "#39D6E8",
+              "width": 34,
+              "height": 24
+            },
+            {
+              "type": "text",
+              "id": "T4osHi",
+              "name": "Asset Label",
+              "fill": "#1C222C",
+              "content": "btn-rescue",
+              "lineHeight": 1.15,
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "nwHbo",
+          "name": "card-event-chorus",
+          "width": "fill_container",
+          "height": 34,
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "AbJ2N",
+              "name": "Swatch",
+              "fill": "#F8C94A",
+              "width": 34,
+              "height": 24
+            },
+            {
+              "type": "text",
+              "id": "e6ynHe",
+              "name": "Asset Label",
+              "fill": "#1C222C",
+              "content": "card-event-chorus",
+              "lineHeight": 1.15,
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "RgKEN",
+          "name": "card-event-danger",
+          "width": "fill_container",
+          "height": 34,
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "oboIz",
+              "name": "Swatch",
+              "fill": "#FF5C7A",
+              "width": 34,
+              "height": 24
+            },
+            {
+              "type": "text",
+              "id": "q6CjfX",
+              "name": "Asset Label",
+              "fill": "#1C222C",
+              "content": "card-event-danger",
+              "lineHeight": 1.15,
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "M9JSLk",
+          "name": "card-event-rescue",
+          "width": "fill_container",
+          "height": 34,
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "ruwae",
+              "name": "Swatch",
+              "fill": "#39D6E8",
+              "width": 34,
+              "height": 24
+            },
+            {
+              "type": "text",
+              "id": "hfG2B",
+              "name": "Asset Label",
+              "fill": "#1C222C",
+              "content": "card-event-rescue",
+              "lineHeight": 1.15,
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "j8Vb9b",
+          "name": "panel-result",
+          "width": "fill_container",
+          "height": 34,
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "H9QGLe",
+              "name": "Swatch",
+              "fill": "#252D39",
+              "width": 34,
+              "height": 24
+            },
+            {
+              "type": "text",
+              "id": "hQlnY",
+              "name": "Asset Label",
+              "fill": "#1C222C",
+              "content": "panel-result",
+              "lineHeight": 1.15,
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "700"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "otrgd",
+          "name": "frame-share-poster",
+          "width": "fill_container",
+          "height": 34,
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "rectangle",
+              "cornerRadius": 6,
+              "id": "ED1t0",
+              "name": "Swatch",
+              "fill": "#111318",
+              "width": 34,
+              "height": 24
+            },
+            {
+              "type": "text",
+              "id": "GKW2j",
+              "name": "Asset Label",
+              "fill": "#1C222C",
+              "content": "frame-share-poster",
+              "lineHeight": 1.15,
+              "fontFamily": "$font-body",
+              "fontSize": 13,
+              "fontWeight": "700"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "themes": {
+    "Mode": [
+      "Light",
+      "Dark"
+    ]
+  },
+  "variables": {
+    "--sidebar": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E7E8E5"
+        },
+        {
+          "value": "#18181b",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#666666"
+        },
+        {
+          "value": "#fafafa",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-primary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#18181b"
+        },
+        {
+          "value": "#18181b",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-primary-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#fafafa"
+        },
+        {
+          "value": "#fafafa",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-border": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#ffffff1a",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-accent": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#2a2a30",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-accent-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#18181b"
+        },
+        {
+          "value": "#fafafa",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--sidebar-ring": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#71717a"
+        },
+        {
+          "value": "#71717a",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--background": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F2F3F0"
+        },
+        {
+          "value": "#111111",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#FFFFFF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--card": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FFFFFF"
+        },
+        {
+          "value": "#1A1A1A",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--card-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#FFFFFF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--popover": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FFFFFF"
+        },
+        {
+          "value": "#1A1A1A",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--popover-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#FFFFFF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--primary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#FF8400"
+        },
+        {
+          "value": "#FF8400",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--primary-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#111111",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--secondary": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E7E8E5"
+        },
+        {
+          "value": "#2E2E2E",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--secondary-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#FFFFFF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--muted": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F2F3F0"
+        },
+        {
+          "value": "#2E2E2E",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--muted-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#666666"
+        },
+        {
+          "value": "#B8B9B6",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--accent": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#F2F3F0"
+        },
+        {
+          "value": "#111111",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--accent-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#111111"
+        },
+        {
+          "value": "#F2F3F0",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--destructive": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#D93C15"
+        },
+        {
+          "value": "#FF5C33",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--border": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#2E2E2E",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--input": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#CBCCC9"
+        },
+        {
+          "value": "#2E2E2E",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--ring": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#666666"
+        },
+        {
+          "value": "#666666",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--white": {
+      "type": "color",
+      "value": "#FFFFFF"
+    },
+    "--black": {
+      "type": "color",
+      "value": "#000000"
+    },
+    "--font-primary": {
+      "type": "string",
+      "value": "JetBrains Mono"
+    },
+    "--font-secondary": {
+      "type": "string",
+      "value": "Geist"
+    },
+    "--radius-none": {
+      "type": "number",
+      "value": 0
+    },
+    "--radius-pill": {
+      "type": "number",
+      "value": 999
+    },
+    "--color-success": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#DFE6E1"
+        },
+        {
+          "value": "#222924",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-success-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#004D1A"
+        },
+        {
+          "value": "#B6FFCE",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-warning": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E9E3D8"
+        },
+        {
+          "value": "#291C0F",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-warning-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#804200"
+        },
+        {
+          "value": "#FF8400",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-error": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#E5DCDA"
+        },
+        {
+          "value": "#24100B",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-error-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#8C1C00"
+        },
+        {
+          "value": "#FF5C33",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-info": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#DFDFE6"
+        },
+        {
+          "value": "#222229",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--color-info-foreground": {
+      "type": "color",
+      "value": [
+        {
+          "value": "#000066"
+        },
+        {
+          "value": "#B2B2FF",
+          "theme": {
+            "Mode": "Dark"
+          }
+        }
+      ]
+    },
+    "--radius-m": {
+      "type": "number",
+      "value": 16
+    },
+    "cleanup-bg": {
+      "type": "color",
+      "value": "#101114"
+    },
+    "cleanup-panel": {
+      "type": "color",
+      "value": "#191A1F"
+    },
+    "cleanup-text": {
+      "type": "color",
+      "value": "#F8FAFC"
+    },
+    "cleanup-muted": {
+      "type": "color",
+      "value": "#A1A1AA"
+    },
+    "cleanup-accent": {
+      "type": "color",
+      "value": "#FFB000"
+    },
+    "cleanup-cyan": {
+      "type": "color",
+      "value": "#23D7C6"
+    },
+    "cleanup-line": {
+      "type": "color",
+      "value": "#353744"
+    },
+    "font-display": {
+      "type": "string",
+      "value": "Anton"
+    },
+    "font-body": {
+      "type": "string",
+      "value": "Inter"
+    },
+    "font-mono": {
+      "type": "string",
+      "value": "IBM Plex Mono"
+    },
+    "reflex-bg": {
+      "type": "color",
+      "value": "#111318"
+    },
+    "reflex-panel": {
+      "type": "color",
+      "value": "#1C222C"
+    },
+    "reflex-panel-2": {
+      "type": "color",
+      "value": "#252D39"
+    },
+    "reflex-text": {
+      "type": "color",
+      "value": "#F8FAFC"
+    },
+    "reflex-muted": {
+      "type": "color",
+      "value": "#9BA8B8"
+    },
+    "reflex-gold": {
+      "type": "color",
+      "value": "#F8C94A"
+    },
+    "reflex-red": {
+      "type": "color",
+      "value": "#FF5C7A"
+    },
+    "reflex-cyan": {
+      "type": "color",
+      "value": "#39D6E8"
+    },
+    "reflex-blue": {
+      "type": "color",
+      "value": "#5F8CFF"
+    },
+    "reflex-green": {
+      "type": "color",
+      "value": "#58D68D"
+    },
+    "reflex-purple": {
+      "type": "color",
+      "value": "#A66CFF"
+    },
+    "reflex-orange": {
+      "type": "color",
+      "value": "#FF9F43"
+    },
+    "font-title": {
+      "type": "string",
+      "value": "Inter"
+    },
+    "ktv-bg": {
+      "type": "color",
+      "value": "#080A12"
+    },
+    "ktv-panel": {
+      "type": "color",
+      "value": "#141927"
+    },
+    "ktv-panel-2": {
+      "type": "color",
+      "value": "#20283A"
+    },
+    "ktv-yellow": {
+      "type": "color",
+      "value": "#FFD34D"
+    },
+    "ktv-pink": {
+      "type": "color",
+      "value": "#FF4F8B"
+    },
+    "ktv-cyan": {
+      "type": "color",
+      "value": "#29D9FF"
+    },
+    "ktv-green": {
+      "type": "color",
+      "value": "#44E096"
+    },
+    "ktv-purple": {
+      "type": "color",
+      "value": "#9A6BFF"
+    },
+    "ktv-white": {
+      "type": "color",
+      "value": "#F8FAFF"
+    },
+    "ktv-muted": {
+      "type": "color",
+      "value": "#97A3B8"
+    }
+  },
+  "fileToken": "04149a9a-062b-4234-870b-cece973b9a78"
+}

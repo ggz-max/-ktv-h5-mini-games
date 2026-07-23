@@ -1,0 +1,19 @@
+{
+  "name": "KTV 人格宇宙",
+  "short_name": "人格宇宙",
+  "description": "测出今晚 KTV 人格，收集人格卡并生成分享图。",
+  "start_url": "./?reset=1",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#080510",
+  "theme_color": "#ff4fd8",
+  "icons": [
+    {
+      "src": "./assets/visuals/avatar-boom.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

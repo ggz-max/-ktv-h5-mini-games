@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>嘴硬日记 Pencil 视觉确认</title>
+    <style>
+      :root {
+        --bg: #15131a;
+        --panel: #24202d;
+        --panel-2: #302a3b;
+        --ink: #fff7e8;
+        --muted: #c9bed8;
+        --line: rgba(255,255,255,.14);
+        --lime: #b7ff5a;
+        --pink: #ff5c9a;
+        --cyan: #7ee7ff;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      }
+      main {
+        width: min(1200px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 36px 0 56px;
+      }
+      header {
+        display: grid;
+        gap: 14px;
+        margin-bottom: 24px;
+      }
+      .eyebrow {
+        margin: 0;
+        color: var(--lime);
+        font-size: 12px;
+        font-weight: 900;
+        letter-spacing: .08em;
+        text-transform: uppercase;
+      }
+      h1 {
+        margin: 0;
+        max-width: 760px;
+        font-size: clamp(30px, 5vw, 56px);
+        line-height: 1.04;
+        letter-spacing: 0;
+      }
+      h2, h3, p { margin: 0; }
+      p {
+        color: var(--muted);
+        line-height: 1.65;
+      }
+      a {
+        color: var(--cyan);
+        text-decoration: none;
+      }
+      .status-grid,
+      .asset-grid,
+      .export-grid,
+      .question-grid {
+        display: grid;
+        gap: 14px;
+      }
+      .status-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        margin: 24px 0;
+      }
+      .status-card,
+      .asset-card,
+      .export-card,
+      .question-card,
+      .decision,
+      .commands {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+      }
+      .status-card {
+        padding: 14px;
+      }
+      .status-card span {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .status-card strong {
+        display: block;
+        font-size: 18px;
+      }
+      .decision {
+        margin: 22px 0;
+        padding: 18px;
+        border-left: 4px solid var(--pink);
+      }
+      section {
+        margin-top: 34px;
+      }
+      section > h2 {
+        margin-bottom: 12px;
+        font-size: 22px;
+      }
+      .asset-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+      .asset-card {
+        overflow: hidden;
+      }
+      .asset-card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 2 / 3;
+        object-fit: cover;
+        background: #0d0b12;
+      }
+      .asset-card.is-square img {
+        aspect-ratio: 1 / 1;
+      }
+      .asset-body {
+        display: grid;
+        gap: 8px;
+        padding: 14px;
+      }
+      .tag {
+        width: fit-content;
+        padding: 4px 8px;
+        border-radius: 4px;
+        background: var(--lime);
+        color: #12140e;
+        font-size: 12px;
+        font-weight: 900;
+      }
+      code {
+        color: #efe5ff;
+        overflow-wrap: anywhere;
+      }
+      .export-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+      .export-card,
+      .question-card,
+      .commands {
+        padding: 14px;
+      }
+      .export-card strong,
+      .question-card strong {
+        display: block;
+        margin-bottom: 8px;
+      }
+      .export-card small {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      .question-grid {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+      .commands {
+        background: var(--panel-2);
+      }
+      pre {
+        margin: 0;
+        white-space: pre-wrap;
+        color: #f9f0ff;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">Pencil Style Approval</p>
+        <h1>嘴硬日记视觉确认：深夜便利贴 + 霓虹批注</h1>
+        <p>这些图是已生成的 image2 源资产。它们必须先导入 Pencil，在 `.pen` 里完成 UI 画板和裁切确认，再由 Pencil 导出 H5 运行时切图。</p>
+      </header>
+
+      <section class="status-grid" aria-label="当前状态">
+        <article class="status-card">
+          <span>当前状态</span>
+          <strong>pending_user_confirmation</strong>
+        </article>
+        <article class="status-card">
+          <span>Pencil 源文件</span>
+          <strong>mouth-hard-diary.pen</strong>
+        </article>
+        <article class="status-card">
+          <span>运行时导出目录</span>
+          <strong>h5/assets/visuals/pencil-export/</strong>
+        </article>
+      </section>
+
+      <section class="decision">
+        <p><strong>当前推荐：</strong>首页底板用 clean background，强视觉用 neon sticky，结果卡用 result card，分享海报用 share poster，贴纸组进入 sticker kit。</p>
+      </section>
+
+      <section>
+        <h2>image2 源资产</h2>
+        <div class="asset-grid">
+          <article class="asset-card">
+            <img src="./pencil-source/images/source-home-bg-clean-image2.png" alt="首页干净背景">
+            <div class="asset-body">
+              <span class="tag">首页 UI 底板</span>
+              <h3>Clean Home Background</h3>
+              <p>适合承载标题、输入框和 CTA，底部留白足，进入 Pencil 后作为首页主板底图。</p>
+              <code>images/source-home-bg-clean-image2.png</code>
+            </div>
+          </article>
+          <article class="asset-card">
+            <img src="./pencil-source/images/source-hero-neon-sticky-image2.png" alt="霓虹便利贴主视觉">
+            <div class="asset-body">
+              <span class="tag">强主视觉</span>
+              <h3>Neon Sticky Report</h3>
+              <p>质感最强，适合作为首页上半屏或活动视觉；进入 Pencil 后要检查 H5 前景文字安全区。</p>
+              <code>images/source-hero-neon-sticky-image2.png</code>
+            </div>
+          </article>
+          <article class="asset-card">
+            <img src="./pencil-source/images/source-result-card-bg-image2.png" alt="结果卡背景">
+            <div class="asset-body">
+              <span class="tag">结果卡底图</span>
+              <h3>Result Card Background</h3>
+              <p>中心纸面区域较干净，适合叠加今日称号、能量条和报告文案。</p>
+              <code>images/source-result-card-bg-image2.png</code>
+            </div>
+          </article>
+          <article class="asset-card">
+            <img src="./pencil-source/images/source-share-poster-image2.png" alt="分享海报背景">
+            <div class="asset-body">
+              <span class="tag">分享海报</span>
+              <h3>Share Poster Blank</h3>
+              <p>中间留白大，适合做朋友圈或群聊保存图，需要在 Pencil 里保留报告文字区域。</p>
+              <code>images/source-share-poster-image2.png</code>
+            </div>
+          </article>
+          <article class="asset-card">
+            <img src="./pencil-source/images/source-status-dashboard-image2.png" alt="状态仪表盘视觉">
+            <div class="asset-body">
+              <span class="tag">备用品牌资产</span>
+              <h3>Status Dashboard</h3>
+              <p>更偏可爱科技感，适合作为 App 延展或空状态，不作为首版主视觉。</p>
+              <code>images/source-status-dashboard-image2.png</code>
+            </div>
+          </article>
+          <article class="asset-card is-square">
+            <img src="./pencil-source/images/source-sticker-sheet-image2.png" alt="贴纸素材组">
+            <div class="asset-body">
+              <span class="tag">贴纸组</span>
+              <h3>Sticker Sheet</h3>
+              <p>导入 Pencil 后作为素材板，可后续切分单个贴纸，也可以导出整张贴纸组。</p>
+              <code>images/source-sticker-sheet-image2.png</code>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>Pencil 导出目标</h2>
+        <div class="export-grid">
+          <article class="export-card">
+            <strong>export/hero-report-collage</strong>
+            <code>h5/assets/visuals/pencil-export/hero-report-collage.png</code>
+            <small>01 Home Hero Direction / 941 x 1672 / required / temporary_preview</small>
+          </article>
+          <article class="export-card">
+            <strong>export/share-poster-bg</strong>
+            <code>h5/assets/visuals/pencil-export/share-poster-bg.png</code>
+            <small>03 Share Poster / 941 x 1672 / required / temporary_preview</small>
+          </article>
+          <article class="export-card">
+            <strong>export/report-stickers</strong>
+            <code>h5/assets/visuals/pencil-export/report-stickers.png</code>
+            <small>04 Sticker Kit / 1254 x 1254 / optional_future / pending</small>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>确认问题</h2>
+        <div class="question-grid">
+          <article class="question-card"><strong>1</strong><p>这个方向是否成立：深夜便利贴 + 霓虹批注？</p></article>
+          <article class="question-card"><strong>2</strong><p>整体是否太暗，或者太像心理咨询产品？</p></article>
+          <article class="question-card"><strong>3</strong><p>发疯感是否足够，但不压抑？</p></article>
+          <article class="question-card"><strong>4</strong><p>首页主视觉是否一眼能看懂生成报告？</p></article>
+          <article class="question-card"><strong>5</strong><p>结果卡是否值得保存或分享？</p></article>
+        </div>
+      </section>
+
+      <section>
+        <h2>确认后动作</h2>
+        <div class="commands">
+          <pre>npm run style:approval-draft -- --by=YOUR_NAME --notes="Confirmed from Pencil boards."
+npm run verify:style-approval-draft
+node tools/apply-style-approval-draft.js --yes
+npm run pencil:register-exports
+npm run verify:assets:final</pre>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

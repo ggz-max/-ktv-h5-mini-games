@@ -1,0 +1,8 @@
+node_modules
+dist
+.git
+verification
+backend/data
+*.log
+.env
+.env.*

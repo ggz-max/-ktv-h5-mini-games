@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>嘴硬日记 MVP 数据看板</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./admin.css?v=20260709b">
+  </head>
+  <body>
+    <main class="dashboard">
+      <header>
+        <p class="eyebrow">MVP RUNTIME DASHBOARD</p>
+        <h1>嘴硬日记数据看板</h1>
+        <p>本地 JSONL 数据复盘页，用于 fake-door 阶段快速查看报告生成和事件分布。</p>
+        <div class="toolbar">
+          <button type="button" data-action="export">导出数据</button>
+          <button type="button" data-action="export-csv">导出表格</button>
+          <span data-export-status>最近未导出</span>
+        </div>
+      </header>
+
+      <section class="stats">
+        <article>
+          <span>UV</span>
+          <strong data-stat="uv">-</strong>
+        </article>
+        <article>
+          <span>报告生成</span>
+          <strong data-stat="reports">-</strong>
+        </article>
+        <article>
+          <span>事件记录</span>
+          <strong data-stat="events">-</strong>
+        </article>
+        <article>
+          <span>事件类型</span>
+          <strong data-stat="eventTypes">-</strong>
+        </article>
+      </section>
+
+      <section class="panel launch-panel" data-launch-panel>
+        <div class="panel-title">
+          <h2>投放状态</h2>
+        </div>
+        <div class="launch-status" data-launch-status>检查中...</div>
+        <div class="launch-actions" data-list="launch-actions"></div>
+        <div class="launch-checks" data-list="launch-checks"></div>
+      </section>
+
+      <section class="panel delivery-panel">
+        <div class="panel-title">
+          <h2>交付验收</h2>
+          <a href="./../docs/delivery-audit.md" target="_blank" rel="noreferrer">审计文档</a>
+        </div>
+        <div class="delivery-status" data-delivery-status>检查中...</div>
+        <div class="delivery-grid" data-list="delivery-audit"></div>
+      </section>
+
+      <section class="panel pencil-panel">
+        <div class="panel-title">
+          <h2>Pencil 资产工作台</h2>
+          <a href="./../designs/operator-pack.md" target="_blank" rel="noreferrer">操作包</a>
+        </div>
+        <div class="pencil-status" data-pencil-status>检查中...</div>
+        <div class="pencil-summary" data-list="pencil-summary"></div>
+        <div class="pencil-assets" data-list="pencil-assets"></div>
+      </section>
+
+      <section class="panel decision-panel">
+        <div class="panel-title">
+          <h2>决策摘要</h2>
+        </div>
+        <div class="decision-status" data-decision-label>加载中...</div>
+        <div class="decision-grid" data-list="decision-summary"></div>
+      </section>
+
+      <section class="panel sampling-panel">
+        <div class="panel-title">
+          <h2>投放链接包</h2>
+          <a href="./../docs/sampling-links.md" target="_blank" rel="noreferrer">Markdown</a>
+        </div>
+        <div class="sampling-meta" data-sampling-meta>加载中...</div>
+        <div class="sampling-list" data-list="sampling-links"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">
+          <h2>事件分布</h2>
+          <button type="button" data-action="refresh">刷新</button>
+        </div>
+        <div class="event-list" data-list="events"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title"><h2>转化漏斗</h2></div>
+        <div class="funnel-list" data-list="funnel"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title"><h2>入口实验表现</h2></div>
+        <div class="variant-grid" data-list="variants"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title"><h2>来源表现</h2></div>
+        <div class="variant-grid" data-list="sources"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title"><h2>App 兴趣</h2></div>
+        <div class="variant-grid" data-list="app-interests"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title"><h2>留资意向</h2></div>
+        <div class="variant-grid" data-list="leads"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title"><h2>内容反馈</h2></div>
+        <div class="variant-grid" data-list="feedback"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title"><h2>结果页互动</h2></div>
+        <div class="variant-grid" data-list="result-interactions"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title"><h2>访谈记录</h2></div>
+        <form class="interview-form" data-form="interview">
+          <input name="segment" maxlength="32" placeholder="用户分组，如 KTV/社群/朋友分享">
+          <input name="bestLine" maxlength="120" placeholder="哪句话最像 TA">
+          <input name="saveReason" maxlength="160" placeholder="为什么想保存或不想保存">
+          <input name="appWish" maxlength="160" placeholder="如果有 App，希望里面有什么">
+          <input name="concern" maxlength="160" placeholder="不希望它做什么，哪里冒犯">
+          <button type="submit">记录访谈</button>
+        </form>
+        <div class="report-list" data-list="interviews"></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-title">
+          <h2>最近报告</h2>
+          <a href="./" target="_blank" rel="noreferrer">打开 H5</a>
+        </div>
+        <div class="report-list" data-list="reports"></div>
+      </section>
+    </main>
+    <script src="./admin.js?v=20260709b"></script>
+  </body>
+</html>

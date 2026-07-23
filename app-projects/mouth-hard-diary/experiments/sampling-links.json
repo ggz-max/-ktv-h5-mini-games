@@ -1,0 +1,39 @@
+{
+  "version": "2026-06-26-real-sampling-v1",
+  "baseUrl": "https://mouth-hard-diary.tbox.ktvsky.com/",
+  "requiredVariants": ["report", "persona", "translator"],
+  "cohorts": [
+    {
+      "id": "ktv_room_qr",
+      "label": "KTV 包厢二维码",
+      "source": "ktv",
+      "campaign": "after_song",
+      "channel": "room_qr",
+      "storeId": "store_001",
+      "roomId": "room_009",
+      "variants": ["report", "persona", "translator"],
+      "dailyTarget": 15,
+      "note": "包厢内扫码入口，验证 KTV 场景是否比普通社群更强。"
+    },
+    {
+      "id": "seed_wechat_group",
+      "label": "种子微信群",
+      "source": "social",
+      "campaign": "seed_group",
+      "channel": "wechat",
+      "variants": ["report", "persona", "translator"],
+      "dailyTarget": 15,
+      "note": "朋友或社群冷启动入口，验证非 KTV 场景的自然吸引力。"
+    },
+    {
+      "id": "poster_shareback",
+      "label": "海报回流",
+      "source": "shareback",
+      "campaign": "poster",
+      "channel": "friend_chat",
+      "variants": ["translator", "report"],
+      "dailyTarget": 10,
+      "note": "保存图或群聊转发后的回流入口，验证传播型心智。"
+    }
+  ]
+}

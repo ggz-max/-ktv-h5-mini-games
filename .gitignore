@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+**/node_modules/
+
+# build outputs
+dist/
+build/
+out/
+.output/
+
+# local generated artifacts
+output/
+verification/
+tmp/
+.cache/
+.vite/
+
+# secrets and local env
+.env
+.env.*
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+
+# old child-repository metadata moved here during monorepo migration
+.legacy-git-metadata/

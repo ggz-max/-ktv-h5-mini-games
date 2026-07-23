@@ -1,0 +1,40 @@
+{
+  "source": "manual vector assets generated from the UI reference",
+  "assets": [
+    {
+      "id": "scene_right",
+      "file": "assets/scene-right.png",
+      "usage": "右侧窗台、植物、茶杯、书堆和抱枕水彩背景氛围层",
+      "source": "manual-export",
+      "intrinsicSize": { "w": 664, "h": 1160 }
+    },
+    {
+      "id": "book_camellia",
+      "file": "assets/book-camellia.svg",
+      "usage": "当前阅读书籍封面",
+      "source": "manual-export",
+      "intrinsicSize": { "w": 180, "h": 252 }
+    },
+    {
+      "id": "thumb_walk",
+      "file": "assets/thumb-walk.svg",
+      "usage": "推荐列表缩略图 1",
+      "source": "manual-export",
+      "intrinsicSize": { "w": 120, "h": 120 }
+    },
+    {
+      "id": "thumb_plants",
+      "file": "assets/thumb-plants.svg",
+      "usage": "推荐列表缩略图 2",
+      "source": "manual-export",
+      "intrinsicSize": { "w": 120, "h": 120 }
+    },
+    {
+      "id": "thumb_gift",
+      "file": "assets/thumb-gift.svg",
+      "usage": "推荐列表缩略图 3",
+      "source": "manual-export",
+      "intrinsicSize": { "w": 120, "h": 120 }
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+node_modules/
+dist/
+output/
+server/data/*.jsonl
+public/assets/image2/*.png

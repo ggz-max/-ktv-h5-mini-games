@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <rect width="120" height="120" rx="10" fill="#44583c"/>
+  <rect width="120" height="120" rx="10" fill="#d9caa8" opacity=".16"/>
+  <g fill="none" stroke="#d8e1bd" stroke-width="2.2" stroke-linecap="round">
+    <path d="M28 105 C32 74 33 44 41 18"/>
+    <path d="M58 105 C58 74 64 43 78 20"/>
+    <path d="M88 106 C83 75 83 54 91 31"/>
+  </g>
+  <g fill="#cad6a3">
+    <ellipse cx="35" cy="62" rx="9" ry="17" transform="rotate(-38 35 62)"/>
+    <ellipse cx="47" cy="43" rx="9" ry="16" transform="rotate(38 47 43)"/>
+    <ellipse cx="70" cy="61" rx="10" ry="18" transform="rotate(-48 70 61)"/>
+    <ellipse cx="83" cy="39" rx="9" ry="16" transform="rotate(41 83 39)"/>
+    <ellipse cx="91" cy="71" rx="9" ry="17" transform="rotate(34 91 71)"/>
+  </g>
+  <text x="16" y="37" fill="#f3efd8" font-family="serif" font-size="17">窗边植物志</text>
+</svg>
+

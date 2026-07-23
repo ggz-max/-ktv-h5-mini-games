@@ -1,0 +1,14 @@
+{
+  "name": "ktv-personality-universe",
+  "version": "0.2.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server/index.js",
+    "health": "node tools/health-check.js",
+    "verify": "node tools/verify-core-loop.js",
+    "verify:demo": "node tools/capture-demo-flow.js",
+    "verify:server": "node tools/verify-server-quota.js && node tools/verify-server-archive-hydration.js",
+    "verify:deployed": "node tools/verify-deployed-url.js"
+  }
+}
