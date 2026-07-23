@@ -438,8 +438,15 @@ function connect() {
   });
 }
 
+function createRequestId() {
+  if (typeof globalThis.crypto?.randomUUID === "function") return globalThis.crypto.randomUUID();
+
+  const randomPart = Math.random().toString(36).slice(2);
+  return `${Date.now().toString(36)}-${randomPart}`;
+}
+
 function send(action: string, payload: Record<string, unknown> = {}) {
-  const request = { action, requestId: crypto.randomUUID(), ...payload };
+  const request = { action, requestId: createRequestId(), ...payload };
   if (transport === "ws" && socket?.readyState === WebSocket.OPEN) {
     socket.send(JSON.stringify(request));
     return;

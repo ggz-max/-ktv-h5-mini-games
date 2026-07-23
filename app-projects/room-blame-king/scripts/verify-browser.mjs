@@ -135,6 +135,22 @@ try {
   await bgmPage.waitForFunction(() => !document.documentElement.dataset.bgm);
   await bgmContext.close();
 
+  const legacyContext = await browser.newContext({ viewport: { width: 390, height: 844 } });
+  await legacyContext.addInitScript(() => {
+    localStorage.setItem("room-blame-king-tutorial-seen", "1");
+    Object.defineProperty(Crypto.prototype, "randomUUID", { value: undefined, configurable: true });
+  });
+  const legacyPage = await legacyContext.newPage();
+  legacyPage.on("pageerror", error => issues.push(`legacy-webview: pageerror ${error.message}`));
+  await legacyPage.goto(base, { waitUntil: "networkidle" });
+  await legacyPage.locator("#profile-name").fill("内嵌兼容验收");
+  await legacyPage.locator("#create-room").click();
+  await legacyPage.locator(".waiting-screen").waitFor();
+  await legacyPage.locator("#start-game").click();
+  await legacyPage.locator(".game-screen").waitFor();
+  if (await legacyPage.locator(".bot-strip > span").count() !== 3) issues.push("legacy-webview: AI players missing after start");
+  await legacyContext.close();
+
   const tutorialContext = await browser.newContext({ viewport: { width: 390, height: 844 } });
   const tutorialPage = await tutorialContext.newPage();
   await tutorialPage.goto(`${base}/?preview=tutorial`, { waitUntil: "networkidle" });
