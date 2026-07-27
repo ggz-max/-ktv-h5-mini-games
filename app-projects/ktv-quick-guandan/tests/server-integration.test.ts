@@ -7,11 +7,14 @@ const port=4642;const base=`http://127.0.0.1:${port}`;let server:ChildProcess;
 interface Session{code:string;playerId:string;sessionToken:string}
 async function wait(){for(let i=0;i<80;i++){try{if((await fetch(`${base}/api/health`)).ok)return}catch{/* starting */}await new Promise(r=>setTimeout(r,50))}throw new Error("server failed")}
 async function post(path:string,data:any){const r=await fetch(base+path,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(data)});const j=await r.json();if(!r.ok)throw new Error(j.error);return j as Session}
+async function getState(session:Session){const response=await fetch(`${base}/api/rooms/${session.code}/state?player=${session.playerId}&token=${session.sessionToken}`);const state=await response.json();if(!response.ok)throw new Error(state.error);return state}
+async function httpAction(session:Session,actionName:string,data:any={}){const response=await fetch(`${base}/api/rooms/${session.code}/action`,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({action:actionName,requestId:crypto.randomUUID(),playerId:session.playerId,sessionToken:session.sessionToken,...data})});const state=await response.json();if(!response.ok)throw new Error(state.error);return state}
 async function connect(s:Session){const states:any[]=[];const ws=new WebSocket(`ws://127.0.0.1:${port}/ws?room=${s.code}&player=${s.playerId}&token=${s.sessionToken}`);ws.on("message",raw=>{const m=JSON.parse(raw.toString());if(m.type==="state")states.push(m)});await new Promise<void>((resolve,reject)=>{ws.once("open",()=>resolve());ws.once("error",reject)});return{ws,states}}
 async function until(fn:()=>boolean,message:string){const start=Date.now();while(Date.now()-start<5000){if(fn())return;await new Promise(r=>setTimeout(r,20))}throw new Error(message)}
+async function untilAsync(fn:()=>Promise<boolean>,message:string){const start=Date.now();while(Date.now()-start<5000){if(await fn())return;await new Promise(r=>setTimeout(r,20))}throw new Error(message)}
 function action(ws:WebSocket,actionName:string,data:any={}){ws.send(JSON.stringify({action:actionName,requestId:crypto.randomUUID(),...data}))}
 
-before(async()=>{server=spawn(process.execPath,["--import","tsx","server/index.ts"],{cwd:process.cwd(),env:{...process.env,PORT:String(port),TURN_MS:"5000",DATA_DIR:"output/verification/test-data"},stdio:"ignore"});await wait()});
+before(async()=>{server=spawn(process.execPath,["--import","tsx","server/index.ts"],{cwd:process.cwd(),env:{...process.env,PORT:String(port),TURN_MS:"5000",FIRST_SEAT:"0",DATA_DIR:"output/verification/test-data"},stdio:"ignore"});await wait()});
 after(()=>server?.kill());
 
 test("four websocket clients receive private 27-card hands and can submit a legal opening",async()=>{
@@ -45,4 +48,21 @@ test("HTTP polling clients can start and play when websocket upgrade is unavaila
   const playing=await actionResponse.json();assert.equal(actionResponse.ok,true);assert.equal(playing.room.status,"playing");assert.equal(playing.game.hand.length,27);
   const playResponse=await fetch(`${base}/api/rooms/${owner.code}/action`,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({action:"play",requestId:crypto.randomUUID(),playerId:owner.playerId,sessionToken:owner.sessionToken,cardIds:playing.game.legalHint})});
   assert.equal(playResponse.ok,true);assert.equal((await playResponse.json()).game.currentSeat,1);
+});
+
+test("a completed game enters tribute, returns cards, and assigns the correct opening lead",async()=>{
+  const owner=await post("/api/rooms",{name:"续局房主"});const sessions=[owner];
+  for(let index=1;index<4;index++)sessions.push(await post(`/api/rooms/${owner.code}/join`,{name:`续局玩家${index+1}`}));
+  let state=await httpAction(owner,"start_game");
+  for(let step=0;step<500&&state.room.status==="playing";step++){
+    const currentPlayer=state.room.players.find((player:any)=>player.seat===state.game.currentSeat);const currentSession=sessions.find(session=>session.playerId===currentPlayer.id)!;const privateState=await getState(currentSession);
+    state=privateState.game.legalHint.length?await httpAction(currentSession,"play",{cardIds:privateState.game.legalHint}):await httpAction(currentSession,"pass");
+  }
+  assert.equal(state.room.status,"result");assert.equal(state.game.finishOrder.length,4);
+  const next=await httpAction(owner,"start_game");assert.equal(next.room.status,"tribute");assert.ok(next.game.tribute);
+  const tribute=next.game.tribute;const expectedLeader=tribute.anti?state.game.finishOrder[0]:tribute.pairs[0].payerId;assert.equal(tribute.leaderId,expectedLeader);
+  if(tribute.anti){await untilAsync(async()=>(await getState(owner)).room.status==="playing","anti-tribute did not continue")}else{
+    for(const session of sessions){const privateState=await getState(session);if(privateState.game.tribute?.returnOptions.length)await httpAction(session,"return_tribute",{cardId:privateState.game.tribute.returnOptions[0]})}
+  }
+  const playing=await getState(owner);assert.equal(playing.room.status,"playing");assert.equal(playing.game.currentSeat,playing.room.players.find((player:any)=>player.id===expectedLeader).seat);assert.deepEqual(playing.room.players.map((player:any)=>player.cardCount),[27,27,27,27]);
 });

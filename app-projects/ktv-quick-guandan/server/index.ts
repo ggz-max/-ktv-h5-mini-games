@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 import { WebSocket, WebSocketServer } from "ws";
 import { beats, comboLabel, dealHands, evaluateCombo, legalCombos, sortHand, upgradeForOrder, type Card, type Combo } from "../shared/game.ts";
 import { chooseBotDecision } from "../shared/bot.ts";
+import { buildTributePlan, chooseBotReturnCard, legalReturnCards, type TributePlan } from "../shared/tribute.ts";
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const distDir = path.join(rootDir, "dist");
@@ -15,7 +16,7 @@ const port = Number(process.env.PORT || 4342);
 const turnMs = Number(process.env.TURN_MS || 20000);
 fs.mkdirSync(dataDir, { recursive: true });
 
-type Status = "waiting" | "playing" | "result";
+type Status = "waiting" | "tribute" | "playing" | "result";
 interface Player { id: string; token: string; name: string; avatar: number; seat: number; bot: boolean; connected: boolean; ready: boolean; socket?: WebSocket; requests: Set<string> }
 interface Game {
   level: number; levels: [number, number]; hands: Map<string, Card[]>; currentSeat: number; leaderId: string; lastPlayerId: string | null;
@@ -23,6 +24,7 @@ interface Game {
   interaction?: { playerId: string; text: string; tone: "team" | "block" | "bomb" | "normal" };
   trickActions: Map<string, { combo?: Combo; passed: boolean }>;
   actionSerial: number; audioAction?: { serial: number; playerId: string; combo?: Combo; passed: boolean };
+  tribute?: TributePlan;
 }
 interface Room { code: string; hostId: string; status: Status; players: Player[]; game?: Game; gameIndex: number; lastActivity: number }
 
@@ -48,7 +50,12 @@ function publicState(room: Room, viewer: Player) {
       interaction: game.interaction,
       trickActions: [...game.trickActions.entries()].map(([playerId, action]) => ({ playerId, ...action })),
       audioAction: game.audioAction,
-      canPass: Boolean(game.currentCombo && game.lastPlayerId !== viewer.id), legalHint: legalCombos(game.hands.get(viewer.id) || [], game.level, game.currentCombo)[0]?.cards.map(card => card.id) || [],
+      tribute: game.tribute ? {
+        kind: game.tribute.kind, anti: game.tribute.anti, leaderId: game.tribute.leaderId, payerIds: game.tribute.payerIds, winnerIds: game.tribute.winnerIds,
+        pairs: game.tribute.pairs.map(pair => ({ payerId: pair.payerId, receiverId: pair.receiverId, tributeCard: pair.tributeCard, returned: Boolean(pair.returnCard) })),
+        returnOptions: room.status === "tribute" ? game.tribute.pairs.find(pair => pair.receiverId === viewer.id && !pair.returnCard) ? legalReturnCards(game.hands.get(viewer.id) || [], game.level).map(card => card.id) : [] : []
+      } : null,
+      canPass: room.status === "playing" && Boolean(game.currentCombo && game.lastPlayerId !== viewer.id), legalHint: room.status === "playing" ? legalCombos(game.hands.get(viewer.id) || [], game.level, game.currentCombo)[0]?.cards.map(card => card.id) || [] : [],
       result: room.status === "result" ? resultFor(room) : null
     } : null
   };
@@ -152,15 +159,74 @@ function applyPass(room: Room, player: Player, automatic = false) {
   game.passed.add(player.id); game.trickActions.set(player.id, { passed: true }); game.actionSerial += 1; game.audioAction = { serial: game.actionSerial, playerId: player.id, passed: true }; appendEvent(automatic ? "guandan_timeout_passed" : "guandan_passed", room, player); advance(room, player);
 }
 
+function moveCard(game: Game, fromId: string, toId: string, card: Card) {
+  const from = game.hands.get(fromId) || [];
+  if (!from.some(candidate => candidate.id === card.id)) throw new Error("交换的牌已不在手中");
+  game.hands.set(fromId, from.filter(candidate => candidate.id !== card.id));
+  game.hands.set(toId, sortHand([...(game.hands.get(toId) || []), card], game.level));
+}
+
+function tributeComplete(room: Room) {
+  const game = room.game!; const tribute = game.tribute!;
+  clearTimeout(game.timer); game.currentSeat = room.players.find(player => player.id === tribute.leaderId)!.seat; game.leaderId = tribute.leaderId; game.deadline = 0;
+  appendEvent("guandan_tribute_completed", room, undefined, { kind: tribute.kind, anti: tribute.anti, leaderId: tribute.leaderId });
+  game.tribute = undefined; room.status = "playing"; scheduleTurn(room);
+}
+
+function settleAutomaticReturns(room: Room, includeHumans: boolean) {
+  const game = room.game!; const tribute = game.tribute!;
+  for (const pair of tribute.pairs.filter(item => !item.returnCard)) {
+    const receiver = room.players.find(player => player.id === pair.receiverId)!;
+    if (!receiver.bot && !includeHumans) continue;
+    const card = chooseBotReturnCard(game.hands.get(receiver.id) || [], game.level);
+    moveCard(game, receiver.id, pair.payerId, card); pair.returnCard = card;
+    appendEvent("guandan_tribute_returned", room, receiver, { payerId: pair.payerId, automatic: true, cardId: card.id });
+  }
+}
+
+function waitForTributeReturns(room: Room) {
+  const game = room.game!; clearTimeout(game.timer); game.deadline = Date.now() + turnMs; broadcast(room);
+  game.timer = setTimeout(() => {
+    if (room.status !== "tribute" || !game.tribute) return;
+    settleAutomaticReturns(room, true); tributeComplete(room);
+  }, turnMs + 30);
+}
+
+function beginTribute(room: Room, previousOrder: string[]) {
+  const game = room.game!;
+  const tribute = buildTributePlan(room.players.map(player => ({ id: player.id, seat: player.seat, team: team(player) })), game.hands, game.level, previousOrder); game.tribute = tribute;
+  room.status = "tribute"; game.currentSeat = room.players.find(player => player.id === tribute.leaderId)!.seat; game.leaderId = tribute.leaderId; game.deadline = Date.now() + 1200;
+  if (!tribute.anti) for (const pair of tribute.pairs) moveCard(game, pair.payerId, pair.receiverId, pair.tributeCard);
+  appendEvent("guandan_tribute_started", room, undefined, { kind: tribute.kind, anti: tribute.anti, payerIds: tribute.payerIds, winnerIds: tribute.winnerIds }); broadcast(room);
+  game.timer = setTimeout(() => {
+    if (room.status !== "tribute" || !game.tribute) return;
+    if (game.tribute.anti) return tributeComplete(room);
+    settleAutomaticReturns(room, false);
+    if (game.tribute.pairs.every(pair => pair.returnCard)) tributeComplete(room); else waitForTributeReturns(room);
+  }, 1200);
+}
+
+function returnTribute(room: Room, player: Player, cardId: string) {
+  const game = room.game!; const tribute = game.tribute;
+  if (room.status !== "tribute" || !tribute || tribute.anti) throw new Error("当前不需要还贡");
+  const pair = tribute.pairs.find(item => item.receiverId === player.id && !item.returnCard); if (!pair) throw new Error("你当前不需要还贡");
+  const card = legalReturnCards(game.hands.get(player.id) || [], game.level).find(candidate => candidate.id === cardId); if (!card) throw new Error("请选择一张 10 及以下的牌还贡");
+  moveCard(game, player.id, pair.payerId, card); pair.returnCard = card; appendEvent("guandan_tribute_returned", room, player, { payerId: pair.payerId, automatic: false, cardId: card.id });
+  settleAutomaticReturns(room, false); if (tribute.pairs.every(item => item.returnCard)) tributeComplete(room); else waitForTributeReturns(room);
+}
+
 function startGame(room: Room, requester: Player) {
   if (requester.id !== room.hostId) throw new Error("仅房主可开局");
-  if (room.status === "playing") throw new Error("牌局已开始");
+  if (room.status === "playing" || room.status === "tribute") throw new Error("牌局已开始");
   while (room.players.length < 4) {
     const seat = room.players.length; room.players.push({ id: `bot-${id()}`, token: "", name: botNames[seat - realPlayers(room).length] || `人机${seat + 1}`, avatar: 6 + seat, seat, bot: true, connected: true, ready: true, requests: new Set() });
   }
-  room.gameIndex += 1; const players = [...room.players].sort((a, b) => a.seat - b.seat); const levels = room.game?.levels || [2, 2] as [number, number]; const level = room.game ? levels[team(requester)] : 2;
-  room.game = { level, levels, hands: dealHands(players.map(p => p.id)), currentSeat: 0, leaderId: players[0].id, lastPlayerId: null, currentCombo: null, passed: new Set(), trickActions: new Map(), finishOrder: [], deadline: 0, startedAt: Date.now(), actionSerial: 0 };
-  room.status = "playing"; appendEvent("guandan_match_started", room, requester, { realPlayerCount: realPlayers(room).length, level }); scheduleTurn(room);
+  const previous = room.game; const previousOrder = previous?.finishOrder.length === 4 ? [...previous.finishOrder] : null;
+  const previousResult = previousOrder ? upgradeForOrder(previousOrder, playerId => team(room.players.find(player => player.id === playerId)!)) : null;
+  room.gameIndex += 1; const players = [...room.players].sort((a, b) => a.seat - b.seat); const levels = previous?.levels || [2, 2] as [number, number]; const level = previousResult ? levels[previousResult.winner] : 2; const firstSeat = process.env.FIRST_SEAT === undefined ? crypto.randomInt(4) : Math.max(0, Math.min(3, Number(process.env.FIRST_SEAT)));
+  room.game = { level, levels, hands: dealHands(players.map(p => p.id)), currentSeat: firstSeat, leaderId: players[firstSeat].id, lastPlayerId: null, currentCombo: null, passed: new Set(), trickActions: new Map(), finishOrder: [], deadline: 0, startedAt: Date.now(), actionSerial: 0 };
+  appendEvent("guandan_match_started", room, requester, { realPlayerCount: realPlayers(room).length, level, firstSeat, hasTribute: Boolean(previousOrder) });
+  if (previousOrder) beginTribute(room, previousOrder); else { room.status = "playing"; scheduleTurn(room); }
 }
 
 function action(room: Room, player: Player, message: any) {
@@ -168,6 +234,7 @@ function action(room: Room, player: Player, message: any) {
   if (message.action === "start_game") startGame(room, player);
   else if (message.action === "play") applyPlay(room, player, Array.isArray(message.cardIds) ? message.cardIds.map(String) : []);
   else if (message.action === "pass") applyPass(room, player);
+  else if (message.action === "return_tribute") returnTribute(room, player, String(message.cardId || ""));
   else if (message.action === "ready") { player.ready = true; appendEvent("guandan_rematch_ready", room, player); broadcast(room); }
   else throw new Error("未知操作");
 }
@@ -190,7 +257,7 @@ const server = http.createServer(async (req, res) => {
     }
     const join = url.pathname.match(/^\/api\/rooms\/([A-Z0-9]+)\/join$/);
     if (req.method === "POST" && join) {
-      const room = rooms.get(join[1]); if (!room) return json(res, 404, { error: "房间不存在" }); if (realPlayers(room).length >= 4 || room.status === "playing") return json(res, 409, { error: "本桌已满或已开局" });
+      const room = rooms.get(join[1]); if (!room) return json(res, 404, { error: "房间不存在" }); if (realPlayers(room).length >= 4 || room.status !== "waiting") return json(res, 409, { error: "本桌已满或已开局" });
       const input = await body(req); const seat = [0,1,2,3].find(value => !room.players.some(p => p.seat === value))!;
       const player: Player = { id: id(), token: id(), name: safeName(input.name), avatar: Number(input.avatar || 0) % 8, seat, bot: false, connected: false, ready: false, requests: new Set() }; room.players.push(player); appendEvent("guandan_player_joined", room, player); return json(res, 200, session(room, player));
     }
