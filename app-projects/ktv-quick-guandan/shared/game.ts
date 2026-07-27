@@ -189,8 +189,8 @@ export function comboPreservationCost(combo: Combo, hand: Card[], level: number)
 
 export function legalCombos(hand: Card[], level: number, current: Combo | null) {
   return generateCombos(hand, level).filter(combo => beats(combo, current)).sort((a, b) =>
-    a.bombTier - b.bombTier ||
     comboPreservationCost(a, hand, level) - comboPreservationCost(b, hand, level) ||
+    a.bombTier - b.bombTier ||
     a.size - b.size ||
     a.rank - b.rank
   );

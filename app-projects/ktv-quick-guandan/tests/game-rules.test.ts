@@ -42,6 +42,14 @@ test("hints preserve natural bombs instead of peeling off low cards",()=>{
   assert.equal(hint.cards[0].rank,8);
 });
 
+test("hints play the whole bomb rather than a single peeled from it",()=>{
+  const hand=[card(8),card(8,"clubs"),card(8,"hearts",1),card(8,"diamonds")];
+  const current=evaluateCombo([card(7)],2)!;
+  const hint=legalCombos(hand,2,current)[0];
+  assert.equal(hint.type,"bomb");
+  assert.equal(hint.cards.length,4);
+});
+
 test("hints prefer a natural full house over spending a wild card",()=>{
   const hand=[card(8),card(8,"clubs"),card(8,"diamonds"),card(6),card(6,"clubs"),card(9),card(2,"hearts")];
   const current=evaluateCombo([card(7),card(7,"clubs"),card(7,"diamonds"),card(5),card(5,"clubs")],2)!;

@@ -60,6 +60,14 @@ test("bot keeps a four-card bomb intact when opening", () => {
   if (decision.action === "play") assert.equal(decision.combo.cards.some(candidate => candidate.rank === 3), false);
 });
 
+test("bot plays a whole bomb instead of peeling a matching single", () => {
+  const hand = [card(8), card(8, "clubs"), card(8, "hearts"), card(8, "diamonds")];
+  const current = evaluateCombo([card(7)], 2)!;
+  const decision = chooseBotDecision({ hand, level: 2, currentCombo: current, options: legalCombos(hand, 2, current), teammateLeading: false, teammateHand: [card(12)], opponentCardCounts: [8, 9] });
+  assert.equal(decision.action, "play");
+  if (decision.action === "play") assert.equal(decision.combo.type, "bomb");
+});
+
 test("level labels use playing-card ranks above ten", () => {
   assert.deepEqual([10, 11, 12, 13, 14].map(rankLabel), ["10", "J", "Q", "K", "A"]);
 });
