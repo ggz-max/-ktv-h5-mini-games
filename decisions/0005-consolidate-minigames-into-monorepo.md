@@ -32,6 +32,14 @@ The canonical/default branch is:
 ktv-h5-extension-monorepo
 ```
 
+The GitHub mirror repository is:
+
+```text
+https://github.com/ggz-max/-ktv-h5-mini-games.git
+```
+
+Use remote name `github` for the GitHub mirror. Push the mirror to GitHub branch `main`. Keep `origin` pointing to the canonical GitLab repository.
+
 Do not create a new GitLab Project for each lightweight mini-game.
 
 Create a separate GitLab Project only when the product becomes a large independent system with its own backend, database, permission model, or separate business lifecycle.

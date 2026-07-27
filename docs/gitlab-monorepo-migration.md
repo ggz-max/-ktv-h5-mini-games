@@ -8,6 +8,8 @@
 Project: ktv-h5-mini-games
 Remote: https://g.ktvsky.com/liguangzhe/ktv-h5-mini-games.git
 Default branch: ktv-h5-extension-monorepo
+GitHub mirror: https://github.com/ggz-max/-ktv-h5-mini-games.git
+GitHub branch: main
 Local root: D:\AIproject\production\ktv-h5-extension
 ```
 
