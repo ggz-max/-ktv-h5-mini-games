@@ -172,8 +172,28 @@ export function generateCombos(hand: Card[], level: number): Combo[] {
   return [...results.values()];
 }
 
+export function comboPreservationCost(combo: Combo, hand: Card[], level: number) {
+  if (combo.bombTier > 0) return 0;
+  const naturalCounts = counts(hand, level);
+  const hasJokerBomb = hand.filter(card => card.suit === "joker").length === 4;
+  return combo.cards.reduce((cost, card) => {
+    if (isWild(card, level)) return cost + 25;
+    if (card.suit === "joker" && hasJokerBomb) return cost + 180;
+    const rankCount = naturalCounts.get(card.rank)?.length || 0;
+    if (rankCount >= 4) return cost + 120 + rankCount * 10;
+    if (combo.type === "single" && rankCount >= 2) return cost + (rankCount - 1) * 4;
+    if (combo.type === "pair" && rankCount >= 3) return cost + 8;
+    return cost;
+  }, 0);
+}
+
 export function legalCombos(hand: Card[], level: number, current: Combo | null) {
-  return generateCombos(hand, level).filter(combo => beats(combo, current)).sort((a, b) => a.bombTier - b.bombTier || a.size - b.size || a.rank - b.rank);
+  return generateCombos(hand, level).filter(combo => beats(combo, current)).sort((a, b) =>
+    a.bombTier - b.bombTier ||
+    comboPreservationCost(a, hand, level) - comboPreservationCost(b, hand, level) ||
+    a.size - b.size ||
+    a.rank - b.rank
+  );
 }
 
 export function comboLabel(combo: Combo | null) {

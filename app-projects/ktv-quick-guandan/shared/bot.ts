@@ -1,4 +1,4 @@
-import { beats, evaluateCombo, type Card, type Combo } from "./game.ts";
+import { beats, comboPreservationCost, evaluateCombo, type Card, type Combo } from "./game.ts";
 
 export type BotReason = "finish" | "yield-to-teammate" | "feed-teammate" | "block-opponent" | "normal" | "no-play";
 export type BotDecision = { action: "pass"; reason: BotReason } | { action: "play"; combo: Combo; reason: BotReason };
@@ -13,8 +13,16 @@ interface BotContext {
   opponentCardCounts: number[];
 }
 
-function largestCombination(options: Combo[]) {
-  return [...options].sort((a, b) => b.size - a.size || a.rank - b.rank)[0];
+function strategicOptions(options: Combo[], hand: Card[], level: number) {
+  return [...options].sort((a, b) =>
+    comboPreservationCost(a, hand, level) - comboPreservationCost(b, hand, level) ||
+    b.size - a.size ||
+    a.rank - b.rank
+  );
+}
+
+function largestCombination(options: Combo[], hand: Card[], level: number) {
+  return strategicOptions(options, hand, level)[0];
 }
 
 export function chooseBotDecision(context: BotContext): BotDecision {
@@ -43,14 +51,16 @@ export function chooseBotDecision(context: BotContext): BotDecision {
 
     if (opponentAtOne) {
       const protectedOptions = nonBombs.filter(option => option.type !== "single");
-      if (protectedOptions.length) return { action: "play", combo: largestCombination(protectedOptions), reason: "block-opponent" };
+      if (protectedOptions.length) return { action: "play", combo: largestCombination(protectedOptions, hand, level), reason: "block-opponent" };
     }
 
-    return { action: "play", combo: largestCombination(nonBombs.length ? nonBombs : options), reason: opponentDanger ? "block-opponent" : "normal" };
+    return { action: "play", combo: largestCombination(nonBombs.length ? nonBombs : options, hand, level), reason: opponentDanger ? "block-opponent" : "normal" };
   }
 
   if (opponentAtOne) {
-    const nonBomb = [...nonBombs].sort((a, b) => b.rank - a.rank)[0];
+    const nonBomb = strategicOptions(nonBombs, hand, level).sort((a, b) =>
+      comboPreservationCost(a, hand, level) - comboPreservationCost(b, hand, level) || b.rank - a.rank
+    )[0];
     return { action: "play", combo: nonBomb || options[0], reason: "block-opponent" };
   }
 

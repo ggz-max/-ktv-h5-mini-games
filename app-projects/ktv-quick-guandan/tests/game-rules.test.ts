@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { beats, createDeck, dealHands, evaluateCombo, generateCombos, upgradeForOrder, type Card, type Suit } from "../shared/game.ts";
+import { beats, createDeck, dealHands, evaluateCombo, generateCombos, legalCombos, upgradeForOrder, type Card, type Suit } from "../shared/game.ts";
 
 const card = (rank:number,suit:Suit="spades",deck:0|1=0):Card=>({id:`${deck}-${suit}-${rank}`,rank,suit,deck});
 
@@ -33,6 +33,21 @@ test("bomb hierarchy preserves straight flush and large bombs",()=>{
 test("generator returns playable combinations from a full hand",()=>{
   const hand=[card(4),card(4,"clubs"),card(5),card(6),card(7),card(8),card(9),card(12)];
   const types=new Set(generateCombos(hand,2).map(c=>c.type));assert.ok(types.has("pair"));assert.ok(types.has("straight")||types.has("straight-flush"));
+});
+
+test("hints preserve natural bombs instead of peeling off low cards",()=>{
+  const hand=[card(3),card(3,"clubs"),card(3,"hearts",1),card(3,"diamonds"),card(8)];
+  const hint=legalCombos(hand,2,null)[0];
+  assert.equal(hint.type,"single");
+  assert.equal(hint.cards[0].rank,8);
+});
+
+test("hints prefer a natural full house over spending a wild card",()=>{
+  const hand=[card(8),card(8,"clubs"),card(8,"diamonds"),card(6),card(6,"clubs"),card(9),card(2,"hearts")];
+  const current=evaluateCombo([card(7),card(7,"clubs"),card(7,"diamonds"),card(5),card(5,"clubs")],2)!;
+  const hint=legalCombos(hand,2,current)[0];
+  assert.equal(hint.type,"full-house");
+  assert.equal(hint.cards.some(candidate=>candidate.suit==="hearts"&&candidate.rank===2),false);
 });
 
 test("finish order upgrades winner by partner placement",()=>{

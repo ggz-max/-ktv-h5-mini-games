@@ -53,6 +53,13 @@ test("bot avoids leading a single when an opponent has one card", () => {
   }
 });
 
+test("bot keeps a four-card bomb intact when opening", () => {
+  const hand = [card(3), card(3, "clubs"), card(3, "hearts"), card(3, "diamonds"), card(8), card(9)];
+  const decision = chooseBotDecision({ hand, level: 2, currentCombo: null, options: legalCombos(hand, 2, null), teammateLeading: false, teammateHand: [card(12), card(13)], opponentCardCounts: [8, 9] });
+  assert.equal(decision.action, "play");
+  if (decision.action === "play") assert.equal(decision.combo.cards.some(candidate => candidate.rank === 3), false);
+});
+
 test("level labels use playing-card ranks above ten", () => {
   assert.deepEqual([10, 11, 12, 13, 14].map(rankLabel), ["10", "J", "Q", "K", "A"]);
 });
