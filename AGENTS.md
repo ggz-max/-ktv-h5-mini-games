@@ -38,6 +38,8 @@ https://github.com/ggz-max/-ktv-h5-mini-games.git
 
 Use remote name `github` for the GitHub mirror. The GitHub mirror branch is `main`. Keep remote name `origin` for the canonical GitLab repository.
 
+ThunderBox deployments for these projects should be treated as GitLab-connected. Do not use the GitHub mirror as a ThunderBox deployment source or health signal; GitHub may be unreachable from ThunderBox.
+
 This GitLab Project was renamed from `room-blame-king` to `ktv-h5-mini-games`. Treat `ktv-h5-mini-games` as the shared monorepo for all lightweight KTV H5 mini-games and small experiments.
 
 New lightweight games should be added under:
