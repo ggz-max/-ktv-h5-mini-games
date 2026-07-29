@@ -49,9 +49,26 @@ function rejectMojibake(label, text) {
   if (!page.data.includes("分享图默认不展示原始输入")) {
     throw new Error("input privacy copy missing");
   }
-  if (!page.data.includes("不收真实手机号或微信")) {
-    throw new Error("lead privacy copy missing");
+  if (!page.data.includes("保存海报")) {
+    throw new Error("minimal result save poster button missing");
   }
+  [
+    'data-action="ritual"',
+    'data-action="remix"',
+    'data-action="copy-remix"',
+    'data-action="collect"',
+    'data-action="copy"',
+    'data-action="app"',
+    'data-screen="app"',
+    "after-report-panel",
+    "remix-panel",
+    "collection-panel",
+    "lead-gate"
+  ].forEach((needle) => {
+    if (page.data.includes(needle)) {
+      throw new Error(`removed result extra is still visible: ${needle}`);
+    }
+  });
 
   const admin = await request("GET", "/admin.html");
   if (admin.status !== 200 || !admin.data.includes("嘴硬日记数据看板")) {
@@ -64,9 +81,6 @@ function rejectMojibake(label, text) {
     throw new Error("share poster generation missing");
   }
   rejectMojibake("app js", app.data);
-  if (!app.data.includes("mh_lead_intent_click")) {
-    throw new Error("lead intent tracking missing");
-  }
   if (!app.data.includes("mh_regenerate_click")) {
     throw new Error("regenerate tracking missing");
   }

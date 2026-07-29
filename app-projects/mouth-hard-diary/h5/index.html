@@ -6,7 +6,7 @@
     <title>嘴硬日记 - 今日发疯报告</title>
     <meta name="description" content="把今天的破事翻译成一张能发出去的精神状态报告。">
     <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="./styles.css?v=20260729a">
+    <link rel="stylesheet" href="./styles.css?v=20260729b">
   </head>
   <body>
     <main class="app-shell">
@@ -63,11 +63,6 @@
       </section>
 
       <section class="screen" data-screen="result">
-        <div class="topbar">
-          <button class="icon-button" type="button" data-action="restart" aria-label="重新生成">↻</button>
-          <span>今日发疯报告</span>
-        </div>
-
         <article class="report-card" id="report-card">
           <div class="report-sticker">今日称号</div>
           <p class="report-date" data-report="date"></p>
@@ -82,113 +77,12 @@
           <p class="report-advice" data-report="advice">先别复盘人生，先喝口水。</p>
         </article>
 
-        <section class="after-report-panel" aria-label="报告后互动">
-          <div class="section-heading">
-            <span>继续拆解</span>
-            <strong>别让报告停在截图</strong>
-          </div>
-          <div class="interaction-grid">
-            <button type="button" data-action="ritual" data-ritual="comfort">
-              <strong>抽一条自救动作</strong>
-              <span>给今晚一个能执行的小出口</span>
-            </button>
-            <button type="button" data-action="ritual" data-ritual="roast">
-              <strong>加一点嘴硬火力</strong>
-              <span>生成更适合发群聊的版本</span>
-            </button>
-            <button type="button" data-action="ritual" data-ritual="truth">
-              <strong>翻译真实潜台词</strong>
-              <span>把嘴硬拆成一句人话</span>
-            </button>
-            <button type="button" data-action="ritual" data-ritual="tomorrow">
-              <strong>明天怎么活</strong>
-              <span>给一个低成本续命计划</span>
-            </button>
-          </div>
-          <div class="ritual-result" data-ritual-result hidden></div>
-        </section>
-
-        <section class="remix-panel" aria-label="报告改写">
-          <div class="section-heading">
-            <span>一键改写</span>
-            <strong>换个出口继续发</strong>
-          </div>
-          <div class="remix-tabs" role="tablist" aria-label="文案版本">
-            <button type="button" class="is-selected" data-action="remix" data-remix="group_chat">群聊版</button>
-            <button type="button" data-action="remix" data-remix="moments">朋友圈版</button>
-            <button type="button" data-action="remix" data-remix="diary">日记版</button>
-          </div>
-          <div class="remix-card">
-            <p data-remix-output></p>
-            <button type="button" data-action="copy-remix">复制这版</button>
-          </div>
-        </section>
-
-        <section class="collection-panel" aria-label="本次报告收藏">
-          <div>
-            <span>本次档案</span>
-            <strong data-collection-title>未收藏</strong>
-            <small data-collection-note>点一下收藏，看看你更像哪种发疯类型。</small>
-          </div>
-          <button type="button" data-action="collect">加入今日档案</button>
-        </section>
-
         <div class="result-actions">
-          <button class="primary-action" type="button" data-action="save">保存报告图</button>
-          <button class="ghost-action" type="button" data-action="copy">复制嘴硬文案</button>
-          <button class="ghost-action" type="button" data-action="app">存进我的发疯档案</button>
-        </div>
-      </section>
-
-      <section class="screen" data-screen="app">
-        <div class="app-card">
-          <p class="eyebrow">APP NEXT</p>
-          <h2>把每一天的嘴硬，都存成档案</h2>
-          <p>今天先用 H5 存一份本地档案，看看这件事是否值得继续做成 App。</p>
-          <div class="archive-preview">
-            <span>本月发疯档案</span>
-            <strong data-archive-count>0</strong>
-            <small data-archive-note>还没有收藏报告</small>
-          </div>
-          <div class="archive-stats" aria-label="档案统计">
-            <div>
-              <span>最高嘴硬</span>
-              <strong data-archive-stat="mouthHard">-</strong>
-            </div>
-            <div>
-              <span>最缺觉</span>
-              <strong data-archive-stat="needSleep">-</strong>
-            </div>
-            <div>
-              <span>最近状态</span>
-              <strong data-archive-stat="latest">-</strong>
-            </div>
-          </div>
-          <div class="archive-list" data-archive-list aria-label="已收藏报告"></div>
-          <div class="archive-actions">
-            <button type="button" data-action="archive-back">返回报告</button>
-            <button type="button" data-action="archive-clear">清空本地档案</button>
-          </div>
-          <div class="interest-list" aria-label="App 功能兴趣">
-            <button type="button" data-action="interest" data-interest="archive">保存历史报告</button>
-            <button type="button" data-action="interest" data-interest="calendar">精神状态日历</button>
-            <button type="button" data-action="interest" data-interest="persona_atlas">嘴硬人格图鉴</button>
-            <button type="button" data-action="interest" data-interest="style_templates">更多发疯模板</button>
-          </div>
-          <div class="lead-gate" aria-label="上线提醒方式">
-            <span>想收到上线提醒吗？</span>
-            <div class="lead-actions">
-              <button type="button" data-action="lead" data-lead-method="wechat">微信提醒</button>
-              <button type="button" data-action="lead" data-lead-method="phone">手机号提醒</button>
-              <button type="button" data-action="lead" data-lead-method="skip">先不用</button>
-            </div>
-            <small>当前只记录选择意向，不收真实手机号或微信。</small>
-          </div>
-          <button class="primary-action" type="button" data-action="restart">再生成一次</button>
+          <button class="primary-action" type="button" data-action="save">保存海报</button>
         </div>
       </section>
     </main>
     <div class="toast" role="status" aria-live="polite"></div>
-    <script src="./app.js?v=20260729a"></script>
+    <script src="./app.js?v=20260729b"></script>
   </body>
 </html>

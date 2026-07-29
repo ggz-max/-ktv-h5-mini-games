@@ -189,7 +189,10 @@ async function screenshot(cdp, outputPath) {
         feedbackPanels: document.querySelectorAll('.feedback-strip').length,
         rituals: document.querySelectorAll('[data-action="ritual"]').length,
         remixes: document.querySelectorAll('[data-action="remix"]').length,
-        collectionText: document.querySelector('[data-collection-title]')?.textContent || '',
+        copyButtons: document.querySelectorAll('[data-action="copy"]').length,
+        appButtons: document.querySelectorAll('[data-action="app"]').length,
+        collectButtons: document.querySelectorAll('[data-action="collect"]').length,
+        appScreens: document.querySelectorAll('[data-screen="app"]').length,
         active: document.querySelector('.screen.is-active')?.dataset.screen
       })`,
       returnByValue: true
@@ -197,9 +200,11 @@ async function screenshot(cdp, outputPath) {
 
     const resultValue = resultChecks.result.value;
     if (resultValue.active !== "result" || !resultValue.title || !resultValue.quote ||
-      resultValue.buttons.length < 3 || resultValue.rituals < 4 || resultValue.remixes < 3 ||
+      resultValue.buttons.length !== 1 || resultValue.buttons[0] !== "保存海报" ||
+      resultValue.rituals !== 0 || resultValue.remixes !== 0 ||
       resultValue.shareButtons !== 0 || resultValue.feedbackButtons !== 0 || resultValue.feedbackPanels !== 0 ||
-      resultValue.collectionText !== "未收藏") {
+      resultValue.copyButtons !== 0 || resultValue.appButtons !== 0 || resultValue.collectButtons !== 0 ||
+      resultValue.appScreens !== 0) {
       throw new Error(`Unexpected result state: ${JSON.stringify(resultValue)}`);
     }
     const afterAttribution = await getJson("http://127.0.0.1:4327/api/v1/admin/runtime-summary");
@@ -208,69 +213,9 @@ async function screenshot(cdp, outputPath) {
       throw new Error(`Default attribution did not land in h5_mvp: ${JSON.stringify(afterAttribution.sourceSummary?.h5_mvp)}`);
     }
 
-    const beforeInteractiveSummary = await getJson("http://127.0.0.1:4327/api/v1/admin/runtime-summary");
-    await click(cdp, "[data-ritual='truth']");
-    await click(cdp, "[data-remix='moments']");
-    await click(cdp, "[data-action='copy-remix']");
-    await click(cdp, "[data-action='collect']");
-    await waitForEventCount("mh_result_ritual_click", (beforeInteractiveSummary.eventCounts?.mh_result_ritual_click || 0) + 1);
-    await waitForEventCount("mh_result_remix_click", (beforeInteractiveSummary.eventCounts?.mh_result_remix_click || 0) + 1);
-    await waitForEventCount("mh_result_remix_copy", (beforeInteractiveSummary.eventCounts?.mh_result_remix_copy || 0) + 1);
-    await waitForEventCount("mh_report_collect_click", (beforeInteractiveSummary.eventCounts?.mh_report_collect_click || 0) + 1);
-    const interactiveChecks = await cdp.send("Runtime.evaluate", {
-      expression: `({
-        ritualText: document.querySelector('[data-ritual-result]')?.textContent || '',
-        remixText: document.querySelector('[data-remix-output]')?.textContent || '',
-        activeRemix: document.querySelector('[data-remix].is-selected')?.dataset.remix || '',
-        collectionText: document.querySelector('[data-collection-title]')?.textContent || '',
-        storedCount: JSON.parse(localStorage.getItem('mh_report_collection') || '[]').length
-      })`,
-      returnByValue: true
-    });
-    const interactiveValue = interactiveChecks.result.value;
-    if (!interactiveValue.ritualText || !interactiveValue.remixText ||
-      interactiveValue.activeRemix !== "moments" || !/^已收藏/.test(interactiveValue.collectionText) ||
-      interactiveValue.storedCount < 1) {
-      throw new Error(`Unexpected result interaction state: ${JSON.stringify(interactiveValue)}`);
-    }
-
-    const beforeArchiveSummary = await getJson("http://127.0.0.1:4327/api/v1/admin/runtime-summary");
-    await click(cdp, "[data-action='app']");
-    await waitFor(cdp, "document.querySelector('[data-screen=\"app\"]').classList.contains('is-active')");
-    const archiveChecks = await cdp.send("Runtime.evaluate", {
-      expression: `({
-        active: document.querySelector('.screen.is-active')?.dataset.screen,
-        count: document.querySelector('[data-archive-count]')?.textContent || '',
-        note: document.querySelector('[data-archive-note]')?.textContent || '',
-        mouthHard: document.querySelector('[data-archive-stat="mouthHard"]')?.textContent || '',
-        cards: document.querySelectorAll('[data-archive-list] article').length
-      })`,
-      returnByValue: true
-    });
-    const archiveValue = archiveChecks.result.value;
-    if (archiveValue.active !== "app" || archiveValue.count !== "1" ||
-      !archiveValue.note || archiveValue.mouthHard === "-" || archiveValue.cards < 1) {
-      throw new Error(`Unexpected archive state: ${JSON.stringify(archiveValue)}`);
-    }
-    await click(cdp, "[data-action='archive-clear']");
-    await waitForEventCount("mh_archive_clear_click", (beforeArchiveSummary.eventCounts?.mh_archive_clear_click || 0) + 1);
-    const clearedChecks = await cdp.send("Runtime.evaluate", {
-      expression: `({
-        count: document.querySelector('[data-archive-count]')?.textContent || '',
-        storedCount: JSON.parse(localStorage.getItem('mh_report_collection') || '[]').length
-      })`,
-      returnByValue: true
-    });
-    const clearedValue = clearedChecks.result.value;
-    if (clearedValue.count !== "0" || clearedValue.storedCount !== 0) {
-      throw new Error(`Archive did not clear: ${JSON.stringify(clearedValue)}`);
-    }
-
-    const beforeSummary = await getJson("http://127.0.0.1:4327/api/v1/admin/runtime-summary");
-    const beforeRegenerates = beforeSummary.eventCounts?.mh_regenerate_click || 0;
-    await click(cdp, "[data-action='restart']");
-    await waitFor(cdp, "document.querySelector('[data-screen=\"input\"]').classList.contains('is-active')");
-    await waitForEventCount("mh_regenerate_click", beforeRegenerates + 1);
+    const beforeSaveSummary = await getJson("http://127.0.0.1:4327/api/v1/admin/runtime-summary");
+    await click(cdp, "[data-action='save']");
+    await waitForEventCount("mh_save_click", (beforeSaveSummary.eventCounts?.mh_save_click || 0) + 1);
     const checks = await cdp.send("Runtime.evaluate", {
       expression: `({
         active: document.querySelector('.screen.is-active')?.dataset.screen
@@ -278,7 +223,7 @@ async function screenshot(cdp, outputPath) {
       returnByValue: true
     });
     const value = checks.result.value;
-    if (value.active !== "input") {
+    if (value.active !== "result") {
       throw new Error(`Unexpected page state: ${JSON.stringify(value)}`);
     }
 
