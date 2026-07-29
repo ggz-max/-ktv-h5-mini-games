@@ -70,8 +70,8 @@ function rejectMojibake(label, text) {
   if (!app.data.includes("mh_regenerate_click")) {
     throw new Error("regenerate tracking missing");
   }
-  if (!app.data.includes("mh_share_click") || !page.data.includes('data-action="share"')) {
-    throw new Error("share tracking/action missing");
+  if (page.data.includes('data-action="share"') || page.data.includes('data-action="feedback"') || page.data.includes("feedback-strip")) {
+    throw new Error("removed share or feedback action is still visible");
   }
   if (!app.data.includes('source: "h5_mvp"') || !app.data.includes('channel: "direct"')) {
     throw new Error("default acquisition attribution missing");

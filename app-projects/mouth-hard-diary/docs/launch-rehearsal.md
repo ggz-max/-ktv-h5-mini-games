@@ -1,6 +1,6 @@
 # Launch Rehearsal Report
 
-Generated: 2026-07-09T05:44:08.318Z
+Generated: 2026-07-29T05:19:41.308Z
 
 This report is for founder/operator rehearsal before formal sampling. It is allowed to be green while launch is still blocked, because Pencil final exports and runtime cleanup are intentionally separate gates.
 

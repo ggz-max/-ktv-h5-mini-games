@@ -1,6 +1,6 @@
 # Preflight Report
 
-Generated: 2026-07-09T05:44:08.439Z
+Generated: 2026-07-29T05:19:41.413Z
 
 This report is the final preflight view before real sampling. If it says `internal_only`, do not recruit real users or interpret traffic as real conversion data.
 

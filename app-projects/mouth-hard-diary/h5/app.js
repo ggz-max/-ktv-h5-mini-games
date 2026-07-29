@@ -284,13 +284,6 @@ function saveCollection() {
   renderArchive();
 }
 
-function trackShare(method) {
-  track("mh_share_click", {
-    reportId: state.report?.reportId,
-    method
-  });
-}
-
 function selectInGroup(button) {
   const group = button.closest("[data-field]");
   group.querySelectorAll("button").forEach((item) => item.classList.remove("is-selected"));
@@ -494,30 +487,6 @@ document.addEventListener("click", (event) => {
     );
     track("mh_copy_click", { reportId: state.report?.reportId });
   }
-  if (action === "share") {
-    const text = buildShareText();
-    if (!text) {
-      showToast("先生成一份报告");
-      return;
-    }
-    if (navigator.share) {
-      trackShare("native_prompt");
-      navigator.share({
-        title: state.report.title,
-        text,
-        url: window.location.href
-      }).then(
-        () => showToast("分享已打开"),
-        () => showToast("分享已取消")
-      );
-    } else {
-      trackShare("clipboard_fallback");
-      navigator.clipboard?.writeText(text).then(
-        () => showToast("分享文案已复制"),
-        () => showToast("分享失败，可以先保存报告图")
-      );
-    }
-  }
   if (action === "ritual") {
     if (!state.report) {
       showToast("先生成一份报告");
@@ -590,13 +559,6 @@ document.addEventListener("click", (event) => {
     track("mh_archive_clear_click", {
       reportId: state.report?.reportId
     });
-  }
-  if (action === "feedback") {
-    track("mh_report_feedback_click", {
-      reportId: state.report?.reportId,
-      feedback: button.dataset.feedback
-    });
-    showToast("收到，这条会进内容复盘");
   }
   if (action === "interest") {
     track("mh_app_interest_click", {

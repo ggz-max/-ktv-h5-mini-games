@@ -12,7 +12,7 @@ This guide is generated as a review aid. It does not approve the style by itself
 | --- | --- | --- |
 | status | approved | approved |
 | approvedBy | 李广哲 | PENDING_USER |
-| approvedAt | 2026-06-29T06:10:36.967Z | 2026-07-09T05:44:13.937Z |
+| approvedAt | 2026-06-29T06:10:36.967Z | 2026-07-29T05:19:46.316Z |
 | approvalNotes | Confirmed from Pencil boards for launch: export frames exist in mouth-hard-diary.pen and Pencil exported hero, share poster, and sticker runtime PNGs. | Pending final user confirmation from Pencil boards. |
 
 ## Required Review

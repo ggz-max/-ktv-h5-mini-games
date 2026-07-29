@@ -184,6 +184,9 @@ async function screenshot(cdp, outputPath) {
         title: document.querySelector('[data-report="title"]')?.textContent || '',
         quote: document.querySelector('[data-report="quote"]')?.textContent || '',
         buttons: [...document.querySelectorAll('.result-actions button')].map(b => b.textContent.trim()),
+        shareButtons: document.querySelectorAll('[data-action="share"]').length,
+        feedbackButtons: document.querySelectorAll('[data-action="feedback"]').length,
+        feedbackPanels: document.querySelectorAll('.feedback-strip').length,
         rituals: document.querySelectorAll('[data-action="ritual"]').length,
         remixes: document.querySelectorAll('[data-action="remix"]').length,
         collectionText: document.querySelector('[data-collection-title]')?.textContent || '',
@@ -195,6 +198,7 @@ async function screenshot(cdp, outputPath) {
     const resultValue = resultChecks.result.value;
     if (resultValue.active !== "result" || !resultValue.title || !resultValue.quote ||
       resultValue.buttons.length < 3 || resultValue.rituals < 4 || resultValue.remixes < 3 ||
+      resultValue.shareButtons !== 0 || resultValue.feedbackButtons !== 0 || resultValue.feedbackPanels !== 0 ||
       resultValue.collectionText !== "未收藏") {
       throw new Error(`Unexpected result state: ${JSON.stringify(resultValue)}`);
     }
@@ -203,14 +207,6 @@ async function screenshot(cdp, outputPath) {
       (afterAttribution.sourceSummary?.h5_mvp?.reports || 0) <= beforeH5Reports) {
       throw new Error(`Default attribution did not land in h5_mvp: ${JSON.stringify(afterAttribution.sourceSummary?.h5_mvp)}`);
     }
-
-    const beforeShareSummary = await getJson("http://127.0.0.1:4327/api/v1/admin/runtime-summary");
-    const beforeShares = beforeShareSummary.eventCounts?.mh_share_click || 0;
-    await cdp.send("Runtime.evaluate", {
-      expression: "navigator.share = undefined"
-    });
-    await click(cdp, "[data-action='share']");
-    await waitForEventCount("mh_share_click", beforeShares + 1);
 
     const beforeInteractiveSummary = await getJson("http://127.0.0.1:4327/api/v1/admin/runtime-summary");
     await click(cdp, "[data-ritual='truth']");

@@ -1,6 +1,6 @@
 # Founder Brief: Mouth Hard Diary
 
-Generated: 2026-07-09T05:44:08.671Z
+Generated: 2026-07-29T05:19:41.632Z
 
 ## Decision
 

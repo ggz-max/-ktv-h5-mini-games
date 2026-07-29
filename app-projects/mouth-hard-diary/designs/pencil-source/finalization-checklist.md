@@ -25,7 +25,7 @@ Only apply this shape after the user confirms the visual direction from Pencil b
   "directionName": "深夜便利贴 + 霓虹批注",
   "decisionSummary": "首页底板使用 clean background，强视觉使用 neon sticky，结果卡使用 result card，分享海报使用 share poster，贴纸组进入 sticker kit。",
   "approvedBy": "YOUR_NAME",
-  "approvedAt": "2026-07-09T05:44:09.504Z",
+  "approvedAt": "2026-07-29T05:19:42.374Z",
   "approvalNotes": "Confirmed from Pencil boards after importing image2 sources and checking H5-safe crops."
 }
 ```
