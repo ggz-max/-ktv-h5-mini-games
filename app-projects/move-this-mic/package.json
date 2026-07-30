@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5320 frontend",
     "build": "node scripts/build-static.js",
+    "start": "node scripts/serve-static.js",
     "verify": "npm run build && npm run verify:local",
     "verify:local": "node scripts/verify-local.js"
   },
