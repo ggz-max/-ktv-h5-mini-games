@@ -138,7 +138,8 @@ function pickFortune() {
 }
 
 function setText(selector, value) {
-  document.querySelector(selector).textContent = value;
+  const element = document.querySelector(selector);
+  if (element) element.textContent = value;
 }
 
 function todayKey() {
@@ -210,13 +211,17 @@ function renderFortune() {
   setText("#goodFor", result.good);
   setText("#badFor", result.bad);
   setText("#luckyAction", result.action);
-  document.querySelector("#meterFill").style.width = `${result.score}%`;
   setText("#meterText", `${result.score}%`);
   setText("#posterTitle", result.title);
   setText("#posterBody", result.body);
   setText("#posterCode", result.code);
   setText("#posterMeter", `${result.score}%`);
-  document.querySelector("#shareCopyPreview").classList.remove("is-visible");
+  setText("#posterLevel", result.level);
+  setText("#posterSubtitle", result.subtitle);
+  const meterFill = document.querySelector("#meterFill");
+  if (meterFill) meterFill.style.width = `${result.score}%`;
+  const preview = document.querySelector("#shareCopyPreview");
+  if (preview) preview.classList.remove("is-visible");
   renderFriendSeat();
 }
 
@@ -234,6 +239,7 @@ function renderFriendSeat() {
   const poster = document.querySelector("#posterFriend");
   const rerankButton = document.querySelector("#rerankBtn");
   const hint = document.querySelector("#friendSeatHint");
+  if (!panel || !poster || !rerankButton || !hint) return;
   if (!state.friend) {
     panel.classList.remove("is-visible");
     panel.replaceChildren();
@@ -317,14 +323,11 @@ function rerankFriends() {
 
 async function copyShareText() {
   const text = shareCopy();
-  const preview = document.querySelector("#shareCopyPreview");
-  preview.textContent = text;
-  preview.classList.add("is-visible");
   try {
     await navigator.clipboard.writeText(text);
-    showToast("发群文案已复制");
+    showToast("海报文案已复制");
   } catch {
-    showToast(text);
+    showToast("复制失败，可以长按截图");
   }
 }
 
@@ -404,8 +407,8 @@ renderFortune();
 renderResumeCard(loadTodayRecord());
 
 const debugScreen = new URLSearchParams(window.location.search).get("screen");
-if (["home", "quiz", "loading", "result", "poster"].includes(debugScreen)) {
-  if (debugScreen === "result" || debugScreen === "poster") {
+if (["home", "quiz", "loading", "result"].includes(debugScreen)) {
+  if (debugScreen === "result") {
     state.scene = "alone";
     state.symptom = "wild";
     pickFortune();
