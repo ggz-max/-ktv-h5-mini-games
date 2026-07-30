@@ -1,77 +1,64 @@
-# KTV 手机点歌场景延伸项目
+﻿# 今日精神状态签 H5
 
-## 当前目标
+一个偏个人场景的爆款小产品概念原型：用「抽签 + 情绪诊断 + 自嘲嘴替」生成今日精神状态签，适合截图分享。
 
-基于雷石线下 KTV 手机点歌的大流量入口，设计可从 H5 验证并最终由 App 承接的衍生产品，让用户在 KTV 之外继续使用，并产生持续增值。
+## 当前版本
 
-## 当前产品方向
+- 首屏：使用 imagegen 生成的抽象霓虹背景和半纸签/半诊断屏主体，不再用 CSS 硬画核心 UI。
+- 选择：用户选择今日场景和当前故障。
+- 生成：使用签牌资产做短暂扫描动画，强化仪式感。
+- 结果：用窄版结果卡承载签名/编号/分数，下面用图像底板承载签文、宜忌、幸运动作、不对劲指数，适配 360-430px 小屏。
+- 分享：使用生成的分享海报框和签牌资产，生成带群聊入座榜的可截图海报。
 
-后续方向调整为：**往 App 产品做**。
+## 交互
 
-H5 的定位：
+- 点击「开始抽签」进入选择页。
+- 选择场景和故障时有选中态与轻量 toast 反馈。
+- 点击「生成今日签」进入扫描加载态，约 1.5 秒后出结果。
+- 选择页新增「懒得选，直接乱抽」，随机选择场景和故障后直接生成结果，降低首玩门槛。
+- 结果页支持重抽、反驳此签、群聊海报、复制发群文案。
+- 结果页新增群聊入座榜：输入群友昵称或一键拉满三人榜后，生成精神座位、同频值和今日风暴源，并同步写入海报与分享文案。
+- 首页新增继续今日签：本地保存当天签文和最近 3 位群聊入座榜成员，刷新后可一键回到结果页。
+- 点击「反驳此签」会在当前场景下重新校准故障类型，形成继续玩的循环。
+- 点击「复制发群文案」会展示一段可发群的嘴替文案，并尝试写入剪贴板。
+- 分享页支持返回结果、再抽一次。
+- 分享海报会同步展示最近 3 位群聊入座榜成员，适合截图点名转发。
+- URL 参数可快速预览：`?screen=home`、`?screen=quiz`、`?screen=loading`、`?screen=result`、`?screen=poster`。
 
-- KTV 内现场流量入口
-- fake-door 验证层
-- 轻量体验/海报/分享页
-- App 下载或唤起导流层
+## 文件
 
-App 的定位：
+- `index.html`：页面结构
+- `styles.css`：资产定位、文字层、动效与响应式
+- `app.js`：抽签交互与签文数据
+- `assets/mental-state-sign-concept-v1.png`：概念海报资产
+- `assets/generated-ui/bg-oracle-space-v1.png`：H5 背景层
+- `assets/generated-ui/oracle-slip-v1.png`：中心签牌透明 PNG
+- `assets/generated-ui/result-card-v1.png`：结果卡板透明 PNG
+- `assets/generated-ui/cta-button-v1.png`：CTA 按钮板透明 PNG
+- `assets/generated-ui/choice-plate-v1.png`：普通选择项底板透明 PNG
+- `assets/generated-ui/choice-plate-selected-v1.png`：选中选择项底板透明 PNG
+- `assets/generated-ui/secondary-button-v1.png`：次级按钮底板透明 PNG
+- `assets/generated-ui/loading-ring-v1.png`：加载扫描环透明 PNG
+- `assets/generated-ui/chip-plates-v1.png`：普通 chip 生成源透明 PNG，当前未直接使用
+- `assets/generated-ui/chip-plates-selected-v1.png`：选中 chip 生成源透明 PNG，当前未直接使用
+- `assets/generated-ui/fragments-v1.png`：碎片装饰透明 PNG
+- `assets/generated-ui/friend-seat-panel-v1.png`：群聊入座榜专属扫描底板透明 PNG
+- `assets/generated-ui/share-frame-v1.png`：分享海报框
 
-- 长期账号与会员资产
-- 唱后战绩和历史记录沉淀
-- 社交关系、组局、复访
-- 更复杂的互动、内容和变现
+## Pencil
 
-关键决策见：`decisions/0001-shift-from-h5-to-app.md`。
+当前尝试连接 Pencil 时返回 `transport not connected to app: visual_studio_code`，所以这一轮先完成了本地资产生产和 H5 拼装。Pencil 连上后，可直接使用 `assets/generated-ui/` 下的 PNG 作为页面构图素材。
 
-最新方向修正：
 
-- 不做美团式本地生活聚合，不做全国门店/周边商户信息收录。
-- 优先探索轻娱乐、生成、人格测试、包厢关系、表情包、小游戏等方向。
-- 当前最推荐第一个验证：**KTV 人格宇宙**。
 
-关键决策见：`decisions/0002-avoid-local-life-aggregation.md`。
 
-## 工作区约定
 
-本目录 `D:\AIproject\production\ktv-h5-extension` 是本项目后续所有记忆、调研、决策和产物的根目录。
 
-之后每一个独立的衍生产品项目，都必须放在本目录下的一个独立子文件夹中，不和其他项目混写。
+## 当前聚焦的 3 个核心功能
 
-建议结构：
+1. 快速抽签：手动选择或「懒得选，直接乱抽」，快速生成今日精神状态签。
+2. 群聊入座榜：输入群友昵称或使用「懒得输名，一键拉满三人榜」，生成精神座位、同频值和今日风暴源，支持不服重排。
+   - 榜单状态提示会说明最多 3 位、已入榜人数和重复昵称更新规则。
+3. 分享海报/文案：海报同步展示签文、指数、群聊入座榜，并支持复制海报文案发群。
 
-```text
-ktv-h5-extension/
-  README.md
-  AGENTS.md
-  research/
-  decisions/
-  app-projects/
-    app-module-slug/
-  h5-projects/
-    package-social-card/
-    ktv-atmosphere-cover/
-    room-mini-games/
-```
 
-## 当前背景
-
-- 公司线下 KTV 做得好，手机点歌入口流量大。
-- 当前问题是用户唱完歌、用完点歌 H5 后大多流失，没有在 App 内形成长期资产和复访。
-- 目标用户画像：爱唱歌、在 KTV 消费，约 60% 为 18-25 岁，也包含中年用户。
-- 当前处于用户产品阶段，需要先找可延伸场景，再做最小验证。
-
-## 当前文档
-
-- `research/app-scenario-top10.md`：App 使用场景与头部产品初筛。
-- `research/non-karaoke-opportunities.md`：排除已有 K歌 App 后的 H5 衍生产品机会重排。
-- `research/fun-app-ideas.md`：避开本地生活后的好玩 App 方向发散。
-
-## 后续工作原则
-
-1. 不直接从榜单推结论，榜单只用于机会池初筛。
-2. 每个产品方向必须回到真实用户行为验证。
-3. 优先做和 KTV 点歌行为连续的轻功能验证，再判断是否进入 App 深做。
-4. 每次方案输出都要带：目标用户、场景、核心假设、最小验证动作、成功阈值、失败信号。
-5. 每个独立项目必须放在 `app-projects/` 或 `h5-projects/` 下，并维护自己的 `README.md`、调研、方案、验证记录。
-6. 每个新方案必须明确 H5 做什么、App 承接什么。

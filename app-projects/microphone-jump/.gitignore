@@ -1,5 +1,0 @@
-node_modules/
-dist/
-verification/*.png
-verification/*.pid
-verification/*.log
