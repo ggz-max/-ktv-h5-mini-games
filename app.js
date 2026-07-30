@@ -367,6 +367,13 @@ function startDraw() {
   }, 1500);
 }
 
+function on(selector, eventName, handler) {
+  const element = document.querySelector(selector);
+  if (element) element.addEventListener(eventName, handler);
+}
+
+on("#startBtn", "click", () => showScreen("quiz"));
+
 document.querySelectorAll("[data-go]").forEach((button) => {
   button.addEventListener("click", () => showScreen(button.dataset.go));
 });
@@ -375,22 +382,22 @@ document.querySelectorAll(".choice, .chip").forEach((button) => {
   button.addEventListener("click", () => selectInGroup(button));
 });
 
-document.querySelector("#drawBtn").addEventListener("click", startDraw);
-document.querySelector("#randomDrawBtn").addEventListener("click", randomDraw);
-document.querySelector("#posterBtn").addEventListener("click", () => {
+on("#drawBtn", "click", startDraw);
+on("#randomDrawBtn", "click", randomDraw);
+on("#posterBtn", "click", () => {
   showScreen("poster");
   showToast("海报已生成，长按截图分享");
 });
-document.querySelector("#copyTextBtn").addEventListener("click", copyShareText);
-document.querySelector("#posterCopyBtn").addEventListener("click", copyShareText);
-document.querySelector("#rebutBtn").addEventListener("click", rebutFortune);
-document.querySelector("#friendSeatBtn").addEventListener("click", assignFriendSeat);
-document.querySelector("#quickSquadBtn").addEventListener("click", fillQuickSquad);
-document.querySelector("#rerankBtn").addEventListener("click", rerankFriends);
-document.querySelector("#friendName").addEventListener("keydown", (event) => {
+on("#copyTextBtn", "click", copyShareText);
+on("#posterCopyBtn", "click", copyShareText);
+on("#rebutBtn", "click", rebutFortune);
+on("#friendSeatBtn", "click", assignFriendSeat);
+on("#quickSquadBtn", "click", fillQuickSquad);
+on("#rerankBtn", "click", rerankFriends);
+on("#friendName", "keydown", (event) => {
   if (event.key === "Enter") assignFriendSeat();
 });
-document.querySelector("#resumeBtn").addEventListener("click", restoreTodayRecord);
+on("#resumeBtn", "click", restoreTodayRecord);
 
 pickFortune();
 renderFortune();
