@@ -234,6 +234,99 @@ function shareCopy() {
   return `我今天抽到「${result.title}」：${result.body} 今日不对劲指数 ${result.score}%。${friendLine}`;
 }
 
+function loadCanvasImage(src) {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.onload = () => resolve(image);
+    image.onerror = reject;
+    image.src = src;
+  });
+}
+
+function drawWrappedText(context, text, x, y, maxWidth, lineHeight, maxLines = 3) {
+  let line = "";
+  let lines = 0;
+  for (const char of text) {
+    const next = line + char;
+    if (context.measureText(next).width > maxWidth && line) {
+      context.fillText(line, x, y);
+      y += lineHeight;
+      lines += 1;
+      line = char;
+      if (lines >= maxLines) return y;
+    } else {
+      line = next;
+    }
+  }
+  if (line && lines < maxLines) context.fillText(line, x, y);
+  return y + lineHeight;
+}
+
+async function createPosterBlob() {
+  const result = state.current;
+  const canvas = document.createElement("canvas");
+  canvas.width = 720;
+  canvas.height = 1080;
+  const context = canvas.getContext("2d");
+  const [frame, oracle] = await Promise.all([
+    loadCanvasImage(new URL("./assets/generated-ui/share-frame-v1.png", location.href).href),
+    loadCanvasImage(new URL("./assets/generated-ui/oracle-slip-v1.png", location.href).href)
+  ]);
+
+  context.drawImage(frame, 0, 0, canvas.width, canvas.height);
+  const gradient = context.createLinearGradient(0, 0, 0, canvas.height);
+  gradient.addColorStop(0, "rgba(0,0,0,.78)");
+  gradient.addColorStop(.42, "rgba(0,0,0,.18)");
+  gradient.addColorStop(1, "rgba(0,0,0,.82)");
+  context.fillStyle = gradient;
+  context.fillRect(0, 0, canvas.width, canvas.height);
+  context.strokeStyle = "rgba(101,255,104,.34)";
+  context.lineWidth = 2;
+  context.strokeRect(42, 42, 636, 996);
+
+  context.fillStyle = "#65ff68";
+  context.font = "900 24px sans-serif";
+  context.fillText("MENTAL SIGN POSTER", 66, 106);
+
+  context.font = "1000 92px sans-serif";
+  context.fillStyle = "#ff37df";
+  context.fillText(result.title, 70, 194);
+  context.fillStyle = "#16f4ff";
+  context.fillText(result.title, 62, 186);
+  context.fillStyle = "#ffffff";
+  context.fillText(result.title, 66, 190);
+
+  context.fillStyle = "rgba(0,0,0,.7)";
+  context.fillRect(66, 242, 500, 112);
+  context.fillStyle = "#ffffff";
+  context.font = "900 28px sans-serif";
+  drawWrappedText(context, result.body, 84, 286, 464, 38, 2);
+
+  context.drawImage(oracle, 225, 390, 270, 430);
+
+  context.strokeStyle = "rgba(22,244,255,.75)";
+  context.strokeRect(500, 470, 142, 142);
+  context.fillStyle = "rgba(0,0,0,.58)";
+  context.fillRect(500, 470, 142, 142);
+  context.fillStyle = "#16f4ff";
+  context.font = "900 22px sans-serif";
+  context.fillText(result.code, 524, 516);
+  context.font = "1000 54px sans-serif";
+  context.fillText(`${result.score}%`, 522, 582);
+
+  context.fillStyle = "rgba(0,0,0,.72)";
+  context.fillRect(66, 876, 588, 82);
+  context.strokeStyle = "rgba(101,255,104,.48)";
+  context.strokeRect(66, 876, 588, 82);
+  context.fillStyle = "#65ff68";
+  context.font = "900 24px sans-serif";
+  context.fillText(`宜：${result.good}    忌：${result.bad}`, 88, 928);
+
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => (blob ? resolve(blob) : reject(new Error("poster render failed"))), "image/png", .92);
+  });
+}
+
 function renderFriendSeat() {
   const panel = document.querySelector("#friendSeatResult");
   const poster = document.querySelector("#posterFriend");
@@ -324,10 +417,23 @@ function rerankFriends() {
 async function copyShareText() {
   const text = shareCopy();
   try {
+    if (navigator.clipboard?.write && window.ClipboardItem) {
+      const blob = await createPosterBlob();
+      await navigator.clipboard.write([
+        new ClipboardItem({ "image/png": blob })
+      ]);
+      showToast("海报已复制");
+      return;
+    }
     await navigator.clipboard.writeText(text);
     showToast("海报文案已复制");
   } catch {
-    showToast("复制失败，可以长按截图");
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast("海报文案已复制");
+    } catch {
+      showToast("复制失败，可以长按截图");
+    }
   }
 }
 
