@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>今日精神状态签</title>
-  <link rel="stylesheet" href="./styles.css?v=20260730-clickfix">
+  <link rel="stylesheet" href="./styles.css?v=20260730-ctafix">
 </head>
 <body>
   <main class="app-shell">
@@ -64,13 +64,15 @@
         <button class="chip" type="button" data-value="wild"><span>想发疯但礼貌</span></button>
       </div>
 
-      <button class="ghost-cta random-draw" type="button" id="randomDrawBtn">懒得选，直接乱抽</button>
+      <div class="bottom-action-zone">
+        <button class="ghost-cta random-draw" type="button" id="randomDrawBtn">懒得选，直接乱抽</button>
 
-      <button class="image-cta sticky-cta" type="button" id="drawBtn">
-        <img src="./assets/generated-ui/cta-button-v1.png" alt="" aria-hidden="true">
-        <span>生成今日签</span>
-        <i>抽</i>
-      </button>
+        <button class="image-cta sticky-cta" type="button" id="drawBtn">
+          <img src="./assets/generated-ui/cta-button-v1.png" alt="" aria-hidden="true">
+          <span>生成今日签</span>
+          <i>抽</i>
+        </button>
+      </div>
     </section>
 
     <section class="screen screen-loading" data-screen="loading">
@@ -168,6 +170,6 @@
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </main>
 
-  <script src="./app.js?v=20260730-clickfix"></script>
+  <script src="./app.js?v=20260730-ctafix"></script>
 </body>
 </html>

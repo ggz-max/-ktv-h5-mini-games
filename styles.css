@@ -376,26 +376,41 @@ input {
   z-index: 1;
 }
 
-.sticky-cta {
+.bottom-action-zone {
   position: fixed;
   z-index: 8;
   left: 50%;
   bottom: max(18px, env(safe-area-inset-bottom));
-  width: min(calc(100% - 36px), 394px);
+  width: min(394px, calc(100vw - 36px));
+  max-width: calc(430px - 36px);
   transform: translateX(-50%);
+  display: grid;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.bottom-action-zone > * {
+  pointer-events: auto;
+}
+
+.sticky-cta {
+  width: 100%;
+  min-height: 58px;
+  padding: 0 22px 0 26px;
 }
 
 .random-draw {
-  position: fixed !important;
-  z-index: 8;
-  left: 50%;
-  bottom: max(84px, calc(env(safe-area-inset-bottom) + 84px));
-  width: min(calc(100% - 72px), 352px);
-  min-height: 38px;
+  position: relative !important;
+  width: min(286px, 78%);
+  min-height: 42px;
+  justify-self: center;
   padding-inline: 12px;
   font-size: 13px;
   font-weight: 950;
-  transform: translateX(-50%);
+}
+
+.bottom-action-zone .random-draw {
+  width: min(286px, 78%);
 }
 
 .random-draw::before {
